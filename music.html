@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Music</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Palette (same as main page) */
+      --yellow: #fdffe1;
+      --softgray: #fffff7;
+      --caput: #63281E;
+      --caribbean: #265E60;
+      --eggplant: #6A4059;
+      --darkslate: #324340;
+      --moss: #A7A448;
+      --indigo: #0D5375;
+      --fairytale: #E9BFC7;
+      --lightblue: #A9CFCC;
+      --saffron: #E5C457;
+      --viridian: #2F8F77;
+
+      --bg: #e2f0f6;
+      --text: var(--eggplant);
+
+      /* used for outlines/borders */
+      --accent: var(--indigo);
+      --cyan: var(--lightblue);
+    }
+
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      min-height: 100dvh;
+      position: relative;
+    }
+
+    /* Polka dots */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 1;
+      background-image:
+        radial-gradient(circle 18px, var(--caribbean) 99%, transparent 100%),
+        radial-gradient(circle 18px, var(--viridian) 99%, transparent 100%),
+        radial-gradient(circle 18px, var(--indigo) 99%, transparent 100%),
+        radial-gradient(circle 18px, var(--moss) 99%, transparent 100%),
+        radial-gradient(circle 18px, var(--saffron) 99%, transparent 100%),
+        radial-gradient(circle 18px, var(--caput) 99%, transparent 100%),
+        radial-gradient(circle 18px, var(--eggplant) 99%, transparent 100%),
+        radial-gradient(circle 18px, var(--fairytale) 99%, transparent 100%),
+        radial-gradient(circle 18px, var(--lightblue) 99%, transparent 100%);
+      background-size:
+        400px 400px, 400px 400px, 400px 400px,
+        400px 400px, 400px 400px, 400px 400px,
+        400px 400px, 400px 400px, 400px 400px;
+      background-position:
+        0 0, 200px 0, 0 200px, 200px 200px,
+        100px 100px, 300px 100px, 100px 300px,
+        300px 300px, 400px 200px;
+    }
+
+    /* Home button */
+    .top-buttons {
+      position: absolute;
+      top: 20px; left: 20px;
+      display: flex;
+      gap: 10px;
+      z-index: 2;
+    }
+    .top-buttons a {
+      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+      color: var(--eggplant);
+      background: var(--softgray);
+      border: 3px solid var(--cyan);
+      text-decoration: none;
+      box-shadow: 0 0 0 2px var(--accent);
+      transition: background 0.3s, color 0.3s, transform 0.3s;
+    }
+    .top-buttons a:hover {
+      background: var(--eggplant);
+      color: var(--softgray);
+      transform: scale(1.05);
+    }
+
+    /* Page title — same look as main page */
+    .title{
+      text-align: center;
+      font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--softgray);                 /* fill */
+      -webkit-text-stroke: 2px var(--accent); /* outline */
+      margin: 4.5rem auto 1rem;
+      max-width: 1000px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Content area */
+    .container{
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 1rem 1.25rem 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 480px){
+      .top-buttons { position: static; padding: 1rem; }
+      .title { margin-top: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-buttons"><a href="index.html">Home</a></div>
+
+  <h1 class="title">Music</h1>
+
+  <main class="container">
+    <p>Welcome to my music page. Add your tracks, playlists, embeds, or project write‑ups here.</p>
+    <!-- Add your music content here -->
+  </main>
+</body>
+</html>
