@@ -174,4 +174,59 @@
     <h1 id="site-title" class="title">MY WORKS</h1>
 
 </body>
+  <div class="top-buttons"><a href="index.html">Home</a></div>
+  <h1 id="site-title" class="title">MY WORKS</h1>
+
+  <div class="works-container">
+    <a href="music.html" class="work-box">
+      <h2>Music</h2>
+      <p>Explore my music projects and compositions.</p>
+    </a>
+
+    <a href="visual.html" class="work-box">
+      <h2>Visual</h2>
+      <p>Discover my visual art and design works.</p>
+    </a>
+  </div>
+</body>
 </html>
+.works-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 2rem;
+}
+
+.work-box {
+  background: var(--softgray);
+  color: var(--eggplant);
+  text-decoration: none;
+  border: 3px solid var(--accent);
+  box-shadow: 0 0 0 2px var(--cyan);
+  padding: 1.5rem;
+  width: clamp(200px, 40%, 300px);
+  transition: transform 0.3s, background 0.3s;
+}
+
+.work-box h2 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.work-box p {
+  font-size: 1rem;
+  text-align: center;
+}
+
+.work-box:hover {
+  background: var(--eggplant);
+  color: var(--softgray);
+  transform: translateY(-5px);
+}
+
+.work-box:hover h2,
+.work-box:hover p {
+  color: var(--softgray);
+}
