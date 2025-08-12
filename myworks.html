@@ -29,7 +29,7 @@
       --bg: #e2f0f6;
       --text: var(--eggplant);
 
-      /* Missing vars (now defined) */
+      /* used in borders/outlines */
       --accent: var(--indigo);
       --cyan: var(--lightblue);
     }
@@ -72,7 +72,7 @@
         300px 300px, 400px 200px;
     }
 
-    /* Top-left Home button */
+    /* Home button */
     .top-buttons {
       position: absolute;
       top: 20px; left: 20px;
@@ -104,8 +104,8 @@
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: var(--softgray);               /* fill */
-      -webkit-text-stroke: 2px var(--accent); /* outline */
+      color: var(--softgray);                  /* fill */
+      -webkit-text-stroke: 2px var(--accent);  /* outline */
       margin: 4.5rem auto 0.75rem;
       max-width: 1000px;
       position: relative;
@@ -131,7 +131,7 @@
       display: grid;
       grid-template-rows: auto 1fr;
       place-items: center;
-      text-align: center;            /* ensures centered title */
+      text-align: center;
       background: var(--softgray);
       color: var(--eggplant);
       text-decoration: none;
@@ -167,4 +167,31 @@
     }
 
     @media (max-width: 420px){
-      .top-buttons { po
+      .top-buttons { position: static; padding: 1rem; }
+      .title { margin-top: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Home -->
+  <div class="top-buttons">
+    <a href="index.html">Home</a>
+  </div>
+
+  <!-- Page title -->
+  <h1 id="site-title" class="title">My Works</h1>
+
+  <!-- Linked boxes -->
+  <main class="works-container" role="main">
+    <a href="music.html" class="work-box">
+      <h2>Music</h2>
+      <p>Explore my music projects and compositions.</p>
+    </a>
+
+    <a href="visual.html" class="work-box">
+      <h2>Visual</h2>
+      <p>Discover my visual art and design works.</p>
+    </a>
+  </main>
+</body>
+</html>
