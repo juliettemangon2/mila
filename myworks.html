@@ -13,6 +13,8 @@
   <style>
     :root{
       /* Palette from the image */
+      --yellow: #fdffe1;
+      --softgray: #fffff7;
       --caput: #63281E;
       --caribbean: #265E60;
       --eggplant: #6A4059;
@@ -27,6 +29,7 @@
       --bg: #e2f0f6;           /* soft background similar to the reference */
       --text: var(--eggplant); /* title and buttons text color */
     }
+
 
     html, body {
       height: 100%;
@@ -90,17 +93,41 @@
 
     .hero{
       display: grid;
-      place-items: center;
-      text-align: center;
+
       position: relative;
     }
     .title{
-      font-weight: 900;
-      letter-spacing: 0.05em;
-      font-size: clamp(2.8rem, 9vw, 9rem);
-      line-height: 1;
-      margin: 0;
+      text-align: center;
+      font-size: 2.4rem;
+      font-weight: 700;
       text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      -webkit-text-stroke: 2px var(--accent);
+      margin: 2.2rem auto 1rem;
+      max-width: 1000px;
+    }
+    .top-buttons {
+      position: absolute;
+      top: 20px; left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .top-buttons a {
+      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+      color: var(--eggplant);
+      background: var(--softgray);
+      border: 3px solid var(--cyan);
+      text-decoration: none;
+      box-shadow: 0 0 0 2px var(--accent);
+      transition: background 0.3s, color 0.3s, transform 0.3s;
+    }
+    .top-buttons a:hover {
+      background: var(--eggplant);
+      color: var(--softgray);
+      transform: scale(1.05);
     }
 
     .nav{
@@ -143,14 +170,8 @@
   </style>
 </head>
 <body>
-  <main class="hero" aria-labelledby="site-title">
-    <h1 id="site-title" class="title">Mila Baumann</h1>
-  </main>
+  <div class="top-buttons"><a href="index.html">Home</a></div>
+    <h1 id="site-title" class="title">MY WORKS</h1>
 
-  <nav class="nav" aria-label="Primary">
-    <a class="btn" href="aboutme.html">About Me</a>
-    <a class="btn" href="contact.html">Contact</a>
-    <a class="btn" href="myworks.html">My Works</a>
-  </nav>
 </body>
 </html>

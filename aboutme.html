@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" class="theme1">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Juliette Mangon</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+
+  <style>
+    :root{
+      /* Palette from the image */
+      --yellow: #fdffe1;
+      --softgray: #fffff7;
+      --caput: #63281E;
+      --caribbean: #265E60;
+      --eggplant: #6A4059;
+      --darkslate: #324340;
+      --moss: #A7A448;
+      --indigo: #0D5375;
+      --fairytale: #E9BFC7;
+      --lightblue: #A9CFCC;
+      --saffron: #E5C457;
+      --viridian: #2F8F77;
+
+      --bg: #e2f0f6;           /* soft background similar to the reference */
+      --text: var(--eggplant); /* title and buttons text color */
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html.theme1 {
+      background: repeating-linear-gradient(
+        to right,
+        var(--saffron) 0   50px,
+        var(--lightblue)        50px 100px
+      );
+    }
+
+    /* THEME 2 STRIPES & SWAP */
+    html.theme2 {
+      background: repeating-linear-gradient(
+        to right,
+        var(--moss) 0   50px,
+        var(--fairytale)   50px 100px
+      );
+    }
+    html {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      padding: 40px;
+      position: relative;
+    }
+
+
+    html.theme2 .top-buttons a {
+      background: var(--highlight);
+      color: var(--text);
+      border-color: var(--highlight);
+    }
+
+    html.theme2 .top-buttons a:hover {
+      background: var(--text);
+      color: var(--highlight);
+    }
+
+    .toggle-switch {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 24px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-switch label {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 24px;
+      background: var(--viridian);
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .toggle-switch label::after {
+      content: '';
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      top: 3px;
+      left: 3px;
+      transition: transform 0.3s;
+    }
+
+    .toggle-switch input:checked + label {
+      background: var(--accent);
+    }
+
+    .toggle-switch input:checked + label::after {
+      transform: translateX(26px);
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.4rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      -webkit-text-stroke: 2px var(--accent);
+      margin: 2.2rem auto 1rem;
+      max-width: 1000px;
+    }
+
+    html.theme2 .section-title {
+      color: var(--highlight);
+      -webkit-text-stroke: 2px var(--highlight);
+    }
+
+    /* First section grid: larger photo */
+    .content-grid {
+      display: flex;
+      gap: 3rem;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+      flex-wrap: wrap;
+    }
+
+    .photo-col {
+      flex: 0 0 35%;
+    }
+    .photo-col img {
+      width: 100%;
+      height: auto;
+      border: 2px solid var(--highlight);
+      border-radius: 0;
+    }
+
+    .text-col {
+      flex: 1 1 60%;
+    }
+
+    .text-block {
+      background: var(--yellow);
+      padding: 1.5rem 2rem;
+      border-radius: 0px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-top: 0.6rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Full-width second section */
+    .full-width {
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+    }
+
+    .edu-grid {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      max-width: 1200px;   
+      margin: 0 auto 3rem;
+    }
+    .edu-col {
+      flex: 1 1 450px;
+      background: var(--yellow);
+      padding: 1.5rem 2rem;
+      border-radius: 0px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+    .top-buttons {
+      position: absolute;
+      top: 20px; left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .top-buttons a {
+      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+      color: var(--eggplant);
+      background: var(--softgray);
+      border: 3px solid var(--cyan);
+      text-decoration: none;
+      box-shadow: 0 0 0 2px var(--accent);
+      transition: background 0.3s, color 0.3s, transform 0.3s;
+    }
+    .top-buttons a:hover {
+      background: var(--eggplant);
+      color: var(--softgray);
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
+      .content-grid {
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .photo-col {
+        max-width: 100%;
+      }
+
+      .text-col {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-buttons"><a href="index.html">Home</a></div>
+  <div class="toggle-switch"><input type="checkbox" id="theme-toggle"/><label for="theme-toggle"></label></div>
+
+  <!-- ABOUT -->
+  <h2 class="section-title">About Me</h2>
+
+  <!-- First section: photo + first text block -->
+  <div class="content-grid">
+    <div class="photo-col">
+      <img src="IMG_7735.jpeg" alt="Photo of Mila">
+    </div>
+    <div class="text-col">
+      <div class="text-block">
+        <p>Hello, my name is Mila Baumann </p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- EDUCATION -->
+  <h2 class="section-title" id="edu">Technical Background</h2>
+  <div class="edu-grid">
+    <div class="edu-col">
+      <p>
+      </p>
+    </div>
+    <div class="edu-col">
+      <p>
+      </p>
+    </div>
+  </div>
+  
+  <script>
+    document.getElementById('theme-toggle').addEventListener('change', () => {
+      document.documentElement.classList.toggle('theme2');
+      document.documentElement.classList.toggle('theme1');
+    });
+  </script>
+</body>
+</html>
