@@ -21,6 +21,9 @@
       --lightblue: #A9CFCC;
       --saffron: #E5C457;
       --viridian: #2F8F77;
+      --card-bg: rgba(255,255,255,0.64);  /* Glassy white */
+      --card-hover-bg: rgba(255,255,255,0.81);
+      --card-shadow: 0 4px 28px 2px rgba(0,0,0,0.08), 0 0 0 2px rgba(255,255,255,0.13);
 
       --bg: #e2f0f6;           /* soft background similar to the reference */
       --text: var(--eggplant); /* title and buttons text color */
@@ -151,6 +154,7 @@
     .photo-col img {
       width: 100%;
       height: auto;
+      margin-top: 4.7rem;
       border: 2px solid var(--highlight);
       border-radius: 0;
     }
@@ -160,13 +164,18 @@
     }
 
     .text-block {
-      background: var(--yellow);
-      padding: 1.5rem 2rem;
-      border-radius: 0px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-      font-size: 1.2rem;
+      display: grid; grid-template-rows: auto 1fr; place-items: center; text-align: center;
+      background: var(--card-bg);
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+      color: var(--eggplant); text-decoration: none;
+      box-shadow: var(--card-shadow);
+      border: none;
+      padding: 1rem;
+      transition: transform .22s, background .22s, box-shadow .22s;
+      font-size: 1.4rem;
       line-height: 1.8;
-      margin-top: 0.6rem;
+      margin-top: 4.7rem;
       margin-bottom: 2rem;
     }
 
@@ -214,6 +223,27 @@
       color: var(--softgray);
       transform: scale(1.05);
     }
+    .works-container {
+      display: flex; gap: 2rem; justify-content: center; align-items: stretch; flex-wrap: wrap;
+      padding: 2rem 1.25rem 3.5rem; position: relative; z-index: 1; max-width: 1000px; margin: 0 auto;
+    }
+    .work-box {
+      display: grid; grid-template-rows: auto 1fr; place-items: center; text-align: center;
+      background: var(--card-bg);
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+      color: var(--eggplant); text-decoration: none;
+      box-shadow: var(--card-shadow);
+      border: none;
+      padding: 1.5rem; width: clamp(220px, 40vw, 360px); border-radius: 16px;
+      transition: transform .22s, background .22s, box-shadow .22s;
+    }
+    .work-box h2 {
+      margin: 0 0 .5rem 0; font-size: 1.7rem; font-weight: 800; line-height: 1.2;
+    }
+    .work-box p {
+      margin: 0; font-size: 1rem; opacity: .85;
+    }
 
     @media (max-width: 768px) {
       body {
@@ -249,22 +279,12 @@
     </div>
     <div class="text-col">
       <div class="text-block">
-        <p>My name is Mila Baumann and I am currently a junior in composition and film scoring at NYU. I statrted playing the violin in second grade eventually leading me to study at a music conservatory where I discovered my love for compositition. I am interested in contemporary classical music, particularly how the lines of music and sound are blurred with the use of extended techniques and the combination of electronic tools and music.  </p>
+        <p>My name is Mila Baumann and I am currently a junior in composition and film scoring at NYU. I started playing the violin in second grade eventually leading me to study at a music conservatory where I discovered my love for composition. I am interested in contemporary classical music, particularly how the lines of music and sound are blurred with the use of extended techniques and the combination of electronic tools and music.  </p>
       </div>
     </div>
   </div>
 
-  <h2 class="section-title" id="edu">Technical Background</h2>
-  <div class="edu-grid">
-    <div class="edu-col">
-      <p> major classical composition and film and video game scoring. 
-      </p>
-    </div>
-    <div class="edu-col">
-      <p>
-      </p>
-    </div>
-  </div>
+
   
   <script>
     document.getElementById('theme-toggle').addEventListener('change', () => {
