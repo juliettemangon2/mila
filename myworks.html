@@ -12,7 +12,7 @@
 
   <style>
     :root{
-      /* Palette from the image */
+      /* Palette */
       --yellow: #fdffe1;
       --softgray: #fffff7;
       --caput: #63281E;
@@ -26,93 +26,60 @@
       --saffron: #E5C457;
       --viridian: #2F8F77;
 
-      --bg: #e2f0f6;           /* soft background similar to the reference */
-      --text: var(--eggplant); /* title and buttons text color */
+      --bg: #e2f0f6;
+      --text: var(--eggplant);
+
+      /* Missing vars (now defined) */
+      --accent: var(--indigo);
+      --cyan: var(--lightblue);
     }
 
-
-    html, body {
-      height: 100%;
-    }
-
+    html, body { height: 100%; }
     body{
       margin: 0;
       font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background-color: var(--bg);
       color: var(--text);
-      display: grid;
-      grid-template-rows: 1fr auto;
       overflow-x: hidden;
-    }
-
-    /* Bigger, sparse multicolor polka dots */
-    body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        opacity: 1;
-
-        /* More ordered, grid-like, spaced out dots */
-        background-image:
-            radial-gradient(circle 18px, var(--caribbean) 99%, transparent 100%),
-            radial-gradient(circle 18px, var(--viridian) 99%, transparent 100%),
-            radial-gradient(circle 18px, var(--indigo) 99%, transparent 100%),
-            radial-gradient(circle 18px, var(--moss) 99%, transparent 100%),
-            radial-gradient(circle 18px, var(--saffron) 99%, transparent 100%),
-            radial-gradient(circle 18px, var(--caput) 99%, transparent 100%),
-            radial-gradient(circle 18px, var(--eggplant) 99%, transparent 100%),
-            radial-gradient(circle 18px, var(--fairytale) 99%, transparent 100%),
-            radial-gradient(circle 18px, var(--lightblue) 99%, transparent 100%);
-
-        /* Much larger grid for more order and spacing */
-        background-size:
-            400px 400px,
-            400px 400px,
-            400px 400px,
-            400px 400px,
-            400px 400px,
-            400px 400px,
-            400px 400px,
-            400px 400px,
-            400px 400px;
-
-        /* Grid positions, evenly spaced, no clumping */
-        background-position:
-            0 0,
-            200px 0,
-            0 200px,
-            200px 200px,
-            100px 100px,
-            300px 100px,
-            100px 300px,
-            300px 300px,
-            400px 200px;
-    }
-
-
-    .hero{
-      display: grid;
-
       position: relative;
+      min-height: 100dvh;
     }
-    .title{
-      text-align: center;
-      font-size: 2.4rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--accent);
-      -webkit-text-stroke: 2px var(--accent);
-      margin: 2.2rem auto 1rem;
-      max-width: 1000px;
+
+    /* Polka dots */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 1;
+      background-image:
+        radial-gradient(circle 18px, var(--caribbean) 99%, transparent 100%),
+        radial-gradient(circle 18px, var(--viridian) 99%, transparent 100%),
+        radial-gradient(circle 18px, var(--indigo) 99%, transparent 100%),
+        radial-gradient(circle 18px, var(--moss) 99%, transparent 100%),
+        radial-gradient(circle 18px, var(--saffron) 99%, transparent 100%),
+        radial-gradient(circle 18px, var(--caput) 99%, transparent 100%),
+        radial-gradient(circle 18px, var(--eggplant) 99%, transparent 100%),
+        radial-gradient(circle 18px, var(--fairytale) 99%, transparent 100%),
+        radial-gradient(circle 18px, var(--lightblue) 99%, transparent 100%);
+      background-size:
+        400px 400px, 400px 400px, 400px 400px,
+        400px 400px, 400px 400px, 400px 400px,
+        400px 400px, 400px 400px, 400px 400px;
+      background-position:
+        0 0, 200px 0, 0 200px, 200px 200px,
+        100px 100px, 300px 100px, 100px 300px,
+        300px 300px, 400px 200px;
     }
+
+    /* Top-left Home button */
     .top-buttons {
       position: absolute;
       top: 20px; left: 20px;
       display: flex;
       flex-direction: column;
       gap: 10px;
+      z-index: 2;
     }
     .top-buttons a {
       font-weight: 600;
@@ -130,103 +97,74 @@
       transform: scale(1.05);
     }
 
-    .nav{
-      display: flex;
-      gap: clamp(1.25rem, 4vw, 4rem);
-      justify-content: center;
-      align-items: center;
-      padding: 2.5rem 1rem 3rem;
-      position: relative;
-    }
-    /* Remove overlay, instead use text-shadow for readability */
-    .hero > *, .nav > * {
+    /* Page title */
+    .title{
+      text-align: center;
+      font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--softgray);               /* fill */
+      -webkit-text-stroke: 2px var(--accent); /* outline */
+      margin: 4.5rem auto 0.75rem;
+      max-width: 1000px;
       position: relative;
       z-index: 1;
     }
-    .title, .btn {
 
+    /* Boxes container */
+    .works-container {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      align-items: stretch;
+      flex-wrap: wrap;
+      padding: 2rem 1.25rem 3rem;
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
     }
-    .btn{
-      appearance: none;
-      color: var(--text);
-      padding: 0.85rem 1.5rem;
-      font-weight: 700;
+
+    /* Clickable card */
+    .work-box {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      place-items: center;
+      text-align: center;            /* ensures centered title */
+      background: var(--softgray);
+      color: var(--eggplant);
       text-decoration: none;
-      letter-spacing: 0.02em;
-      transition: transform 120ms ease, background-color 120ms ease;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 0 2px var(--cyan);
+      padding: 1.5rem;
+      width: clamp(220px, 40vw, 360px);
+      border-radius: 16px;
+      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
     }
-    .btn:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.3);
+    .work-box h2 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.6rem;
+      line-height: 1.2;
+      font-weight: 800;
     }
-    .btn:focus-visible{
-      outline: 3px solid var(--saffron);
-      outline-offset: 3px;
+    .work-box p {
+      margin: 0;
+      font-size: 1rem;
+      opacity: 0.85;
+    }
+    .work-box:hover,
+    .work-box:focus-visible {
+      background: var(--eggplant);
+      color: var(--softgray);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.12), 0 0 0 2px var(--accent) inset;
+      outline: none;
+    }
+    .work-box:hover h2,
+    .work-box:hover p {
+      color: var(--softgray);
     }
 
     @media (max-width: 420px){
-      .nav{ flex-wrap: wrap; }
-    }
-  </style>
-</head>
-<body>
-  <div class="top-buttons"><a href="index.html">Home</a></div>
-    <h1 id="site-title" class="title">MY WORKS</h1>
-
-</body>
-  <div class="top-buttons"><a href="index.html">Home</a></div>
-  <h1 id="site-title" class="title">MY WORKS</h1>
-
-  <div class="works-container">
-    <a href="music.html" class="work-box">
-      <h2>Music</h2>
-      <p>Explore my music projects and compositions.</p>
-    </a>
-
-    <a href="visual.html" class="work-box">
-      <h2>Visual</h2>
-      <p>Discover my visual art and design works.</p>
-    </a>
-  </div>
-</body>
-</html>
-.works-container {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  padding: 2rem;
-}
-
-.work-box {
-  background: var(--softgray);
-  color: var(--eggplant);
-  text-decoration: none;
-  border: 3px solid var(--accent);
-  box-shadow: 0 0 0 2px var(--cyan);
-  padding: 1.5rem;
-  width: clamp(200px, 40%, 300px);
-  transition: transform 0.3s, background 0.3s;
-}
-
-.work-box h2 {
-  margin-top: 0;
-  font-size: 1.5rem;
-  text-align: center;
-}
-
-.work-box p {
-  font-size: 1rem;
-  text-align: center;
-}
-
-.work-box:hover {
-  background: var(--eggplant);
-  color: var(--softgray);
-  transform: translateY(-5px);
-}
-
-.work-box:hover h2,
-.work-box:hover p {
-  color: var(--softgray);
-}
+      .top-buttons { po
