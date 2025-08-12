@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mila Baumann — My Works</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
@@ -28,11 +27,7 @@
       --bg: #e2f0f6;
       --text: var(--eggplant);
 
-      /* Used for card borders/outlines */
-      --accent: var(--indigo);
-      --cyan: var(--lightblue);
-
-      /* Slight transparency for colored dots */
+      /* Used for colored polka dots */
       --caribbean-dot: rgba(38,94,96,0.74);
       --viridian-dot: rgba(47,143,119,0.72);
       --indigo-dot: rgba(13,83,117,0.68);
@@ -42,23 +37,37 @@
       --eggplant-dot: rgba(106,64,89,0.70);
       --fairytale-dot: rgba(233,191,199,0.73);
       --lightblue-dot: rgba(169,207,204,0.72);
+
+      --accent: var(--indigo);
+      --cyan: var(--lightblue);
+
+      /* Card style */
+      --card-bg: rgba(255,255,255,0.64);  /* Glassy white */
+      --card-hover-bg: rgba(255,255,255,0.81);
+      --card-shadow: 0 4px 28px 2px rgba(0,0,0,0.08), 0 0 0 2px rgba(255,255,255,0.13);
     }
 
     html, body { height: 100%; }
-    body{
-      margin:0; font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background-color:var(--bg); color:var(--text); overflow-x:hidden; min-height:100dvh; position:relative;
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      min-height: 100dvh;
+      position: relative;
+      transition: background 0.5s;
     }
 
     /* Large, spaced multicolor polka dots - with transparency, ordered grid */
-    body::before {
+    body.theme-default::before,
+    body:not([class^="theme-"])::before {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
       opacity: 1;
       z-index: 0;
-
       background-image:
         radial-gradient(circle 18px, var(--caribbean-dot) 99%, transparent 100%),
         radial-gradient(circle 18px, var(--viridian-dot) 99%, transparent 100%),
@@ -77,63 +86,148 @@
         0 0, 200px 0, 0 200px, 200px 200px,
         100px 100px, 300px 100px, 100px 300px,
         300px 300px, 400px 200px;
+      transition: background-image 0.5s;
+    }
+
+    /* Theme 1: White bg, blue dots */
+    body.theme-blue-dots {
+      background: #fff;
+      --text: var(--indigo);
+    }
+    body.theme-blue-dots::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle 17px, rgba(13,83,117,0.41) 97%, transparent 100%),
+        radial-gradient(circle 17px, rgba(13,83,117,0.19) 97%, transparent 100%);
+      background-size: 220px 220px, 220px 220px;
+      background-position: 0 0, 110px 110px;
+      transition: background-image 0.5s;
+    }
+
+    /* Theme 2: Blue bg, white dots */
+    body.theme-white-dots {
+      background: var(--indigo);
+      --text: #fff;
+    }
+    body.theme-white-dots::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle 18px, rgba(255,255,255,0.60) 97%, transparent 100%),
+        radial-gradient(circle 18px, rgba(255,255,255,0.22) 97%, transparent 100%);
+      background-size: 220px 220px, 220px 220px;
+      background-position: 0 0, 110px 110px;
+      transition: background-image 0.5s;
+    }
+
+    /* Theme 3: White bg, red dots */
+    body.theme-red-dots {
+      background: #fff;
+      --text: var(--caput);
+    }
+    body.theme-red-dots::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle 17px, rgba(200,42,42,0.28) 97%, transparent 100%),
+        radial-gradient(circle 17px, rgba(200,42,42,0.13) 97%, transparent 100%);
+      background-size: 220px 220px, 220px 220px;
+      background-position: 0 0, 110px 110px;
+      transition: background-image 0.5s;
     }
 
     /* Home button */
-    .top-buttons{
-      position:absolute; top:20px; left:20px;
-      display:flex; gap:10px; z-index:2;
+    .top-buttons {
+      position: absolute;
+      top: 20px; left: 20px;
+      display: flex; gap: 10px; z-index: 2;
     }
-    .top-buttons a{
-      font-weight:600; padding:0.6rem 1.2rem;
-      color:var(--eggplant); background:var(--softgray);
-      border:3px solid var(--cyan); text-decoration:none;
-      box-shadow:0 0 0 2px var(--accent);
-      transition:background .3s, color .3s, transform .3s;
+    .top-buttons a {
+      font-weight: 600; padding: 0.6rem 1.2rem;
+      color: var(--eggplant); background: var(--softgray);
+      border: 3px solid var(--cyan); text-decoration: none;
+      box-shadow: 0 0 0 2px var(--accent);
+      transition: background .3s, color .3s, transform .3s;
     }
-    .top-buttons a:hover{ background:var(--eggplant); color:var(--softgray); transform:scale(1.05); }
+    .top-buttons a:hover {
+      background: var(--eggplant); color: var(--softgray); transform: scale(1.05);
+    }
+
+    /* Color Wave button (top right) */
+    .colorwave-btn {
+      position: absolute; top: 20px; right: 20px;
+      font-weight: 700; font-size: 1.08rem; letter-spacing: 0.03em;
+      padding: 0.55rem 1.4rem;
+      color: var(--indigo); background: #fff;
+      border-radius: 18px;
+      border: 2px solid var(--indigo);
+      box-shadow: 0 2px 10px rgba(13,83,117,0.06);
+      cursor: pointer;
+      z-index: 2;
+      transition: background 0.25s, color 0.25s, border 0.25s;
+    }
+    .colorwave-btn:hover {
+      background: var(--indigo); color: #fff; border-color: var(--indigo);
+    }
 
     /* Title: large white block letters (no outline) */
-    .title{
-      text-align:center; font-size:clamp(2.4rem, 7.5vw, 4.2rem);
-      font-weight:900; text-transform:uppercase; letter-spacing:.06em;
-      color:#fff;
-      text-shadow:0 2px 6px rgba(0,0,0,.2), 0 8px 22px rgba(0,0,0,.18);
-      margin:5rem auto 1.5rem; max-width:1000px; position:relative; z-index:1;
+    .title {
+      text-align: center; font-size: clamp(2.4rem, 7.5vw, 4.2rem);
+      font-weight: 900; text-transform: uppercase; letter-spacing: .06em;
+      color: #fff;
+      text-shadow: 0 2px 6px rgba(0,0,0,.2), 0 8px 22px rgba(0,0,0,.18);
+      margin: 5rem auto 1.5rem; max-width: 1000px; position: relative; z-index: 1;
     }
 
-    /* Glassy fairy pink card boxes */
-    .works-container{
-      display:flex; gap:2rem; justify-content:center; align-items:stretch; flex-wrap:wrap;
-      padding:2rem 1.25rem 3.5rem; position:relative; z-index:1; max-width:1000px; margin:0 auto;
+    /* Glassy white card boxes, no outline */
+    .works-container {
+      display: flex; gap: 2rem; justify-content: center; align-items: stretch; flex-wrap: wrap;
+      padding: 2rem 1.25rem 3.5rem; position: relative; z-index: 1; max-width: 1000px; margin: 0 auto;
     }
-    .work-box{
-      display:grid; grid-template-rows:auto 1fr; place-items:center; text-align:center;
-      background: rgba(233,191,199,0.44); /* glassy fairy pink */
+    .work-box {
+      display: grid; grid-template-rows: auto 1fr; place-items: center; text-align: center;
+      background: var(--card-bg);
       backdrop-filter: blur(7px);
       -webkit-backdrop-filter: blur(7px);
-      color:var(--eggplant); text-decoration:none;
-      border:3px solid var(--accent); box-shadow:0 0 0 2px var(--cyan);
-      padding:1.5rem; width:clamp(220px, 40vw, 360px); border-radius:16px;
-      transition:transform .25s ease, background .25s ease, box-shadow .25s ease;
+      color: var(--eggplant); text-decoration: none;
+      box-shadow: var(--card-shadow);
+      border: none;
+      padding: 1.5rem; width: clamp(220px, 40vw, 360px); border-radius: 16px;
+      transition: transform .22s, background .22s, box-shadow .22s;
     }
-    .work-box h2{ margin:0 0 .5rem 0; font-size:1.7rem; font-weight:800; line-height:1.2; }
-    .work-box p{ margin:0; font-size:1rem; opacity:.85; }
-    .work-box:hover, .work-box:focus-visible{
-      background: rgba(106,64,89,0.67); /* glassy eggplant for contrast on hover */
-      color:var(--softgray); transform:translateY(-4px);
-      box-shadow:0 10px 24px rgba(0,0,0,.12), 0 0 0 2px var(--accent) inset; outline:none;
+    .work-box h2 {
+      margin: 0 0 .5rem 0; font-size: 1.7rem; font-weight: 800; line-height: 1.2;
     }
-    .work-box:hover h2, .work-box:hover p{ color:var(--softgray); }
+    .work-box p {
+      margin: 0; font-size: 1rem; opacity: .85;
+    }
+    .work-box:hover, .work-box:focus-visible {
+      background: var(--card-hover-bg); color: var(--eggplant);
+      transform: translateY(-4px) scale(1.028);
+      box-shadow: 0 16px 38px 2px rgba(13,83,117,0.12), 0 0 0 2px rgba(255,255,255,0.09);
+      outline: none;
+    }
 
     @media (max-width:480px){
       .top-buttons{ position:static; padding:1rem; }
+      .colorwave-btn{ position: static; margin: 1.5rem auto 0.5rem; display: block; }
       .title{ margin-top:1rem; }
     }
   </style>
 </head>
-<body>
+<body class="theme-default">
   <div class="top-buttons"><a href="index.html">Home</a></div>
+  <button class="colorwave-btn" id="colorWaveBtn" type="button">Color Wave</button>
 
   <h1 class="title">My Works</h1>
 
@@ -142,11 +236,20 @@
       <h2>Music</h2>
       <p>Explore my music projects and compositions.</p>
     </a>
-
     <a href="visual.html" class="work-box">
       <h2>Visual</h2>
       <p>Discover my visual art and design works.</p>
     </a>
   </main>
+
+  <script>
+    // Theme cycle: default -> blue dots -> white dots -> red dots -> default ...
+    const themes = ["theme-default", "theme-blue-dots", "theme-white-dots", "theme-red-dots"];
+    let themeIdx = 0;
+    document.getElementById("colorWaveBtn").onclick = function() {
+      themeIdx = (themeIdx + 1) % themes.length;
+      document.body.className = themes[themeIdx];
+    };
+  </script>
 </body>
 </html>
