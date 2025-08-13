@@ -25,6 +25,7 @@
       --viridian: #2F8F77;
 
       --bg: #e2f0f6;
+      --bg-color: var(--bg);     /* used for auto contrast */
       --text: var(--eggplant);
 
       /* Used for colored polka dots */
@@ -45,13 +46,16 @@
       --card-bg: rgba(255,255,255,0.64);  /* Glassy white */
       --card-hover-bg: rgba(255,255,255,0.81);
       --card-shadow: 0 4px 28px 2px rgba(0,0,0,0.08), 0 0 0 2px rgba(255,255,255,0.13);
+
+      /* Title color (auto set via JS) */
+      --title-color: #fff;
     }
 
     html, body { height: 100%; }
     body {
       margin: 0;
       font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background-color: var(--bg);
+      background-color: var(--bg-color);
       color: var(--text);
       overflow-x: hidden;
       min-height: 100dvh;
@@ -91,7 +95,7 @@
 
     /* Theme 1: White bg, blue dots */
     body.theme-blue-dots {
-      background: #fff;
+      --bg-color:#ffffff; background: var(--bg-color);
       --text: var(--indigo);
     }
     body.theme-blue-dots::before {
@@ -110,7 +114,7 @@
 
     /* Theme 2: Blue bg, white dots */
     body.theme-white-dots {
-      background: var(--indigo);
+      --bg-color: var(--indigo); background: var(--bg-color);
       --text: #fff;
     }
     body.theme-white-dots::before {
@@ -127,9 +131,9 @@
       transition: background-image 0.5s;
     }
 
-    /* Theme 3: White bg, red dots */
+    /* Theme 3: White bg, deep red dots */
     body.theme-red-dots {
-      background: #fff;
+      --bg-color:#ffffff; background: var(--bg-color);
       --text: var(--caput);
     }
     body.theme-red-dots::before {
@@ -139,8 +143,8 @@
       pointer-events: none;
       z-index: 0;
       background-image:
-        radial-gradient(circle 17px, rgba(200,42,42,0.28) 97%, transparent 100%),
-        radial-gradient(circle 17px, rgba(200,42,42,0.13) 97%, transparent 100%);
+        radial-gradient(circle 17px, rgba(139,0,0,0.82) 97%, transparent 100%),
+        radial-gradient(circle 17px, rgba(139,0,0,0.50) 97%, transparent 100%);
       background-size: 220px 220px, 220px 220px;
       background-position: 0 0, 110px 110px;
       transition: background-image 0.5s;
@@ -163,28 +167,44 @@
       background: var(--eggplant); color: var(--softgray); transform: scale(1.05);
     }
 
-    /* Color Wave button (top right) */
-    .colorwave-btn {
-      position: absolute; top: 20px; right: 20px;
-      font-weight: 700; font-size: 1.08rem; letter-spacing: 0.03em;
-      padding: 0.55rem 1.4rem;
-      color: var(--indigo); background: #fff;
-      border-radius: 18px;
-      border: 2px solid var(--indigo);
-      box-shadow: 0 2px 10px rgba(13,83,117,0.06);
-      cursor: pointer;
-      z-index: 2;
-      transition: background 0.25s, color 0.25s, border 0.25s;
+    /* Fish button (replaces Color Wave) */
+    .fish-btn{
+      position:absolute; top:20px; right:20px;
+      display:inline-grid; place-items:center;
+      width:56px; height:56px; border-radius:50%;
+      border:2px solid var(--indigo);
+      background:#fff; color:var(--indigo);
+      box-shadow:0 2px 10px rgba(13,83,117,0.06);
+      cursor:pointer; z-index:2;
+      transition:transform .25s, background .25s, color .25s, border-color .25s;
+      --flip: 1; /* 1 or -1, toggled in JS */
     }
-    .colorwave-btn:hover {
-      background: var(--indigo); color: #fff; border-color: var(--indigo);
+    .fish-btn:focus-visible{ outline:3px solid rgba(13,83,117,.4); outline-offset:3px; }
+    .fish-btn:hover{ background:var(--indigo); color:#fff; transform:scale(1.05); }
+    .fish-btn svg{
+      display:block;
+      transition: transform .25s;
+      transform: scaleX(var(--flip)); /* base flip transform */
+    }
+    /* Swim animation on hover/focus (respects flip) */
+    .fish-btn:hover svg,
+    .fish-btn:focus-visible svg{
+      animation: swim .9s ease-in-out infinite;
+      transform-origin: 50% 50%;
+    }
+    @keyframes swim{
+      0%   { transform: translateX(0)            rotate(0deg)   scaleX(var(--flip)); }
+      25%  { transform: translateX(2px)          rotate(2deg)   scaleX(var(--flip)); }
+      50%  { transform: translateX(0)            rotate(0deg)   scaleX(var(--flip)); }
+      75%  { transform: translateX(-2px)         rotate(-2deg)  scaleX(var(--flip)); }
+      100% { transform: translateX(0)            rotate(0deg)   scaleX(var(--flip)); }
     }
 
-    /* Title: large white block letters (no outline) */
+    /* Title: auto-contrasting color */
     .title {
       text-align: center; font-size: clamp(2.4rem, 7.5vw, 4.2rem);
       font-weight: 900; text-transform: uppercase; letter-spacing: .06em;
-      color: #fff;
+      color: var(--title-color);
       text-shadow: 0 2px 6px rgba(0,0,0,.2), 0 8px 22px rgba(0,0,0,.18);
       margin: 5rem auto 1.5rem; max-width: 1000px; position: relative; z-index: 1;
     }
@@ -220,14 +240,22 @@
 
     @media (max-width:480px){
       .top-buttons{ position:static; padding:1rem; }
-      .colorwave-btn{ position: static; margin: 1.5rem auto 0.5rem; display: block; }
+      .fish-btn{ position: static; margin: 1.5rem auto 0.5rem; display: block; }
       .title{ margin-top:1rem; }
     }
   </style>
 </head>
 <body class="theme-default">
   <div class="top-buttons"><a href="index.html">Home</a></div>
-  <button class="colorwave-btn" id="colorWaveBtn" type="button">Color Wave</button>
+
+  <!-- Fish theme-toggle button -->
+  <button class="fish-btn" id="colorWaveBtn" type="button" aria-label="Change theme">
+    <!-- inline SVG fish icon -->
+    <svg viewBox="0 0 64 24" width="44" height="24" aria-hidden="true">
+      <path d="M3 12c7-8 23-10 37-8l6-2-3 5c4 1 8 3 11 5-3 2-7 4-11 5l3 5-6-2C26 22 10 20 3 12Z" fill="currentColor"/>
+      <circle cx="17" cy="10" r="1.6" fill="#fff"/>
+    </svg>
+  </button>
 
   <h1 class="title">My Works</h1>
 
@@ -246,10 +274,61 @@
     // Theme cycle: default -> blue dots -> white dots -> red dots -> default ...
     const themes = ["theme-default", "theme-blue-dots", "theme-white-dots", "theme-red-dots"];
     let themeIdx = 0;
-    document.getElementById("colorWaveBtn").onclick = function() {
+    let flipDir = 1; // 1 or -1
+
+    // Auto-pick white/black for title based on background luminance
+    const setAutoTitleContrast = () => {
+      const raw = getComputedStyle(document.body).getPropertyValue('--bg-color').trim();
+
+      const toRGB = (c) => {
+        if (!c) return [255,255,255];
+        if (c.startsWith('#')) {
+          const n = c.slice(1);
+          const v = n.length===3 ? n.split('').map(ch=>ch+ch).join('') : n;
+          return [parseInt(v.slice(0,2),16), parseInt(v.slice(2,4),16), parseInt(v.slice(4,6),16)];
+        }
+        const m = c.match(/rgba?\(([^)]+)\)/i);
+        if (m) return m[1].split(',').slice(0,3).map(x=>parseFloat(x));
+        return [255,255,255];
+      };
+
+      const [r,g,b] = toRGB(raw);
+      const srgb = [r,g,b].map(v=>v/255).map(v=> v<=0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055,2.4));
+      const L = 0.2126*srgb[0] + 0.7152*srgb[1] + 0.0722*srgb[2];
+      const contrastWhite = (1.05)/(L+0.05);
+      const contrastBlack = (L+0.05)/(0.05);
+      const title = contrastWhite >= contrastBlack ? '#ffffff' : '#111111';
+      document.body.style.setProperty('--title-color', title);
+    };
+
+    const fishBtn = document.getElementById("colorWaveBtn");
+
+    fishBtn.onclick = function() {
+      // Cycle theme
       themeIdx = (themeIdx + 1) % themes.length;
       document.body.className = themes[themeIdx];
+
+      // Ensure --bg-color is set when returning to default theme
+      if (themes[themeIdx] === "theme-default") {
+        document.body.style.setProperty('--bg-color', getComputedStyle(document.documentElement).getPropertyValue('--bg').trim());
+      }
+
+      // Flip fish direction
+      flipDir *= -1;
+      fishBtn.style.setProperty('--flip', flipDir);
+
+      // Recompute title contrast
+      setAutoTitleContrast();
     };
+
+    // Initialize on load
+    (function init(){
+      // default theme bg var
+      document.body.style.setProperty('--bg-color', getComputedStyle(document.documentElement).getPropertyValue('--bg').trim());
+      // initial fish direction
+      fishBtn.style.setProperty('--flip', flipDir);
+      setAutoTitleContrast();
+    })();
   </script>
 </body>
 </html>
