@@ -4,38 +4,49 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mila Baumann</title>
-
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
-
   <style>
     :root{
       --caput: #63281E;
       --caribbean: #265E60;
       --eggplant: #6A4059;
-      --darkslate: #324340;
       --moss: #A7A448;
       --indigo: #0D5375;
       --fairytale: #E9BFC7;
       --lightblue: #A9CFCC;
       --saffron: #E5C457;
       --viridian: #2F8F77;
-
       --bg: #e2f0f6;
       --text: #fff;
 
-      /* Dots w/transparency for masking */
-      --caribbean-dot: rgba(38,94,96,0.74);
-      --viridian-dot: rgba(47,143,119,0.72);
-      --indigo-dot: rgba(13,83,117,0.68);
-      --moss-dot: rgba(167,164,72,0.64);
-      --saffron-dot: rgba(229,196,87,0.7);
-      --caput-dot: rgba(99,40,30,0.62);
-      --eggplant-dot: rgba(106,64,89,0.70);
-      --fairytale-dot: rgba(233,191,199,0.73);
-      --lightblue-dot: rgba(169,207,204,0.72);
+      /* For polka dot fill */
+      --dots: 
+        radial-gradient(circle 18px, #265E60 99%, transparent 100%),
+        radial-gradient(circle 18px, #2F8F77 99%, transparent 100%),
+        radial-gradient(circle 18px, #0D5375 99%, transparent 100%),
+        radial-gradient(circle 18px, #A7A448 99%, transparent 100%),
+        radial-gradient(circle 18px, #E5C457 99%, transparent 100%),
+        radial-gradient(circle 18px, #63281E 99%, transparent 100%),
+        radial-gradient(circle 18px, #6A4059 99%, transparent 100%),
+        radial-gradient(circle 18px, #E9BFC7 99%, transparent 100%),
+        radial-gradient(circle 18px, #A9CFCC 99%, transparent 100%);
+      --dots-size: 
+        400px 400px,400px 400px,400px 400px,
+        400px 400px,400px 400px,400px 400px,
+        400px 400px,400px 400px,400px 400px;
+      --dots-pos:
+        0 0,200px 0,0 200px,200px 200px,
+        100px 100px,300px 100px,100px 300px,
+        300px 300px,400px 200px;
+
+      /* For blue bg polka dot fill */
+      --bluebg: #0D5375;
+      --dotfill: 
+        repeating-radial-gradient(circle at 0 0, #fff 0 12px, transparent 14px 100px),
+        repeating-radial-gradient(circle at 100px 120px, #fff 0 12px, transparent 14px 100px);
     }
 
     html, body { height: 100%; }
@@ -43,137 +54,24 @@
       min-height: 100dvh;
       margin: 0;
       font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background-color: var(--bg);
+      background: var(--bg);
       color: var(--text);
       display: grid;
       grid-template-rows: 1fr auto;
       overflow-x: hidden;
-      transition: background 0.7s cubic-bezier(.65,.04,.24,1);
       position: relative;
     }
 
-    /* --- DEFAULT polka dots background --- */
+    /* Main polka dots background */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
-      background-image:
-        radial-gradient(circle 18px, var(--caribbean-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--viridian-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--indigo-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--moss-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--saffron-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--caput-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--eggplant-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--fairytale-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--lightblue-dot) 99%, transparent 100%);
-      background-size:
-        400px 400px, 400px 400px, 400px 400px,
-        400px 400px, 400px 400px, 400px 400px,
-        400px 400px, 400px 400px, 400px 400px;
-      background-position:
-        0 0, 200px 0, 0 200px, 200px 200px,
-        100px 100px, 300px 100px, 100px 300px,
-        300px 300px, 400px 200px;
-      transition: background 0.7s cubic-bezier(.65,.04,.24,1);
-    }
-
-    /* --- On hover over .title, invert: bg becomes white, name gets polka dot fill --- */
-    .hero:has(.title:hover) ~ .nav,
-    .hero:has(.title:focus-visible) ~ .nav {
-      /* Prevent weird color flickers below the nav during effect */
-      z-index: 2;
-    }
-    .hero:has(.title:hover) ~ .nav .btn,
-    .hero:has(.title:focus-visible) ~ .nav .btn {
-      filter: grayscale(0.07) brightness(1.06);
-      opacity: 0.98;
-    }
-
-    body.invert-bg,
-    .hero:has(.title:hover) ~ .nav ~ *,
-    .hero:has(.title:hover) ~ * {
-      /* fallback in case JS is needed (rarely) */
-    }
-
-    /* --- EFFECT: When you hover the title --- */
-    .hero:has(.title:hover) ~ *,
-    .hero:has(.title:focus-visible) ~ * {
-      /* Only the nav and any other siblings will get updated stacking for nav */
-      z-index: 2;
-    }
-
-    /* When hovering the title, make background white, hide polka dots bg */
-    .hero:has(.title:hover) ~ .nav,
-    .hero:has(.title:focus-visible) ~ .nav,
-    .hero:has(.title:hover) ~ *:not(.hero):not(.nav),
-    .hero:has(.title:focus-visible) ~ *:not(.hero):not(.nav){
-      /* No effect, just for stacking context */
-    }
-    /* Actually, let's hide the body's polka dot background and show white */
-    .hero:has(.title:hover) ~ *:not(.hero):not(.nav),
-    .hero:has(.title:focus-visible) ~ *:not(.hero):not(.nav),
-    body:has(.hero .title:hover)::before,
-    body:has(.hero .title:focus-visible)::before {
-      opacity: 0 !important;
-      transition: opacity 0.33s cubic-bezier(.65,.04,.24,1);
-    }
-    body:has(.hero .title:hover),
-    body:has(.hero .title:focus-visible) {
-      background: #fff !important;
-      transition: background 0.7s cubic-bezier(.65,.04,.24,1);
-    }
-
-    /* --- Mila Baumann text --- */
-    .title {
-      font-weight: 900;
-      letter-spacing: 0.05em;
-      font-size: clamp(2.8rem, 9vw, 9rem);
-      line-height: 1;
-      margin: 0;
-      text-transform: uppercase;
-      color: #fff;
-      text-shadow: 0 2px 6px rgba(0,0,0,.18), 0 8px 22px rgba(0,0,0,.10);
-      cursor: pointer;
-      background: none;
-      transition: color 0.7s cubic-bezier(.65,.04,.24,1), 
-                  background 0.7s cubic-bezier(.65,.04,.24,1), 
-                  -webkit-text-fill-color 0.5s;
-      /* For "filled" effect later */
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: #fff;
-    }
-    /* Text fill with polka dots when hovered */
-    .title:hover, .title:focus-visible {
-      background-image:
-        radial-gradient(circle 18px, var(--caribbean-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--viridian-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--indigo-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--moss-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--saffron-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--caput-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--eggplant-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--fairytale-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--lightblue-dot) 99%, transparent 100%);
-      background-size:
-        400px 400px, 400px 400px, 400px 400px,
-        400px 400px, 400px 400px, 400px 400px,
-        400px 400px, 400px 400px, 400px 400px;
-      background-position:
-        0 0, 200px 0, 0 200px, 200px 200px,
-        100px 100px, 300px 100px, 100px 300px,
-        300px 300px, 400px 200px;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent !important;
-      -webkit-text-fill-color: transparent;
-      text-shadow: none;
-      filter: brightness(1.12) contrast(1.05);
-      /* smooth! */
-      transition: color 0.6s cubic-bezier(.65,.04,.24,1), background 0.7s cubic-bezier(.65,.04,.24,1), -webkit-text-fill-color 0.7s;
+      background-image: var(--dots);
+      background-size: var(--dots-size);
+      background-position: var(--dots-pos);
     }
 
     .hero{
@@ -185,7 +83,27 @@
       z-index: 1;
     }
 
-    .nav{
+    /* Main title styling */
+    .title {
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      font-size: clamp(2.8rem, 9vw, 9rem);
+      line-height: 1;
+      margin: 0;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 2px 6px rgba(0,0,0,.18), 0 8px 22px rgba(0,0,0,.10);
+      background: none;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: #fff;
+      transition: none;
+      cursor: pointer;
+      outline: none;
+    }
+
+    /* Nav bar, no boxes, no backgrounds */
+    .nav {
       display: flex;
       gap: clamp(1.25rem, 4vw, 4rem);
       justify-content: center;
@@ -194,27 +112,113 @@
       position: relative;
       z-index: 1;
     }
-    .btn{
+    .btn {
       appearance: none;
-      color: var(--eggplant);
-      background: #fffff7;
-      padding: 0.85rem 1.5rem;
+      background: none;
+      color: #fff;
       font-weight: 700;
+      font-size: 1.14rem;
       text-decoration: none;
       letter-spacing: 0.02em;
-      border-radius: 14px;
-      border: 2.5px solid var(--lightblue);
-      box-shadow: 0 0 0 1.5px var(--indigo);
-      transition: transform 120ms ease, background-color 120ms ease, color .22s;
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 0.05em 0.4em;
+      transition: none;
+      cursor: pointer;
+      outline: none;
+      position: relative;
     }
-    .btn:hover{
-      transform: translateY(-1px);
-      background: var(--eggplant);
-      color: #fff;
+
+    /* ---------- HOVER/FILL EFFECTS ---------- */
+
+    /* When title/nav is hovered/focused: page bg white, polka dots disappear */
+    .title:hover ~ .nav,
+    .title:focus-visible ~ .nav,
+    .nav:hover,
+    .nav:focus-within {
+      z-index: 10;
     }
-    .btn:focus-visible{
-      outline: 3px solid var(--saffron);
-      outline-offset: 3px;
+    .title:hover ~ .nav ~ *,
+    .title:focus-visible ~ .nav ~ *,
+    .nav:hover ~ *,
+    .nav:focus-within ~ * {
+      /* Sibling stacking only, not used here but kept for safety */
+    }
+
+    /* Hide body bg dots and set solid white background when .title or nav hovered/focused */
+    body:has(.title:hover)::before,
+    body:has(.title:focus-visible)::before,
+    body:has(.nav:hover)::before,
+    body:has(.nav:focus-within)::before {
+      opacity: 0;
+    }
+    body:has(.title:hover),
+    body:has(.title:focus-visible),
+    body:has(.nav:hover),
+    body:has(.nav:focus-within) {
+      background: #fff !important;
+      color: var(--indigo);
+      /* Ensures nav/text contrasts! */
+    }
+
+    /* Fill effect: text becomes blue with white polka dots */
+    body:has(.title:hover) .title,
+    body:has(.title:focus-visible) .title,
+    body:has(.nav:hover) .title,
+    body:has(.nav:focus-within) .title {
+      background-color: var(--bluebg);
+      background-image: var(--dotfill);
+      background-size: 200px 200px, 200px 200px;
+      background-position: 0 0, 100px 100px;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent !important;
+      -webkit-text-fill-color: transparent;
+      text-shadow: none;
+      transition: none;
+    }
+    /* Nav fill: hovered or focused link only */
+    .nav .btn:focus-visible,
+    .nav .btn:hover {
+      background-color: var(--bluebg);
+      background-image: var(--dotfill);
+      background-size: 200px 200px, 200px 200px;
+      background-position: 0 0, 100px 100px;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent !important;
+      -webkit-text-fill-color: transparent;
+      text-shadow: none;
+      transition: none;
+    }
+
+    /* On page hover/focus, make nav links blue with polka dot fill, otherwise white */
+    body:has(.title:hover) .nav .btn,
+    body:has(.title:focus-visible) .nav .btn,
+    body:has(.nav:hover) .nav .btn,
+    body:has(.nav:focus-within) .nav .btn {
+      color: var(--indigo);
+      background: none;
+      -webkit-background-clip: initial;
+      background-clip: initial;
+      -webkit-text-fill-color: var(--indigo);
+      text-shadow: none;
+      transition: none;
+    }
+    /* But the hovered/focused nav link gets the dot fill */
+    body:has(.nav:hover) .nav .btn:hover,
+    body:has(.nav:focus-within) .nav .btn:focus-visible {
+      background-color: var(--bluebg);
+      background-image: var(--dotfill);
+      background-size: 200px 200px, 200px 200px;
+      background-position: 0 0, 100px 100px;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent !important;
+      -webkit-text-fill-color: transparent;
+      text-shadow: none;
+      transition: none;
     }
 
     @media (max-width: 650px){
@@ -231,7 +235,6 @@
   <main class="hero" aria-labelledby="site-title">
     <h1 id="site-title" class="title" tabindex="0">Mila Baumann</h1>
   </main>
-
   <nav class="nav" aria-label="Primary">
     <a class="btn" href="aboutme.html">About Me</a>
     <a class="btn" href="contact.html">Contact</a>
@@ -239,3 +242,4 @@
   </nav>
 </body>
 </html>
+
