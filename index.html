@@ -45,8 +45,8 @@
       min-height: 100dvh;
       margin: 0;
       font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: #fff;
+      background: #fff;
+      color: var(--moss);
       display: grid;
       grid-template-rows: 1fr auto;
       overflow-x: hidden;
@@ -54,35 +54,10 @@
       transition: background 0.13s;
     }
 
-    /* Main polka dots background */
-    body:not(.alt)::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-color: var(--bg);
-      background-image: var(--dots);
-      background-size: var(--dots-size);
-      background-position: var(--dots-pos);
-    }
+    /* Default: white background, no dots */
+    body::before { display: none; }
 
-    /* When toggled: white bg, no dots */
-    body.alt {
-      background: #fff !important;
-      color: #000;
-    }
-    body.alt::before { display: none; }
-
-    .hero{
-      display: grid;
-      place-items: center;
-      text-align: center;
-      position: relative;
-      min-height: 44vh;
-      z-index: 1;
-    }
-
+    /* Title: polka dot fill, nav: solid moss */
     .title {
       font-weight: 900;
       letter-spacing: 0.05em;
@@ -90,29 +65,19 @@
       line-height: 1;
       margin: 0;
       text-transform: uppercase;
-      color: #fff;
-      text-shadow: 0 2px 6px rgba(0,0,0,.18), 0 8px 22px rgba(0,0,0,.10);
-      background: none;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: #fff;
-      transition: color 0.13s, background 0.13s, -webkit-text-fill-color 0.13s;
       cursor: pointer;
       outline: none;
       user-select: none;
-    }
-    /* Polka dot fill for title when in "alt" mode */
-    body.alt .title {
-      background-color: var(--bg);
+      background-color: #fff;
       background-image: var(--dots);
       background-size: var(--dots-size);
       background-position: var(--dots-pos);
       -webkit-background-clip: text;
       background-clip: text;
-      color: transparent !important;
+      color: transparent;
       -webkit-text-fill-color: transparent;
       text-shadow: none;
-      transition: none;
+      transition: color 0.13s, background 0.13s, -webkit-text-fill-color 0.13s;
     }
 
     .nav {
@@ -127,7 +92,7 @@
     .btn {
       appearance: none;
       background: none;
-      color: #fff;
+      color: var(--moss);
       font-weight: 700;
       font-size: 1.14rem;
       text-decoration: none;
@@ -136,23 +101,42 @@
       box-shadow: none;
       border-radius: 0;
       padding: 0.05em 0.4em;
-      transition: color 0.13s, background 0.13s;
       cursor: pointer;
       outline: none;
       position: relative;
+      transition: color 0.13s;
     }
-    /* Alt mode: nav links are filled with colored polka dots! */
-    body.alt .btn {
+
+    /* Alternative mode: polka dot background, all text solid white */
+    body.alt {
+      background: var(--bg);
+      color: #fff;
+      transition: background 0.13s;
+    }
+    body.alt::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
       background-color: var(--bg);
       background-image: var(--dots);
       background-size: var(--dots-size);
       background-position: var(--dots-pos);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent !important;
-      -webkit-text-fill-color: transparent;
-      text-shadow: none;
-      font-weight: 800;
+    }
+    /* Title is solid white */
+    body.alt .title {
+      background: none;
+      color: #fff;
+      -webkit-text-fill-color: #fff;
+      text-shadow: 0 2px 6px rgba(0,0,0,.18), 0 8px 22px rgba(0,0,0,.10);
+      transition: none;
+    }
+    /* Nav links solid white */
+    body.alt .btn {
+      color: #fff;
+      -webkit-text-fill-color: #fff;
+      background: none;
       transition: none;
     }
 
