@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mila Baumann</title>
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
@@ -40,8 +39,6 @@
         0 0,200px 0,0 200px,200px 200px,
         100px 100px,300px 100px,100px 300px,
         300px 300px,400px 200px;
-
-      --main-fill: #0D5375; /* deep blue */
     }
 
     html, body { height: 100%; }
@@ -49,33 +46,33 @@
       min-height: 100dvh;
       margin: 0;
       font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: #fff;
+      /* The background is always the polka dot pattern on blue! */
+      background-color: var(--bg);
+      background-image: var(--dots);
+      background-size: var(--dots-size);
+      background-position: var(--dots-pos);
       color: var(--moss);
       display: flex;
       flex-direction: column;
       min-height: 100vh;
       overflow-x: hidden;
       transition: background 0.15s;
+      position: relative;
     }
 
-    /* When alt, show blue bg + colored polka dots */
-    body.alt {
-      background: var(--bg);
-      color: #fff;
-      transition: background 0.15s;
-    }
-    body.alt::before {
+    /* White overlay in default mode (main mode), above background */
+    .white-overlay {
       content: "";
+      pointer-events: none;
       position: fixed;
       inset: 0;
-      pointer-events: none;
+      background: #fff;
       z-index: 0;
-      background-color: var(--bg);
-      background-image: var(--dots);
-      background-size: var(--dots-size);
-      background-position: var(--dots-pos);
+      transition: opacity 0.18s;
+      /* visible in default, hidden in .alt mode */
+      opacity: 1;
     }
-    body:not(.alt)::before { display: none; }
+    body.alt .white-overlay { opacity: 0; }
 
     .hero {
       display: flex;
@@ -87,7 +84,6 @@
       position: relative;
       z-index: 1;
     }
-    /* Ensure centering for any screen */
     @media (max-width: 700px) {
       .hero { min-height: 33vh; }
       .title { font-size: clamp(1.4rem, 10vw, 3.2rem);}
@@ -107,23 +103,24 @@
       cursor: pointer;
       outline: none;
       user-select: none;
-      /* FILLED with blue + colored polka dots */
-      background-color: var(--main-fill);
-      background-image: var(--dots);
-      background-size: var(--dots-size);
-      background-position: var(--dots-pos);
-      -webkit-background-clip: text;
+      background: inherit;
       background-clip: text;
+      -webkit-background-clip: text;
       color: transparent;
       -webkit-text-fill-color: transparent;
       text-shadow: none;
+      position: relative;
+      z-index: 1;
+      /* So that only polka dots show through */
+      mix-blend-mode: multiply;
       transition: color 0.15s, background 0.15s, -webkit-text-fill-color 0.15s;
     }
-    /* In alt mode, title is solid white */
+    /* Remove blend and make solid white in alt mode */
     body.alt .title {
-      background: none;
+      background: none !important;
       color: #fff !important;
       -webkit-text-fill-color: #fff;
+      mix-blend-mode: normal;
       text-shadow: 0 2px 6px rgba(0,0,0,.18), 0 8px 22px rgba(0,0,0,.10);
     }
 
@@ -152,18 +149,20 @@
       outline: none;
       position: relative;
       transition: color 0.13s;
+      z-index: 1;
     }
     /* ALT mode: nav links solid white */
     body.alt .btn {
-      color: #fff;
+      color: #fff !important;
       -webkit-text-fill-color: #fff;
       background: none;
       transition: none;
     }
-
   </style>
 </head>
 <body>
+  <!-- White overlay is always present but fades out in alt mode -->
+  <div class="white-overlay"></div>
   <main class="hero" aria-labelledby="site-title">
     <h1 id="site-title" class="title" tabindex="0">Mila Baumann</h1>
   </main>
