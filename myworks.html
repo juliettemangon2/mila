@@ -3,332 +3,169 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mila Baumann — My Works</title>
+  <title>My Works – Mila Baumann</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
-
   <style>
     :root {
-      /* Palette */
-      --yellow: #fdffe1;
-      --softgray: #fffff7;
       --caput: #63281E;
       --caribbean: #265E60;
       --eggplant: #6A4059;
-      --darkslate: #324340;
       --moss: #A7A448;
       --indigo: #0D5375;
       --fairytale: #E9BFC7;
       --lightblue: #A9CFCC;
       --saffron: #E5C457;
       --viridian: #2F8F77;
-
       --bg: #e2f0f6;
-      --bg-color: var(--bg);     /* used for auto contrast */
-      --text: var(--eggplant);
 
-      /* Used for colored polka dots */
-      --caribbean-dot: rgba(38,94,96,0.74);
-      --viridian-dot: rgba(47,143,119,0.72);
-      --indigo-dot: rgba(13,83,117,0.68);
-      --moss-dot: rgba(167,164,72,0.64);
-      --saffron-dot: rgba(229,196,87,0.7);
-      --caput-dot: rgba(99,40,30,0.62);
-      --eggplant-dot: rgba(106,64,89,0.70);
-      --fairytale-dot: rgba(233,191,199,0.73);
-      --lightblue-dot: rgba(169,207,204,0.72);
-
-      --accent: var(--indigo);
-      --cyan: var(--lightblue);
-
-      /* Card style */
-      --card-bg: rgba(255,255,255,0.64);  /* Glassy white */
-      --card-hover-bg: rgba(255,255,255,0.81);
-      --card-shadow: 0 4px 28px 2px rgba(0,0,0,0.08), 0 0 0 2px rgba(255,255,255,0.13);
-
-      /* Title color (auto set via JS) */
-      --title-color: #fff;
+      --dots: 
+        radial-gradient(circle 18px, #265E60 99%, transparent 100%),
+        radial-gradient(circle 18px, #2F8F77 99%, transparent 100%),
+        radial-gradient(circle 18px, #0D5375 99%, transparent 100%),
+        radial-gradient(circle 18px, #A7A448 99%, transparent 100%),
+        radial-gradient(circle 18px, #E5C457 99%, transparent 100%),
+        radial-gradient(circle 18px, #63281E 99%, transparent 100%),
+        radial-gradient(circle 18px, #6A4059 99%, transparent 100%),
+        radial-gradient(circle 18px, #E9BFC7 99%, transparent 100%),
+        radial-gradient(circle 18px, #A9CFCC 99%, transparent 100%);
+      --dots-size: 
+        400px 400px,400px 400px,400px 400px,
+        400px 400px,400px 400px,400px 400px,
+        400px 400px,400px 400px,400px 400px;
+      --dots-pos:
+        0 0,200px 0,0 200px,200px 200px,
+        100px 100px,300px 100px,100px 300px,
+        300px 300px,400px 200px;
     }
 
     html, body { height: 100%; }
     body {
+      min-height: 100dvh;
       margin: 0;
       font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background-color: var(--bg-color);
-      color: var(--text);
+      background: #fff;
+      color: var(--moss);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
       overflow-x: hidden;
-      min-height: 100dvh;
       position: relative;
-      transition: background 0.5s;
     }
 
-    /* Large, spaced multicolor polka dots - with transparency, ordered grid */
-    body.theme-default::before,
-    body:not([class^="theme-"])::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 1;
-      z-index: 0;
-      background-image:
-        radial-gradient(circle 18px, var(--caribbean-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--viridian-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--indigo-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--moss-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--saffron-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--caput-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--eggplant-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--fairytale-dot) 99%, transparent 100%),
-        radial-gradient(circle 18px, var(--lightblue-dot) 99%, transparent 100%);
-      background-size:
-        400px 400px, 400px 400px, 400px 400px,
-        400px 400px, 400px 400px, 400px 400px,
-        400px 400px, 400px 400px, 400px 400px;
-      background-position:
-        0 0, 200px 0, 0 200px, 200px 200px,
-        100px 100px, 300px 100px, 100px 300px,
-        300px 300px, 400px 200px;
-      transition: background-image 0.5s;
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 42vh;
+      flex: 1;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 1.2rem;
     }
-
-    /* Theme 1: White bg, blue dots */
-    body.theme-blue-dots {
-      --bg-color:#ffffff; background: var(--bg-color);
-      --text: var(--indigo);
-    }
-    body.theme-blue-dots::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image:
-        radial-gradient(circle 17px, rgba(13,83,117,0.41) 97%, transparent 100%),
-        radial-gradient(circle 17px, rgba(13,83,117,0.19) 97%, transparent 100%);
-      background-size: 220px 220px, 220px 220px;
-      background-position: 0 0, 110px 110px;
-      transition: background-image 0.5s;
-    }
-
-    /* Theme 2: Blue bg, white dots */
-    body.theme-white-dots {
-      --bg-color: var(--indigo); background: var(--bg-color);
-      --text: #fff;
-    }
-    body.theme-white-dots::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image:
-        radial-gradient(circle 18px, rgba(255,255,255,0.60) 97%, transparent 100%),
-        radial-gradient(circle 18px, rgba(255,255,255,0.22) 97%, transparent 100%);
-      background-size: 220px 220px, 220px 220px;
-      background-position: 0 0, 110px 110px;
-      transition: background-image 0.5s;
-    }
-
-    /* Theme 3: White bg, deep red dots */
-    body.theme-red-dots {
-      --bg-color:#ffffff; background: var(--bg-color);
-      --text: var(--caput);
-    }
-    body.theme-red-dots::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image:
-        radial-gradient(circle 17px, rgba(139,0,0,0.82) 97%, transparent 100%),
-        radial-gradient(circle 17px, rgba(139,0,0,0.50) 97%, transparent 100%);
-      background-size: 220px 220px, 220px 220px;
-      background-position: 0 0, 110px 110px;
-      transition: background-image 0.5s;
-    }
-
-    /* Home button */
-    .top-buttons {
-      position: absolute;
-      top: 20px; left: 20px;
-      display: flex; gap: 10px; z-index: 2;
-    }
-    .top-buttons a {
-      font-weight: 600; padding: 0.6rem 1.2rem;
-      color: var(--eggplant); background: var(--softgray);
-      border: 3px solid var(--cyan); text-decoration: none;
-      box-shadow: 0 0 0 2px var(--accent);
-      transition: background .3s, color .3s, transform .3s;
-    }
-    .top-buttons a:hover {
-      background: var(--eggplant); color: var(--softgray); transform: scale(1.05);
-    }
-
-    /* Fish button (replaces Color Wave) */
-    .fish-btn{
-      position:absolute; top:20px; right:20px;
-      display:inline-grid; place-items:center;
-      width:56px; height:56px; border-radius:50%;
-      border:2px solid var(--indigo);
-      background:#fff; color:var(--indigo);
-      box-shadow:0 2px 10px rgba(13,83,117,0.06);
-      cursor:pointer; z-index:2;
-      transition:transform .25s, background .25s, color .25s, border-color .25s;
-      --flip: 1; /* 1 or -1, toggled in JS */
-    }
-    .fish-btn:focus-visible{ outline:3px solid rgba(13,83,117,.4); outline-offset:3px; }
-    .fish-btn:hover{ background:var(--indigo); color:#fff; transform:scale(1.05); }
-    .fish-btn svg{
-      display:block;
-      transition: transform .25s;
-      transform: scaleX(var(--flip)); /* base flip transform */
-    }
-    /* Swim animation on hover/focus (respects flip) */
-    .fish-btn:hover svg,
-    .fish-btn:focus-visible svg{
-      animation: swim .9s ease-in-out infinite;
-      transform-origin: 50% 50%;
-    }
-    @keyframes swim{
-      0%   { transform: translateX(0)            rotate(0deg)   scaleX(var(--flip)); }
-      25%  { transform: translateX(2px)          rotate(2deg)   scaleX(var(--flip)); }
-      50%  { transform: translateX(0)            rotate(0deg)   scaleX(var(--flip)); }
-      75%  { transform: translateX(-2px)         rotate(-2deg)  scaleX(var(--flip)); }
-      100% { transform: translateX(0)            rotate(0deg)   scaleX(var(--flip)); }
-    }
-
-    /* Title: auto-contrasting color */
     .title {
-      text-align: center; font-size: clamp(2.4rem, 7.5vw, 4.2rem);
-      font-weight: 900; text-transform: uppercase; letter-spacing: .06em;
-      color: var(--title-color);
-      text-shadow: 0 2px 6px rgba(0,0,0,.2), 0 8px 22px rgba(0,0,0,.18);
-      margin: 5rem auto 1.5rem; max-width: 1000px; position: relative; z-index: 1;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      font-size: clamp(2.5rem, 9vw, 6rem);
+      line-height: 1;
+      margin: 0 0 0.6em 0;
+      text-transform: uppercase;
+      background-color: var(--bg);
+      background-image: var(--dots);
+      background-size: var(--dots-size);
+      background-position: var(--dots-pos);
+      background-repeat: repeat;
+      background-attachment: fixed;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      text-shadow: none;
+      position: relative;
+      z-index: 1;
     }
-
-    /* Glassy white card boxes, no outline */
-    .works-container {
-      display: flex; gap: 2rem; justify-content: center; align-items: stretch; flex-wrap: wrap;
-      padding: 2rem 1.25rem 3.5rem; position: relative; z-index: 1; max-width: 1000px; margin: 0 auto;
+    /* Nav */
+    .nav {
+      display: flex;
+      gap: clamp(1.25rem, 4vw, 4rem);
+      justify-content: center;
+      align-items: center;
+      padding: 2.2rem 1rem 2rem;
+      position: relative;
+      z-index: 1;
     }
-    .work-box {
-      display: grid; grid-template-rows: auto 1fr; place-items: center; text-align: center;
-      background: var(--card-bg);
-      backdrop-filter: blur(7px);
-      -webkit-backdrop-filter: blur(7px);
-      color: var(--eggplant); text-decoration: none;
-      box-shadow: var(--card-shadow);
+    .btn {
+      appearance: none;
+      background: none;
+      color: var(--moss);
+      font-weight: 700;
+      font-size: 1.14rem;
+      text-decoration: none;
+      letter-spacing: 0.02em;
       border: none;
-      padding: 1.5rem; width: clamp(220px, 40vw, 360px); border-radius: 16px;
-      transition: transform .22s, background .22s, box-shadow .22s;
-    }
-    .work-box h2 {
-      margin: 0 0 .5rem 0; font-size: 1.7rem; font-weight: 800; line-height: 1.2;
-    }
-    .work-box p {
-      margin: 0; font-size: 1rem; opacity: .85;
-    }
-    .work-box:hover, .work-box:focus-visible {
-      background: var(--card-hover-bg); color: var(--eggplant);
-      transform: translateY(-4px) scale(1.028);
-      box-shadow: 0 16px 38px 2px rgba(13,83,117,0.12), 0 0 0 2px rgba(255,255,255,0.09);
+      box-shadow: none;
+      border-radius: 0;
+      padding: 0.05em 0.4em;
+      cursor: pointer;
       outline: none;
+      position: relative;
+      z-index: 1;
+      transition: color 0.13s;
     }
 
-    @media (max-width:480px){
-      .top-buttons{ position:static; padding:1rem; }
-      .fish-btn{ position: static; margin: 1.5rem auto 0.5rem; display: block; }
-      .title{ margin-top:1rem; }
+    /* Fish styling */
+    .fish {
+      display: block;
+      margin: 0 auto 1.5em;
+      width: 90px;
+      height: 90px;
+      /* make sure SVG uses currentColor */
+      color: var(--moss);
+      filter: drop-shadow(0 2px 8px #a7a44830);
+    }
+
+    /* Content area */
+    .works-content {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 2rem 3rem;
+      text-align: center;
+      color: var(--moss);
+      font-size: 1.08rem;
+    }
+
+    @media (max-width: 700px) {
+      .hero { min-height: 28vh; }
+      .title { font-size: clamp(1.2rem, 13vw, 3rem);}
+    }
+    @media (max-width: 420px){
+      .title{ font-size: clamp(0.9rem, 17vw, 2rem);}
+      .works-content { padding: 0 0.5rem 2rem; }
     }
   </style>
 </head>
-<body class="theme-default">
-  <div class="top-buttons"><a href="index.html">Home</a></div>
-
-  <!-- Fish theme-toggle button -->
-  <button class="fish-btn" id="colorWaveBtn" type="button" aria-label="Change theme">
-    <!-- inline SVG fish icon -->
-    <svg viewBox="0 0 64 24" width="44" height="24" aria-hidden="true">
-      <path d="M3 12c7-8 23-10 37-8l6-2-3 5c4 1 8 3 11 5-3 2-7 4-11 5l3 5-6-2C26 22 10 20 3 12Z" fill="currentColor"/>
-      <circle cx="17" cy="10" r="1.6" fill="#fff"/>
+<body>
+  <nav class="nav" aria-label="Primary">
+    <a class="btn" href="index.html">Home</a>
+    <a class="btn" href="aboutme.html">About Me</a>
+    <a class="btn" href="contact.html">Contact</a>
+  </nav>
+  <main class="hero" aria-labelledby="site-title">
+    <svg class="fish" viewBox="0 0 64 64" fill="none">
+      <ellipse cx="32" cy="32" rx="26" ry="14" fill="currentColor"/>
+      <polygon points="56,32 62,26 62,38" fill="currentColor"/>
+      <ellipse cx="42" cy="28" rx="2.4" ry="2.4" fill="#fff"/>
+      <ellipse cx="43" cy="28" rx="0.7" ry="0.7" fill="#1A1A1A"/>
     </svg>
-  </button>
-
-  <h1 class="title">My Works</h1>
-
-  <main class="works-container" role="main">
-    <a href="music.html" class="work-box">
-      <h2>Music</h2>
-      <p>Explore my music projects and compositions.</p>
-    </a>
-    <a href="visual.html" class="work-box">
-      <h2>Visual</h2>
-      <p>Discover my visual art and design works.</p>
-    </a>
+    <h1 id="site-title" class="title">MY WORKS</h1>
   </main>
-
-  <script>
-    // Theme cycle: default -> blue dots -> white dots -> red dots -> default ...
-    const themes = ["theme-default", "theme-blue-dots", "theme-white-dots", "theme-red-dots"];
-    let themeIdx = 0;
-    let flipDir = 1; // 1 or -1
-
-    // Auto-pick white/black for title based on background luminance
-    const setAutoTitleContrast = () => {
-      const raw = getComputedStyle(document.body).getPropertyValue('--bg-color').trim();
-
-      const toRGB = (c) => {
-        if (!c) return [255,255,255];
-        if (c.startsWith('#')) {
-          const n = c.slice(1);
-          const v = n.length===3 ? n.split('').map(ch=>ch+ch).join('') : n;
-          return [parseInt(v.slice(0,2),16), parseInt(v.slice(2,4),16), parseInt(v.slice(4,6),16)];
-        }
-        const m = c.match(/rgba?\(([^)]+)\)/i);
-        if (m) return m[1].split(',').slice(0,3).map(x=>parseFloat(x));
-        return [255,255,255];
-      };
-
-      const [r,g,b] = toRGB(raw);
-      const srgb = [r,g,b].map(v=>v/255).map(v=> v<=0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055,2.4));
-      const L = 0.2126*srgb[0] + 0.7152*srgb[1] + 0.0722*srgb[2];
-      const contrastWhite = (1.05)/(L+0.05);
-      const contrastBlack = (L+0.05)/(0.05);
-      const title = contrastWhite >= contrastBlack ? '#ffffff' : '#111111';
-      document.body.style.setProperty('--title-color', title);
-    };
-
-    const fishBtn = document.getElementById("colorWaveBtn");
-
-    fishBtn.onclick = function() {
-      // Cycle theme
-      themeIdx = (themeIdx + 1) % themes.length;
-      document.body.className = themes[themeIdx];
-
-      // Ensure --bg-color is set when returning to default theme
-      if (themes[themeIdx] === "theme-default") {
-        document.body.style.setProperty('--bg-color', getComputedStyle(document.documentElement).getPropertyValue('--bg').trim());
-      }
-
-      // Flip fish direction
-      flipDir *= -1;
-      fishBtn.style.setProperty('--flip', flipDir);
-
-      // Recompute title contrast
-      setAutoTitleContrast();
-    };
-
-    // Initialize on load
-    (function init(){
-      // default theme bg var
-      document.body.style.setProperty('--bg-color', getComputedStyle(document.documentElement).getPropertyValue('--bg').trim());
-      // initial fish direction
-      fishBtn.style.setProperty('--flip', flipDir);
-      setAutoTitleContrast();
-    })();
-  </script>
+  <section class="works-content">
+    <p>Explore my latest music and visual projects. Use the navigation links above to check out more!</p>
+    <!-- Add your works here! -->
+  </section>
 </body>
 </html>
+
