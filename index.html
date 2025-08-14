@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mila Baumann</title>
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
@@ -20,7 +21,6 @@
       --viridian: #2F8F77;
       --bg: #e2f0f6;
 
-      /* Dots pattern for both text fill and background */
       --dots: 
         radial-gradient(circle 18px, #265E60 99%, transparent 100%),
         radial-gradient(circle 18px, #2F8F77 99%, transparent 100%),
@@ -42,15 +42,12 @@
     }
 
     html, body { height: 100%; }
+
     body {
       min-height: 100dvh;
       margin: 0;
       font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      /* The background is always the polka dot pattern on blue! */
-      background-color: var(--bg);
-      background-image: var(--dots);
-      background-size: var(--dots-size);
-      background-position: var(--dots-pos);
+      background: #fff;
       color: var(--moss);
       display: flex;
       flex-direction: column;
@@ -60,19 +57,15 @@
       position: relative;
     }
 
-    /* White overlay in default mode (main mode), above background */
-    .white-overlay {
-      content: "";
-      pointer-events: none;
-      position: fixed;
-      inset: 0;
-      background: #fff;
-      z-index: 0;
-      transition: opacity 0.18s;
-      /* visible in default, hidden in .alt mode */
-      opacity: 1;
+    /* Show dots+blue as background only in .alt mode */
+    body.alt {
+      background-color: var(--bg);
+      background-image: var(--dots);
+      background-size: var(--dots-size);
+      background-position: var(--dots-pos);
+      color: #fff;
+      transition: background 0.15s;
     }
-    body.alt .white-overlay { opacity: 0; }
 
     .hero {
       display: flex;
@@ -103,7 +96,13 @@
       cursor: pointer;
       outline: none;
       user-select: none;
-      background: inherit;
+      /* Dots + blue as background for the text only */
+      background-color: var(--bg);
+      background-image: var(--dots);
+      background-size: var(--dots-size);
+      background-position: var(--dots-pos);
+      background-repeat: repeat;
+      background-attachment: fixed;
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
@@ -111,16 +110,13 @@
       text-shadow: none;
       position: relative;
       z-index: 1;
-      /* So that only polka dots show through */
-      mix-blend-mode: multiply;
       transition: color 0.15s, background 0.15s, -webkit-text-fill-color 0.15s;
     }
-    /* Remove blend and make solid white in alt mode */
+    /* In alt mode, title is solid white */
     body.alt .title {
       background: none !important;
       color: #fff !important;
       -webkit-text-fill-color: #fff;
-      mix-blend-mode: normal;
       text-shadow: 0 2px 6px rgba(0,0,0,.18), 0 8px 22px rgba(0,0,0,.10);
     }
 
@@ -161,28 +157,9 @@
   </style>
 </head>
 <body>
-  <!-- White overlay is always present but fades out in alt mode -->
-  <div class="white-overlay"></div>
   <main class="hero" aria-labelledby="site-title">
     <h1 id="site-title" class="title" tabindex="0">Mila Baumann</h1>
   </main>
   <nav class="nav" aria-label="Primary">
     <a class="btn" href="aboutme.html">About Me</a>
     <a class="btn" href="contact.html">Contact</a>
-    <a class="btn" href="myworks.html">My Works</a>
-  </nav>
-  <script>
-    // Toggle alt class on body when the title is clicked
-    document.querySelector('.title').addEventListener('click', function() {
-      document.body.classList.toggle('alt');
-    });
-    // Also allow pressing Enter/Space on the title for accessibility
-    document.querySelector('.title').addEventListener('keydown', function(e) {
-      if (e.key === "Enter" || e.key === " ") {
-        document.body.classList.toggle('alt');
-        e.preventDefault();
-      }
-    });
-  </script>
-</body>
-</html>
