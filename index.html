@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mila Baumann</title>
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
@@ -22,7 +21,6 @@
       --bg: #e2f0f6;
       --text: #fff;
 
-      /* For polka dot fill */
       --dots: 
         radial-gradient(circle 18px, #265E60 99%, transparent 100%),
         radial-gradient(circle 18px, #2F8F77 99%, transparent 100%),
@@ -41,12 +39,6 @@
         0 0,200px 0,0 200px,200px 200px,
         100px 100px,300px 100px,100px 300px,
         300px 300px,400px 200px;
-
-      /* For blue bg polka dot fill */
-      --bluebg: #0D5375;
-      --dotfill: 
-        repeating-radial-gradient(circle at 0 0, #fff 0 12px, transparent 14px 100px),
-        repeating-radial-gradient(circle at 100px 120px, #fff 0 12px, transparent 14px 100px);
     }
 
     html, body { height: 100%; }
@@ -60,19 +52,30 @@
       grid-template-rows: 1fr auto;
       overflow-x: hidden;
       position: relative;
+      transition: background 0.08s;
     }
 
     /* Main polka dots background */
-    body::before {
+    body:not(.alt) ::before,
+    body:not(.alt)::before {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
+      background-color: var(--bg);
       background-image: var(--dots);
       background-size: var(--dots-size);
       background-position: var(--dots-pos);
+      transition: background 0.08s;
     }
+
+    /* When toggled: white bg, no dots */
+    body.alt {
+      background: #fff !important;
+      color: #0D5375;
+    }
+    body.alt::before { display: none; }
 
     .hero{
       display: grid;
@@ -83,7 +86,6 @@
       z-index: 1;
     }
 
-    /* Main title styling */
     .title {
       font-weight: 900;
       letter-spacing: 0.05em;
@@ -97,12 +99,25 @@
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: #fff;
-      transition: none;
+      transition: color 0.1s, background 0.12s, -webkit-text-fill-color 0.13s;
       cursor: pointer;
       outline: none;
+      user-select: none;
+    }
+    /* Polka dot fill for title when in "alt" mode */
+    body.alt .title {
+      background-color: var(--bg);
+      background-image: var(--dots);
+      background-size: var(--dots-size);
+      background-position: var(--dots-pos);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent !important;
+      -webkit-text-fill-color: transparent;
+      text-shadow: none;
+      transition: none;
     }
 
-    /* Nav bar, no boxes, no backgrounds */
     .nav {
       display: flex;
       gap: clamp(1.25rem, 4vw, 4rem);
@@ -124,99 +139,18 @@
       box-shadow: none;
       border-radius: 0;
       padding: 0.05em 0.4em;
-      transition: none;
+      transition: color 0.13s, background 0.13s;
       cursor: pointer;
       outline: none;
       position: relative;
     }
-
-    /* ---------- HOVER/FILL EFFECTS ---------- */
-
-    /* When title/nav is hovered/focused: page bg white, polka dots disappear */
-    .title:hover ~ .nav,
-    .title:focus-visible ~ .nav,
-    .nav:hover,
-    .nav:focus-within {
-      z-index: 10;
-    }
-    .title:hover ~ .nav ~ *,
-    .title:focus-visible ~ .nav ~ *,
-    .nav:hover ~ *,
-    .nav:focus-within ~ * {
-      /* Sibling stacking only, not used here but kept for safety */
-    }
-
-    /* Hide body bg dots and set solid white background when .title or nav hovered/focused */
-    body:has(.title:hover)::before,
-    body:has(.title:focus-visible)::before,
-    body:has(.nav:hover)::before,
-    body:has(.nav:focus-within)::before {
-      opacity: 0;
-    }
-    body:has(.title:hover),
-    body:has(.title:focus-visible),
-    body:has(.nav:hover),
-    body:has(.nav:focus-within) {
-      background: #fff !important;
-      color: var(--indigo);
-      /* Ensures nav/text contrasts! */
-    }
-
-    /* Fill effect: text becomes blue with white polka dots */
-    body:has(.title:hover) .title,
-    body:has(.title:focus-visible) .title,
-    body:has(.nav:hover) .title,
-    body:has(.nav:focus-within) .title {
-      background-color: var(--bluebg);
-      background-image: var(--dotfill);
-      background-size: 200px 200px, 200px 200px;
-      background-position: 0 0, 100px 100px;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent !important;
-      -webkit-text-fill-color: transparent;
-      text-shadow: none;
-      transition: none;
-    }
-    /* Nav fill: hovered or focused link only */
-    .nav .btn:focus-visible,
-    .nav .btn:hover {
-      background-color: var(--bluebg);
-      background-image: var(--dotfill);
-      background-size: 200px 200px, 200px 200px;
-      background-position: 0 0, 100px 100px;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent !important;
-      -webkit-text-fill-color: transparent;
-      text-shadow: none;
-      transition: none;
-    }
-
-    /* On page hover/focus, make nav links blue with polka dot fill, otherwise white */
-    body:has(.title:hover) .nav .btn,
-    body:has(.title:focus-visible) .nav .btn,
-    body:has(.nav:hover) .nav .btn,
-    body:has(.nav:focus-within) .nav .btn {
-      color: var(--indigo);
+    /* Alt mode: nav links are simple dark blue */
+    body.alt .btn {
+      color: #0D5375;
       background: none;
       -webkit-background-clip: initial;
       background-clip: initial;
-      -webkit-text-fill-color: var(--indigo);
-      text-shadow: none;
-      transition: none;
-    }
-    /* But the hovered/focused nav link gets the dot fill */
-    body:has(.nav:hover) .nav .btn:hover,
-    body:has(.nav:focus-within) .nav .btn:focus-visible {
-      background-color: var(--bluebg);
-      background-image: var(--dotfill);
-      background-size: 200px 200px, 200px 200px;
-      background-position: 0 0, 100px 100px;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent !important;
-      -webkit-text-fill-color: transparent;
+      -webkit-text-fill-color: #0D5375;
       text-shadow: none;
       transition: none;
     }
@@ -240,6 +174,18 @@
     <a class="btn" href="contact.html">Contact</a>
     <a class="btn" href="myworks.html">My Works</a>
   </nav>
+  <script>
+    // Toggle alt class on body when the title is clicked
+    document.querySelector('.title').addEventListener('click', function() {
+      document.body.classList.toggle('alt');
+    });
+    // Also allow pressing Enter/Space on the title for accessibility
+    document.querySelector('.title').addEventListener('keydown', function(e) {
+      if (e.key === "Enter" || e.key === " ") {
+        document.body.classList.toggle('alt');
+        e.preventDefault();
+      }
+    });
+  </script>
 </body>
 </html>
-
