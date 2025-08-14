@@ -53,18 +53,17 @@
       flex-direction: column;
       min-height: 100vh;
       overflow-x: hidden;
-      transition: background 0.15s;
+      transition: background 0.18s;
       position: relative;
     }
 
-    /* Show dots+blue as background only in .alt mode */
+    /* Alt mode: show blue + dots bg */
     body.alt {
       background-color: var(--bg);
       background-image: var(--dots);
       background-size: var(--dots-size);
       background-position: var(--dots-pos);
       color: #fff;
-      transition: background 0.15s;
     }
 
     .hero {
@@ -77,6 +76,7 @@
       position: relative;
       z-index: 1;
     }
+
     @media (max-width: 700px) {
       .hero { min-height: 33vh; }
       .title { font-size: clamp(1.4rem, 10vw, 3.2rem);}
@@ -110,7 +110,7 @@
       text-shadow: none;
       position: relative;
       z-index: 1;
-      transition: color 0.15s, background 0.15s, -webkit-text-fill-color 0.15s;
+      transition: color 0.18s, background 0.18s, -webkit-text-fill-color 0.18s;
     }
     /* In alt mode, title is solid white */
     body.alt .title {
@@ -144,7 +144,7 @@
       cursor: pointer;
       outline: none;
       position: relative;
-      transition: color 0.13s;
+      transition: color 0.15s;
       z-index: 1;
     }
     /* ALT mode: nav links solid white */
@@ -163,3 +163,21 @@
   <nav class="nav" aria-label="Primary">
     <a class="btn" href="aboutme.html">About Me</a>
     <a class="btn" href="contact.html">Contact</a>
+    <a class="btn" href="myworks.html">My Works</a>
+  </nav>
+  <script>
+    // Toggle alt class on body when the title is clicked
+    document.querySelector('.title').addEventListener('click', function() {
+      document.body.classList.toggle('alt');
+    });
+    // Also allow pressing Enter/Space on the title for accessibility
+    document.querySelector('.title').addEventListener('keydown', function(e) {
+      if (e.key === "Enter" || e.key === " ") {
+        document.body.classList.toggle('alt');
+        e.preventDefault();
+      }
+    });
+  </script>
+</body>
+</html>
+
