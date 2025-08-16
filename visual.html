@@ -33,19 +33,15 @@
     /* Halftone background */
     body::before{
       content:""; position:fixed; inset:0; pointer-events:none;
-      background-image: radial-gradient(var(--dot) 2px, transparent 2.6px);
-      background-size:16px 16px;
-      -webkit-mask-image: radial-gradient(circle at 50% 50%,
-        rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 38%, rgba(0,0,0,0.55) 58%,
-        rgba(0,0,0,0.25) 72%, rgba(0,0,0,0) 85%);
-              mask-image: radial-gradient(circle at 50% 50%,
-        rgba(0,0,0,1) 0%, rgba(0,0,0,0.9) 38%, rgba(0,0,0,0.55) 58%,
-        rgba(0,0,0,0.25) 72%, rgba(0,0,0,0) 85%);
+      background-image: radial-gradient(#fff 4px, transparent 2.6px);
+      background-size:50px 50px;
+     
     }
     body::after{
       content:""; position:fixed; inset:0; pointer-events:none;
-      background-image: radial-gradient(var(--dot-strong) 3px, transparent 3.6px);
-      background-size:20px 20px; opacity:0.55;
+      
+      background-size:20px 20px; opacity:0.85;
+      background-color: #fff;
       -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 26%, rgba(0,0,0,0) 42%);
               mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 26%, rgba(0,0,0,0) 42%);
       filter: drop-shadow(0 18px 18px rgba(0,0,0,0.08));
@@ -53,9 +49,9 @@
 
     .top-buttons{ position:absolute; top:20px; left:20px; display:flex; gap:10px; z-index:2; }
     .top-buttons a{
-      font-weight:600; padding:0.6rem 1.2rem; color:var(--eggplant); background:var(--softgray);
-      border:3px solid var(--cyan); text-decoration:none; box-shadow:0 0 0 2px var(--accent);
+      font-weight:600; padding:0.6rem 1.2rem; color:var(--eggplant);;
       transition:background .3s, color .3s, transform .3s;
+      text-decoration: none;
     }
     .top-buttons a:hover{ background:var(--eggplant); color:var(--softgray); transform:scale(1.05); }
 
@@ -74,7 +70,7 @@
       background: rgba(255,255,247,0.45);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
-      border: 2px solid rgba(13,83,117,0.22);
+      border: 2px solid rgba(11, 46, 62, 0.22);
       box-shadow: 0 0 0 2px rgba(169,207,204,0.20);
       border-radius: 16px;
       padding: 1.25rem 1.5rem;
