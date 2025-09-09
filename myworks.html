@@ -1,202 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mila Baumann</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --caput: #63281e;
-        --caribbean: #265e60;
-        --eggplant: #6a4059;
-        --moss: #a7a448;
-        --indigo: #0d5375;
-        --fairytale: #e9bfc7;
-        --lightblue: #a9cfcc;
-        --saffron: #e5c457;
-        --viridian: #2f8f77;
-        --bg: #e2f0f6;
 
-        --dots: radial-gradient(circle 18px, #265e60 99%, transparent 100%),
-          radial-gradient(circle 18px, #2f8f77 99%, transparent 100%),
-          radial-gradient(circle 18px, #0d5375 99%, transparent 100%),
-          radial-gradient(circle 18px, #a7a448 99%, transparent 100%),
-          radial-gradient(circle 18px, #e5c457 99%, transparent 100%),
-          radial-gradient(circle 18px, #63281e 99%, transparent 100%),
-          radial-gradient(circle 18px, #6a4059 99%, transparent 100%),
-          radial-gradient(circle 18px, #e9bfc7 99%, transparent 100%),
-          radial-gradient(circle 18px, #a9cfcc 99%, transparent 100%);
-        --dots-size: 400px 400px, 400px 400px, 400px 400px, 400px 400px,
-          400px 400px, 400px 400px, 400px 400px, 400px 400px, 400px 400px;
-        --dots-pos: 0 0, 200px 0, 0 200px, 200px 200px, 100px 100px, 300px 100px,
-          100px 300px, 300px 300px, 400px 200px;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Works | Mila Baumann</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --caput: #63281e;
+      --caribbean: #265e60;
+      --eggplant: #6a4059;
+      --moss: #a7a448;
+      --indigo: #0d5375;
+      --fairytale: #e9bfc7;
+      --lightblue: #a9cfcc;
+      --saffron: #e5c457;
+      --viridian: #2f8f77;
+      --bg: #e2f0f6;
 
-      html,
-      body {
-        height: 100%;
-      }
-      body {
-        min-height: 100dvh;
-        margin: 0;
-        font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial,
-          sans-serif;
-        background: #fff;
-        color: var(--moss);
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        overflow-x: hidden;
-        position: relative;
-      }
-      body.alt {
-        background-color: var(--bg);
-        background-image: var(--dots);
-        background-size: var(--dots-size);
-        background-position: var(--dots-pos);
-        color: #fff;
-      }
+      --dots: radial-gradient(circle 18px, #265e60 99%, transparent 100%),
+        radial-gradient(circle 18px, #2f8f77 99%, transparent 100%),
+        radial-gradient(circle 18px, #0d5375 99%, transparent 100%),
+        radial-gradient(circle 18px, #a7a448 99%, transparent 100%),
+        radial-gradient(circle 18px, #e5c457 99%, transparent 100%),
+        radial-gradient(circle 18px, #63281e 99%, transparent 100%),
+        radial-gradient(circle 18px, #6a4059 99%, transparent 100%),
+        radial-gradient(circle 18px, #e9bfc7 99%, transparent 100%),
+        radial-gradient(circle 18px, #a9cfcc 99%, transparent 100%);
+      --dots-size: 400px 400px, 400px 400px, 400px 400px, 400px 400px,
+        400px 400px, 400px 400px, 400px 400px, 400px 400px, 400px 400px;
+      --dots-pos: 0 0, 200px 0, 0 200px, 200px 200px, 100px 100px, 300px 100px,
+        100px 300px, 300px 300px, 400px 200px;
+    }
 
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      min-height: 100dvh;
+      margin: 0;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial,
+        sans-serif;
+      background: #fff;
+      color: var(--moss);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body.alt {
+      background-color: var(--bg);
+      background-image: var(--dots);
+      background-size: var(--dots-size);
+      background-position: var(--dots-pos);
+      color: #fff;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 42vh;
+      flex: 1;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 1.2rem;
+    }
+
+    .title {
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial,
+        sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      font-size: clamp(2.8rem, 9vw, 9rem);
+      line-height: 1;
+      margin: 0;
+      text-transform: uppercase;
+      cursor: pointer;
+      outline: none;
+      user-select: none;
+      /* Dots + blue as background for the text only */
+      background-color: var(--bg);
+      background-image: var(--dots);
+      background-size: var(--dots-size);
+      background-position: var(--dots-pos);
+      background-repeat: repeat;
+      background-attachment: fixed;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      text-shadow: none;
+      position: relative;
+      z-index: 1;
+      transition: color 0.18s, background 0.18s, -webkit-text-fill-color 0.18s;
+    }
+
+    body.alt .title {
+      background: none !important;
+      color: #fff !important;
+      -webkit-text-fill-color: #fff;
+    }
+
+    /* Nav */
+    .nav {
+      display: flex;
+      gap: clamp(1.25rem, 4vw, 4rem);
+      justify-content: center;
+      align-items: center;
+      padding: 2.5rem 1rem 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+
+    .btn {
+      appearance: none;
+      background: none;
+      color: var(--moss);
+      font-weight: 700;
+      font-size: 1.14rem;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+      padding: 0.05em 0.4em;
+      cursor: pointer;
+      outline: none;
+      position: relative;
+      transition: color 0.15s;
+      z-index: 1;
+    }
+
+    body.alt .btn {
+      color: #fff !important;
+      -webkit-text-fill-color: var(--indigo);
+      transition: none;
+    }
+
+    /* Fish styling */
+    .fish {
+      display: block;
+      margin: 0 auto 1.5em;
+      width: 90px;
+      height: 90px;
+      /* make sure SVG uses currentColor */
+      color: var(--moss);
+      filter: drop-shadow(0 2px 8px #a7a44830);
+      cursor: pointer;
+    }
+
+    /* Smooth animation for the eye and pupil */
+    #eye,
+    #pupil {
+      transition: transform 250ms ease;
+    }
+
+    /* Content area */
+    .works-content {
+      color: var(--indigo);
+      text-align: center;
+      font-weight: 600;
+      font-size: 4rem;
+      padding-bottom: 2rem;
+    }
+
+    @media (max-width: 700px) {
       .hero {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 42vh;
-        flex: 1;
-        position: relative;
-        z-index: 1;
-        margin-bottom: 1.2rem;
+        min-height: 28vh;
       }
+
       .title {
-        font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial,
-          sans-serif;
-        font-weight: 900;
-        letter-spacing: 0.05em;
-        font-size: clamp(2.8rem, 9vw, 9rem);
-        line-height: 1;
-        margin: 0;
-        text-transform: uppercase;
-        cursor: pointer;
-        outline: none;
-        user-select: none;
-        /* Dots + blue as background for the text only */
-        background-color: var(--bg);
-        background-image: var(--dots);
-        background-size: var(--dots-size);
-        background-position: var(--dots-pos);
-        background-repeat: repeat;
-        background-attachment: fixed;
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-        -webkit-text-fill-color: transparent;
-        text-shadow: none;
-        position: relative;
-        z-index: 1;
-        transition: color 0.18s, background 0.18s, -webkit-text-fill-color 0.18s;
+        font-size: clamp(1.2rem, 13vw, 3rem);
       }
-      body.alt .title {
-        background: none !important;
-        color: #fff !important;
-        -webkit-text-fill-color: #fff;
-      }
-      /* Nav */
-      .nav {
-        display: flex;
-        gap: clamp(1.25rem, 4vw, 4rem);
-        justify-content: center;
-        align-items: center;
-        padding: 2.2rem 1rem 2rem;
-        position: relative;
-        z-index: 1;
-      }
-      .nav .home-btn {
-        position: absolute;
-        left: 1rem;
-      }
-      .btn {
-        appearance: none;
-        background: none;
-        color: var(--moss);
-        font-weight: 700;
-        font-size: 1.14rem;
-        text-decoration: none;
-        letter-spacing: 0.02em;
-        border: none;
-        box-shadow: none;
-        border-radius: 0;
-        padding: 0.05em 0.4em;
-        cursor: pointer;
-        outline: none;
-        position: relative;
-        z-index: 1;
-        transition: color 0.13s;
-      }
-      body.alt .btn {
-        color: #fff !important;
-        -webkit-text-fill-color: var(--indigo);
-        transition: none;
-      }
-      /* Fish styling */
-      .fish {
-        display: block;
-        margin: 0 auto 1.5em;
-        width: 90px;
-        height: 90px;
-        /* make sure SVG uses currentColor */
-        color: var(--moss);
-        filter: drop-shadow(0 2px 8px #a7a44830);
-        cursor: pointer;
-      }
-      /* Smooth animation for the eye and pupil */
-      #eye,
-      #pupil {
-        transition: transform 250ms ease;
+    }
+
+    @media (max-width: 420px) {
+      .title {
+        font-size: clamp(0.9rem, 17vw, 2rem);
       }
 
-      /* Content area */
       .works-content {
-        color: var(--indigo);
-        margin: 0 auto;
-        text-align: right;
-        font-weight: 600;
-        margin-right: 2rem;
-        padding: 1rem;
-        font-size: 1rem;
+        padding: 0 0.5rem 2rem;
       }
+    }
+  </style>
+</head>
 
-      @media (max-width: 700px) {
-        .hero {
-          min-height: 28vh;
-        }
-        .title {
-          font-size: clamp(1.2rem, 13vw, 3rem);
-        }
-      }
-      @media (max-width: 420px) {
-        .title {
-          font-size: clamp(0.9rem, 17vw, 2rem);
-        }
-        .works-content {
-          padding: 0 0.5rem 2rem;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <nav class="nav" aria-label="Primary">
-      <a class="btn home-btn" href="index.html">Home</a>
-      <a class="btn" href="music.html">Music</a>
-      <a class="btn" href="visual.html">Visual</a>
-    </nav>
-    <main class="hero" aria-labelledby="site-title">
+<body>
+  
+    <div style="margin-top: 0; text-align: center; padding-top: 1.2rem;">
+      <h1 id="site-title" class="title">MY WORKS</h1>
       <svg id="fish" class="fish" viewBox="0 0 64 64" fill="none">
         <ellipse cx="32" cy="32" rx="26" ry="14" fill="currentColor" />
         <polygon points="56,32 62,26 62,38" fill="currentColor" />
@@ -210,47 +213,53 @@
           </g>
         </g>
       </svg>
-      <h1 id="site-title" class="title">MY WORKS</h1>
+    </div>
+    <main class="hero" aria-labelledby="site-title">
+      <div class="works-content">
+        <p>Explore my work here!</p>
+
+      </div>
     </main>
-    <section class="works-content">
-      <p>
-        Explore my latest music and visual projects. Use the navigation links
-        above to check out more!
-      </p>
-    </section>
-    <script>
-      // Toggle alt class on body when the title is clicked
-      document.querySelector(".title").addEventListener("click", function () {
-        document.body.classList.toggle("alt");
-      });
-      // Also allow pressing Enter/Space on the title for accessibility
-      document
-        .querySelector(".title")
-        .addEventListener("keydown", function (e) {
-          if (e.key === "Enter" || e.key === " ") {
-            document.body.classList.toggle("alt");
-            e.preventDefault();
-          }
-        });
+  <nav class="nav" aria-label="Primary">
+    <a class="btn " href="index.html">Home</a>
+    <a class="btn" href="music.html">Music</a>
+    <a class="btn" href="visual.html">Visual</a>
+  </nav>
 
-      // Fish eye toggle with smooth animation
-      const fish = document.getElementById("fish");
-      const eyeGroup = document.getElementById("eye");
-      const pupilGroup = document.getElementById("pupil");
-      let eyeOnRight = true; // starts at translate(42,28)
-
-      fish.addEventListener("click", () => {
-        if (eyeOnRight) {
-          // Move eye to the left side and pupil to the inner edge
-          eyeGroup.setAttribute("transform", "translate(22,28)");
-          pupilGroup.setAttribute("transform", "translate(-1,0)");
-        } else {
-          // Move eye back to the right side and pupil to inner edge
-          eyeGroup.setAttribute("transform", "translate(42,28)");
-          pupilGroup.setAttribute("transform", "translate(1,0)");
+  <script>
+    // Toggle alt class on body when the title is clicked
+    document.querySelector(".title").addEventListener("click", function () {
+      document.body.classList.toggle("alt");
+    });
+    // Also allow pressing Enter/Space on the title for accessibility
+    document
+      .querySelector(".title")
+      .addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          document.body.classList.toggle("alt");
+          e.preventDefault();
         }
-        eyeOnRight = !eyeOnRight;
       });
-    </script>
-  </body>
+
+    // Fish eye toggle with smooth animation
+    const fish = document.getElementById("fish");
+    const eyeGroup = document.getElementById("eye");
+    const pupilGroup = document.getElementById("pupil");
+    let eyeOnRight = true; // starts at translate(42,28)
+
+    fish.addEventListener("click", () => {
+      if (eyeOnRight) {
+        // Move eye to the left side and pupil to the inner edge
+        eyeGroup.setAttribute("transform", "translate(22,28)");
+        pupilGroup.setAttribute("transform", "translate(-1,0)");
+      } else {
+        // Move eye back to the right side and pupil to inner edge
+        eyeGroup.setAttribute("transform", "translate(42,28)");
+        pupilGroup.setAttribute("transform", "translate(1,0)");
+      }
+      eyeOnRight = !eyeOnRight;
+    });
+  </script>
+</body>
+
 </html>

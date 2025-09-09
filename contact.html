@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" class="theme1">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Let’s Connect!</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Mila Baumann</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
   <style>
     :root {
-      --yellow: #fdffe1;         /* light yellow */
-      --cyan: #d5eff5;  /* light cyan */
-      --softgray: #fffff7;   /* off-white for cards */
-      --accent: #4a537b;     /* deep-blue accents */
+      --yellow: #fdffe1;
+      /* light yellow */
+      --cyan: #d5eff5;
+      /* light cyan */
+      --softgray: #fffff7;
+      --lightblue1: #d7e2e4;
+      --accent: #4a537b;
+      --lightpink: #ffe9ee;
       --darkblue: #00285d;
       --blue: #185ab0;
       --azure: #eefcff;
@@ -22,15 +27,20 @@
       --moss: #A7A448;
       --indigo: #0D5375;
       --fairytale: #E9BFC7;
+      --cream: #fff8e7;
       --lightblue: #A9CFCC;
       --saffron: #E5C457;
       --viridian: #2F8F77;
 
-      --bg: #e2f0f6;           /* soft background similar to the reference */
-      --text: var(--eggplant); /* title and buttons text color */
+      --bg: #e2f0f6;
+      /* soft background similar to the reference */
+      --text: var(--eggplant);
+      /* title and buttons text color */
     }
 
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -38,20 +48,16 @@
 
     /* THEME 1 STRIPES */
     html.theme1 {
-      background: repeating-linear-gradient(
-        to right,
-        var(--saffron) 0   50px,
-        var(--lightblue)        50px 100px
-      );
+      background: repeating-linear-gradient(to right,
+          var(--lightpink) 0 50px,
+          var(--softgray) 50px 100px);
     }
 
     /* THEME 2 STRIPES & SWAP */
     html.theme2 {
-      background: repeating-linear-gradient(
-        to right,
-        var(--moss) 0   50px,
-        var(--fairytale)   50px 100px
-      );
+      background: repeating-linear-gradient(to right,
+          var(--lightblue1) 0 50px,
+          var(--lightblue) 50px 100px);
     }
 
     html {
@@ -67,73 +73,78 @@
       background: transparent;
       position: relative;
     }
-    /* TOP-LEFT HOME & TOP-RIGHT THEME SWITCH */
+
     .top-buttons {
       position: absolute;
-      top: 20px; left: 20px;
+      top: 20px;
+      left: 20px;
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
+
     .top-buttons a {
       font-weight: 600;
       padding: 0.6rem 1.2rem;
+      font-size: 1.2rem;
       color: var(--eggplant);
-      background: var(--softgray);
-      border: 3px solid var(--cyan);
       text-decoration: none;
-      box-shadow: 0 0 0 2px var(--accent);
-      transition: background 0.3s, color 0.3s, transform 0.3s;
     }
-    .top-buttons a:hover {
-      background: var(--eggplant);
-      color: var(--softgray);
-      transform: scale(1.05);
-    }
+
 
     .toggle-switch {
       position: absolute;
-      top: 20px; right: 20px;
-      width: 50px; height: 24px;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 24px;
     }
+
     .toggle-switch input {
-      opacity: 0; width: 0; height: 0;
+      opacity: 0;
+      width: 0;
+      height: 0;
     }
+
     .toggle-switch label {
       position: absolute;
       cursor: pointer;
       background-color: var(--viridian);
       border-radius: 24px;
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       transition: background-color 0.3s;
     }
+
     .toggle-switch label::after {
       content: '';
       position: absolute;
-      width: 18px; height: 18px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       background: #fff;
-      top: 3px; left: 3px;
+      top: 3px;
+      left: 3px;
       transition: transform 0.3s;
     }
-    .toggle-switch input:checked + label {
+
+    .toggle-switch input:checked+label {
       background: var(--accent);
     }
-    .toggle-switch input:checked + label::after {
+
+    .toggle-switch input:checked+label::after {
       transform: translateX(26px);
     }
 
     /* MAIN CARD */
     .contact-card {
       max-width: 700px;
-      margin: 120px auto 0; /* push below header controls */
+      margin: 120px auto 0;
       padding: 2rem;
-      background: var(--softgray);
+      
       text-align: center;
     }
-    html.theme2 .contact-card {
-      background: var(--azure);
-    }
+
 
     .contact-card h2 {
       font-size: 2.6rem;
@@ -150,10 +161,11 @@
       align-items: center;
       justify-content: center;
       gap: 0.8rem;
-      font-size: 2.7rem;
+      font-size: 4.7rem;
       margin: 1rem 0;
       position: relative;
     }
+
     .contact-item::before {
       font-size: .6rem;
       color: var(--accent);
@@ -165,23 +177,25 @@
       text-decoration: none;
       text-align: center;
       padding-bottom: 2px;
-      border-bottom: 2px dashed var(--accent);
       transition: color 0.3s, transform 0.3s;
     }
+
     .contact-item a:hover {
       color: var(--accent);
-      transform: translateX(4px);
+      transform: translateX(30px);
     }
-    
+
 
     @media (max-width: 600px) {
       .contact-card {
         margin: 80px 1rem 0;
         padding: 1.5rem;
       }
+
       .contact-card h2 {
         font-size: 2rem;
       }
+
       .contact-item {
         font-size: 1.1rem;
       }
@@ -194,7 +208,7 @@
     <a href="index.html">Home</a>
   </div>
   <div class="toggle-switch">
-    <input type="checkbox" id="theme-toggle"/>
+    <input type="checkbox" id="theme-toggle" />
     <label for="theme-toggle"></label>
   </div>
 
@@ -215,11 +229,12 @@
     checkbox.addEventListener('change', () => {
       const html = document.documentElement;
       if (checkbox.checked) {
-        html.classList.replace('theme1','theme2');
+        html.classList.replace('theme1', 'theme2');
       } else {
-        html.classList.replace('theme2','theme1');
+        html.classList.replace('theme2', 'theme1');
       }
     });
   </script>
 </body>
+
 </html>

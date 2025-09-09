@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" class="theme1">
+
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Juliette Mangon</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Mila Baumann</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
   <style>
-    :root{
+    :root {
       /* Palette from the image */
       --yellow: #fdffe1;
       --softgray: #fffff7;
@@ -24,36 +25,38 @@
       --lightblue: #A9CFCC;
       --saffron: #E5C457;
       --viridian: #2F8F77;
-      --card-bg: rgba(255,255,255,0.64);  /* Glassy white */
-      --card-hover-bg: rgba(255,255,255,0.81);
-      --card-shadow: 0 4px 28px 2px rgba(0,0,0,0.08), 0 0 0 2px rgba(255,255,255,0.13);
+      --card-bg: rgba(255, 255, 255, 0.64);
+      /* Glassy white */
+      --card-hover-bg: rgba(255, 255, 255, 0.81);
+      --card-shadow: 0 4px 28px 2px rgba(0, 0, 0, 0.08), 0 0 0 2px rgba(255, 255, 255, 0.13);
 
-      --bg: #e2f0f6;           /* soft background similar to the reference */
-      --text: var(--eggplant); /* title and buttons text color */
+      --bg: #e2f0f6;
+      /* soft background similar to the reference */
+      --text: var(--eggplant);
+      /* title and buttons text color */
     }
 
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
     html.theme1 {
-      background: repeating-linear-gradient(
-        to right,
-        var(--lightpink) 0   50px,
-        var(--cream)        50px 100px
-      );
+      background: repeating-linear-gradient(to right,
+          var(--lightpink) 0 50px,
+          var(--cream) 50px 100px);
     }
 
     /* THEME 2 STRIPES & SWAP */
     html.theme2 {
-      background: repeating-linear-gradient(
-        to right,
-        var(--lightblue1) 0   50px,
-        var(--lightblue)   50px 100px
-      );
+      background: repeating-linear-gradient(to right,
+          var(--lightblue1) 0 50px,
+          var(--lightblue) 50px 100px);
     }
+
     html {
       font-family: 'Helvetica Neue', Arial, sans-serif;
       font-size: 16px;
@@ -75,10 +78,7 @@
       border-color: var(--highlight);
     }
 
-    html.theme2 .top-buttons a:hover {
-      background: var(--text);
-      color: var(--cream);
-    }
+
 
     .toggle-switch {
       position: absolute;
@@ -100,7 +100,7 @@
       height: 100%;
       border-radius: 24px;
       background: var(--eggplant);
-      
+
       cursor: pointer;
       transition: background-color 0.3s;
     }
@@ -117,11 +117,11 @@
       transition: transform 0.3s;
     }
 
-    .toggle-switch input:checked + label {
+    .toggle-switch input:checked+label {
       background: var(--eggplant);
     }
 
-    .toggle-switch input:checked + label::after {
+    .toggle-switch input:checked+label::after {
       transform: translateX(26px);
     }
 
@@ -157,6 +157,7 @@
     .photo-col {
       flex: 0 0 35%;
     }
+
     .photo-col img {
       width: 100%;
       height: auto;
@@ -170,11 +171,15 @@
     }
 
     .text-block {
-      display: grid; grid-template-rows: auto 1fr; place-items: center; text-align: center;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      place-items: center;
+      text-align: center;
       background: var(--card-bg);
       backdrop-filter: blur(7px);
       -webkit-backdrop-filter: blur(7px);
-      color: var(--eggplant); text-decoration: none;
+      color: var(--eggplant);
+      text-decoration: none;
       box-shadow: var(--card-shadow);
       border: none;
       padding: 1rem;
@@ -195,9 +200,10 @@
       display: flex;
       gap: 2rem;
       flex-wrap: wrap;
-      max-width: 1200px;   
+      max-width: 1200px;
       margin: 0 auto 3rem;
     }
+
     .edu-col {
       flex: 1 1 450px;
       background: var(--yellow);
@@ -207,13 +213,16 @@
       font-size: 1.2rem;
       line-height: 1.8;
     }
+
     .top-buttons {
       position: absolute;
-      top: 20px; left: 20px;
+      top: 20px;
+      left: 20px;
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
+
     .top-buttons a {
       font-weight: 600;
       padding: 0.6rem 1.2rem;
@@ -224,31 +233,50 @@
       box-shadow: 0 0 0 2px var(--accent);
       transition: background 0.3s, color 0.3s, transform 0.3s;
     }
-    .top-buttons a:hover {
-      background: var(--eggplant);
-      color: var(--softgray);
-      transform: scale(1.05);
-    }
+
+
     .works-container {
-      display: flex; gap: 2rem; justify-content: center; align-items: stretch; flex-wrap: wrap;
-      padding: 2rem 1.25rem 3.5rem; position: relative; z-index: 1; max-width: 1000px; margin: 0 auto;
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      align-items: stretch;
+      flex-wrap: wrap;
+      padding: 2rem 1.25rem 3.5rem;
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
+      margin: 0 auto;
     }
+
     .work-box {
-      display: grid; grid-template-rows: auto 1fr; place-items: center; text-align: center;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      place-items: center;
+      text-align: center;
       background: var(--card-bg);
       backdrop-filter: blur(7px);
       -webkit-backdrop-filter: blur(7px);
-      color: var(--eggplant); text-decoration: none;
+      color: var(--eggplant);
+      text-decoration: none;
       box-shadow: var(--card-shadow);
       border: none;
-      padding: 1.5rem; width: clamp(220px, 40vw, 360px); border-radius: 16px;
+      padding: 1.5rem;
+      width: clamp(220px, 40vw, 360px);
+      border-radius: 16px;
       transition: transform .22s, background .22s, box-shadow .22s;
     }
+
     .work-box h2 {
-      margin: 0 0 .5rem 0; font-size: 1.7rem; font-weight: 800; line-height: 1.2;
+      margin: 0 0 .5rem 0;
+      font-size: 1.7rem;
+      font-weight: 800;
+      line-height: 1.2;
     }
+
     .work-box p {
-      margin: 0; font-size: 1rem; opacity: .85;
+      margin: 0;
+      font-size: 1rem;
+      opacity: .85;
     }
 
     @media (max-width: 768px) {
@@ -271,9 +299,10 @@
     }
   </style>
 </head>
+
 <body>
   <div class="top-buttons"><a href="index.html">Home</a></div>
-  <div class="toggle-switch"><input type="checkbox" id="theme-toggle"/><label for="theme-toggle"></label></div>
+  <div class="toggle-switch"><input type="checkbox" id="theme-toggle" /><label for="theme-toggle"></label></div>
 
   <!-- ABOUT -->
   <h2 class="section-title">About Me</h2>
@@ -285,13 +314,16 @@
     </div>
     <div class="text-col">
       <div class="text-block">
-        <p>My name is Mila Baumann and I am currently a junior in composition and film scoring at NYU. I started playing the violin in second grade eventually leading me to study at a music conservatory where I discovered my love for composition. I am interested in contemporary classical music, particularly how the lines of music and sound are blurred with the use of extended techniques and the combination of electronic tools and music.  </p>
+        <p>My name is Mila Baumann and I am currently a junior in composition and film scoring at NYU. I started playing
+          the violin in second grade eventually leading me to study at a music conservatory where I discovered my love
+          for composition. I am interested in contemporary classical music, particularly how the lines of music and
+          sound are blurred with the use of extended techniques and the combination of electronic tools and music. </p>
       </div>
     </div>
   </div>
 
 
-  
+
   <script>
     document.getElementById('theme-toggle').addEventListener('change', () => {
       document.documentElement.classList.toggle('theme2');
@@ -299,4 +331,5 @@
     });
   </script>
 </body>
+
 </html>

@@ -1,97 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Visual</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visual | Mila Baumann</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    :root{
-      --yellow:#fdffe1; --softgray:#fffff7; --caput:#63281E; --caribbean:#265E60;
-      --eggplant:#6A4059; --darkslate:#324340; --moss:#A7A448; --indigo:#0D5375;
-      --fairytale:#E9BFC7; --lightblue:#A9CFCC; --saffron:#E5C457; --viridian:#2F8F77;
+    :root {
+      --yellow: #fdffe1;
+      --softgray: #fffff7;
+      --caput: #63281E;
+      --caribbean: #265E60;
+      --eggplant: #6A4059;
+      --darkslate: #324340;
+      --moss: #A7A448;
+      --indigo: #0D5375;
+      --fairytale: #E9BFC7;
+      --lightblue: #A9CFCC;
+      --saffron: #E5C457;
+      --viridian: #2F8F77;
 
-      --bg:#e2f0f6; --text:var(--eggplant);
-      --accent:var(--indigo); --cyan:var(--lightblue);
+      --bg: #e2f0f6;
+      --text: var(--eggplant);
+      --accent: var(--indigo);
+      --cyan: var(--lightblue);
 
       /* Brighter translucent halftone dots */
-      --dot: rgba(0,0,0,0.38);
-      --dot-strong: rgba(0,0,0,0.60);
+      --dot: rgba(0, 0, 0, 0.38);
+      --dot-strong: rgba(0, 0, 0, 0.60);
     }
 
-    html, body { height:100%; }
-    body{
-      margin:0; font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background-color:var(--bg); color:var(--text);
-      overflow-x:hidden; min-height:100dvh; position:relative;
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      min-height: 100dvh;
+      position: relative;
     }
 
     /* Halftone background */
-    body::before{
-      content:""; position:fixed; inset:0; pointer-events:none;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
       background-image: radial-gradient(#fff 4px, transparent 2.6px);
-      background-size:50px 50px;
-     
-    }
-    body::after{
-      content:""; position:fixed; inset:0; pointer-events:none;
-      
-      background-size:20px 20px; opacity:0.85;
-      background-color: #fff;
-      -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 26%, rgba(0,0,0,0) 42%);
-              mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 26%, rgba(0,0,0,0) 42%);
-      filter: drop-shadow(0 18px 18px rgba(0,0,0,0.08));
+      background-size: 50px 50px;
+
     }
 
-    .top-buttons{ position:absolute; top:20px; left:20px; display:flex; gap:10px; z-index:2; }
-    .top-buttons a{
-      font-weight:600; padding:0.6rem 1.2rem; color:var(--eggplant);;
-      transition:background .3s, color .3s, transform .3s;
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+
+      background-size: 20px 20px;
+      opacity: 0.85;
+      background-color: #fff;
+      -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 26%, rgba(0, 0, 0, 0) 42%);
+      mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 26%, rgba(0, 0, 0, 0) 42%);
+      filter: drop-shadow(0 18px 18px rgba(0, 0, 0, 0.08));
+    }
+
+    .top-buttons {
+      position: absolute;
+      left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .top-buttons a {
+      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+      color: var(--eggplant);
+      font-size: 1.2rem;
+      transition: background .3s, color .3s, transform .3s;
       text-decoration: none;
     }
-    .top-buttons a:hover{ background:var(--eggplant); color:var(--softgray); transform:scale(1.05); }
+
 
     /* White block title */
-    .title{
-      text-align:center; font-size:clamp(2.2rem, 7vw, 3.8rem);
-      font-weight:900; text-transform:uppercase; letter-spacing:.06em;
-      color:#fff; text-shadow:0 2px 6px rgba(0,0,0,.2), 0 8px 22px rgba(0,0,0,.18);
-      margin:5rem auto 1rem; max-width:1000px; position:relative; z-index:1;
+    .title {
+      text-align: center;
+      font-size: clamp(2.2rem, 9vw, 3.8rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--indigo);
+      margin: 3rem auto 1rem;
+      max-width: 1000px;
+      position: relative;
+      z-index: 1;
     }
 
-    .container{ max-width:1000px; margin:0 auto; padding:1rem 1.25rem 3rem; position:relative; z-index:1; }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 1rem 1.25rem 3rem;
+      position: relative;
+      z-index: 1;
+    }
 
     /* More translucent content box */
-    .content-box{
-      background: rgba(255,255,247,0.45);
+    .content-box {
+      background: rgba(255, 255, 247, 0.45);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
       border: 2px solid rgba(11, 46, 62, 0.22);
-      box-shadow: 0 0 0 2px rgba(169,207,204,0.20);
+      box-shadow: 0 0 0 2px rgba(169, 207, 204, 0.20);
       border-radius: 16px;
       padding: 1.25rem 1.5rem;
     }
 
-    @media (max-width:480px){
-      .top-buttons{ position:static; padding:1rem; }
-      .title{ margin-top:1rem; }
+    @media (max-width:480px) {
+      .top-buttons {
+        position: static;
+        padding: 1rem;
+      }
+
+      .title {
+        margin-top: 1rem;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="top-buttons"><a href="myworks.html">Back</a></div>
 
   <h1 class="title">Visual</h1>
 
   <main class="container">
-    <section class="content-box">
-      <h2>Gallery</h2>
-      <p>Welcome to my visual page. Add artwork, images, or notes here.</p>
-    </section>
+    
   </main>
 </body>
+
 </html>
