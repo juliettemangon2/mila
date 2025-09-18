@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Visual | Mila Baumann</title>
 
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,17 +31,9 @@
       --text: var(--eggplant);
       --accent: var(--indigo);
       --cyan: var(--lightblue);
-
-      /* Brighter translucent halftone dots */
-      --dot: rgba(0, 0, 0, 0.38);
-      --dot-strong: rgba(0, 0, 0, 0.60);
     }
 
-    html,
-    body {
-      height: 100%;
-    }
-
+    html, body { height: 100%; }
     body {
       margin: 0;
       font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -52,7 +44,7 @@
       position: relative;
     }
 
-    /* Halftone background */
+    /* Polka dots background (no overlay container) */
     body::before {
       content: "";
       position: fixed;
@@ -60,21 +52,6 @@
       pointer-events: none;
       background-image: radial-gradient(#fff 4px, transparent 2.6px);
       background-size: 50px 50px;
-
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-
-      background-size: 20px 20px;
-      opacity: 0.85;
-      background-color: #fff;
-      -webkit-mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 26%, rgba(0, 0, 0, 0) 42%);
-      mask-image: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 26%, rgba(0, 0, 0, 0) 42%);
-      filter: drop-shadow(0 18px 18px rgba(0, 0, 0, 0.08));
     }
 
     .top-buttons {
@@ -83,19 +60,17 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      z-index: 2;
+      
     }
-
     .top-buttons a {
       font-weight: 600;
       padding: 0.6rem 1.2rem;
       color: var(--eggplant);
       font-size: 1.2rem;
-      transition: background .3s, color .3s, transform .3s;
       text-decoration: none;
     }
 
-
-    /* White block title */
     .title {
       text-align: center;
       font-size: clamp(2.2rem, 9vw, 3.8rem);
@@ -110,45 +85,223 @@
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 1300px;
       margin: 0 auto;
-      padding: 1rem 1.25rem 3rem;
+      padding: 1rem 1.25rem 4rem;
       position: relative;
       z-index: 1;
     }
 
-    /* More translucent content box */
-    .content-box {
-      background: rgba(255, 255, 247, 0.45);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border: 2px solid rgba(11, 46, 62, 0.22);
-      box-shadow: 0 0 0 2px rgba(169, 207, 204, 0.20);
-      border-radius: 16px;
-      padding: 1.25rem 1.5rem;
+    /* Masonry via CSS columns so images keep their natural aspect ratio */
+    .grid {
+      column-count: 4;
+      column-gap: 16px;
+    }
+    @media (max-width: 900px) {
+      .grid { column-count: 2; }
+    }
+    @media (max-width: 560px) {
+      .grid { column-count: 1; }
     }
 
-    @media (max-width:480px) {
-      .top-buttons {
-        position: static;
-        padding: 1rem;
-      }
+    /* Each thumb flows in columns; no fixed aspect ratio, no borders */
+    .thumb {
+      display: block;              /* needed to avoid inline gaps */
+      break-inside: avoid;
+      margin-bottom: 16px;         /* vertical spacing between items */
+      background: transparent;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+    }
+    .thumb img {
+      width: 100%;                 /* fit column width */
+      height: auto;                /* keep natural aspect ratio */
+      object-fit: contain;         /* never crop */
+      display: block;
+      transition: transform .18s ease;
+      user-select: none;
+      -webkit-user-drag: none;
+      border: none;                /* ensure no gray borders */
+      outline: none;
+      box-shadow: none;
+      background: transparent;
+    }
+    .thumb:hover img { transform: scale(1.01); }
 
-      .title {
-        margin-top: 1rem;
-      }
+    /* Minimal lightbox */
+    dialog#lightbox {
+      border: none;
+      padding: 0;
+      background: transparent;
+      width: auto;
+      height: auto;
+      max-width: none;
+      max-height: none;
+      overflow: visible;
+    }
+    dialog::backdrop { background: rgba(0, 0, 0, .7); }
+
+    /* Center the image and constrain it to viewport without extra padding */
+    .lb-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;               /* breathing room around the image */
+    }
+    .lb-img {
+      max-width: 95vw;
+      max-height: 95vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      margin: 0;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+    }
+
+    /* Simple X close button in the corner */
+    .lb-close {
+      position: fixed;
+      top: 16px;
+      right: 18px;
+      z-index: 1001;
+      font-size: 34px;
+      line-height: 1;
+      color: #fff;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0 8px;
+      user-select: none;
+    }
+    .lb-close:focus {
+      outline: 2px solid rgba(255, 255, 255, .6);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 480px) {
+      .top-buttons { position: static; padding: 1rem; }
+      .title { margin-top: 1rem; }
+      .lb-close { top: 10px; right: 12px; font-size: 30px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="top-buttons"><a href="myworks.html">Back</a></div>
+  <div class="top-buttons"><a href="index.html">HOME</a></div>
 
-  <h1 class="title">Visual</h1>
+  <h1 class="title">Visual Gallery</h1>
 
   <main class="container">
-    
+    <div id="grid" class="grid" aria-live="polite"></div>
   </main>
-</body>
 
+  <!-- Lightbox (transparent dialog + centered image) -->
+  <dialog id="lightbox" aria-labelledby="lbHeading">
+    <button class="lb-close" id="closeBtn" aria-label="Close">×</button>
+    <div class="lb-wrap">
+      <img id="lbImg" class="lb-img" alt="">
+    </div>
+    <h2 id="lbHeading" style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">Image viewer</h2>
+  </dialog>
+
+  <script>
+    const gridEl = document.getElementById('grid');
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const closeBtn = document.getElementById('closeBtn');
+
+    let items = [];       // [{file, title, url}]
+    let currentIndex = 0;
+
+    function friendlyTitle(name) {
+      const base = name.replace(/\.[^.]+$/, '');
+      return base.replace(/[_-]+/g, ' ').trim();
+    }
+
+    function buildThumb(item, index) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'thumb';
+      btn.setAttribute('aria-label', `Open ${item.title}`);
+      btn.addEventListener('click', () => openLightbox(index));
+
+      const img = document.createElement('img');
+      img.src = item.url;
+      img.alt = item.title;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+
+      btn.appendChild(img);
+      return btn;
+    }
+
+    function renderGrid() {
+      gridEl.innerHTML = '';
+      items.forEach((it, i) => gridEl.appendChild(buildThumb(it, i)));
+    }
+
+    function openLightbox(index) {
+      currentIndex = index;
+      const it = items[currentIndex];
+      lbImg.src = it.url;
+      lbImg.alt = it.title;
+      if (!lightbox.open) lightbox.showModal();
+      // lock background scroll
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      if (lightbox.open) lightbox.close();
+      lbImg.src = '';
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
+
+    function next() {
+      if (currentIndex < items.length - 1) openLightbox(currentIndex + 1);
+    }
+    function prev() {
+      if (currentIndex > 0) openLightbox(currentIndex - 1);
+    }
+
+    // Events
+    closeBtn.addEventListener('click', closeLightbox);
+
+    // Click backdrop to close
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    // Keyboard: Esc closes; Left/Right navigate
+    window.addEventListener('keydown', (e) => {
+      if (!lightbox.open) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+
+    async function init() {
+      try {
+        const res = await fetch('visual.json');
+        const data = await res.json();
+        items = (data.visuals || []).map(file => ({
+          file,
+          title: friendlyTitle(file),
+          url: `visual/${encodeURI(file)}`
+        }));
+        renderGrid();
+      } catch (err) {
+        gridEl.innerHTML = '<p>Could not load visuals.json.</p>';
+        console.error(err);
+      }
+    }
+    init();
+  </script>
+</body>
 </html>

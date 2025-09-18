@@ -4,10 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Music| Mila Baumann
-  </title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
+  <title>Music | Mila Baumann</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +13,6 @@
 
   <style>
     :root {
-      --yellow: #fdffe1;
       --softgray: #fffff7;
       --caput: #63281E;
       --caribbean: #265E60;
@@ -27,20 +24,17 @@
       --lightblue: #A9CFCC;
       --saffron: #E5C457;
       --viridian: #2F8F77;
-
       --bg: #e2f0f6;
       --text: var(--eggplant);
       --accent: var(--indigo);
       --cyan: var(--lightblue);
-
-      /* Brighter translucent halftone dots */
       --dot: rgba(0, 0, 0, 0.38);
       --dot-strong: rgba(0, 0, 0, 0.60);
     }
 
     html,
     body {
-      height: 100%;
+      height: 100%
     }
 
     body {
@@ -53,7 +47,6 @@
       position: relative;
     }
 
-    /* Halftone background */
     body::before {
       content: "";
       position: fixed;
@@ -69,7 +62,6 @@
           rgba(0, 0, 0, 0.25) 72%, rgba(0, 0, 0, 0) 85%);
     }
 
-
     .top-buttons {
       position: absolute;
       left: 20px;
@@ -80,15 +72,12 @@
 
     .top-buttons a {
       font-weight: 600;
-      padding: 0.6rem 1.2rem;
+      padding: .6rem 1.2rem;
       color: var(--eggplant);
       font-size: 1.2rem;
-      transition: background .3s, color .3s, transform .3s;
       text-decoration: none;
     }
 
-
-    /* White block title */
     .title {
       text-align: center;
       font-size: clamp(2.2rem, 9vw, 3.8rem);
@@ -103,22 +92,187 @@
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 1rem 1.25rem 3rem;
       position: relative;
       z-index: 1;
     }
 
-    /* More translucent content box */
-    .content-box {
-      background: rgba(255, 255, 247, 0.45);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      border: 2px solid rgba(13, 83, 117, 0.22);
-      box-shadow: 0 0 0 2px rgba(169, 207, 204, 0.20);
-      border-radius: 16px;
-      padding: 1.25rem 1.5rem;
+    /* Grid of scores */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 2rem;
+    }
+
+    @media (max-width:900px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width:560px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(13, 83, 117, 0.2);
+      border-radius: 14px;
+      padding: .8rem;
+      transition: transform .18s ease, box-shadow .18s ease;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 10px;
+      overflow: hidden;
+      background: linear-gradient(0deg, rgba(169, 207, 204, .35), rgba(169, 207, 204, .35));
+      border: 1px solid rgba(13, 83, 117, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* overlay that sits above embed/iframe */
+    .thumb .overlay {
+      position: absolute;
+      inset: 0;
+      background: transparent;
+      /* stays invisible */
+      cursor: pointer;
+    }
+
+
+    .thumb embed,
+    .thumb iframe,
+    .thumb object {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .fallback {
+      font-weight: 800;
+      color: var(--indigo);
+      opacity: .8;
+      font-size: 1.1rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .title-caption {
+      font-size: 1rem;
+      line-height: 1.35;
+      color: var(--eggplant);
+      font-weight: 700;
+      word-break: break-word;
+    }
+
+    /* Modal viewer (centered grow-in) */
+    dialog#viewer {
+      width: min(1100px, 96vw);
+      height: min(90vh, 900px);
+      border: 1px solid rgba(13, 83, 117, .25);
+      border-radius: 14px;
+      padding: 0;
+      overflow: hidden;
+      background: var(--softgray);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .25);
+      opacity: 0;
+      transform: scale(.92);
+      transition: opacity .18s ease, transform .18s ease;
+    }
+
+    dialog[open]#viewer {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    dialog::backdrop {
+      background: rgba(0, 0, 0, .42);
+      transition: background .18s ease;
+    }
+
+    .viewer-bar {
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 .6rem 0 .8rem;
+      background: rgba(255, 255, 255, .92);
+      backdrop-filter: saturate(1.2) blur(6px);
+    }
+
+    .viewer-title {
+      font-weight: 800;
+      color: var(--indigo);
+      font-size: 1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .viewer-actions {
+      display: flex;
+      gap: .35rem;
+      align-items: center;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid rgba(13, 83, 117, .25);
+      background: #fff;
+      color: var(--indigo);
+      padding: .45rem .7rem;
+      border-radius: 10px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: .95rem;
+    }
+
+    .btn:hover {
+      background: var(--bg);
+    }
+
+    .viewer-body {
+      width: 100%;
+      height: calc(100% - 52px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 1);
+    }
+
+    /* The iframe is smaller than dialog to give a lightbox feel */
+    .viewer-body iframe {
+      width: min(90vw, 88%);
+      height: min(84vh, 95%);
+      border: 0;
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    .sr-only {
+      position: absolute;
+      left: -10000px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
     }
 
     @media (max-width:480px) {
@@ -130,15 +284,168 @@
       .title {
         margin-top: 1rem;
       }
+
+      .viewer-body iframe {
+        width: 94vw;
+        height: 78vh;
+      }
     }
   </style>
 </head>
 
 <body>
-  <div class="top-buttons"><a href="myworks.html">Back</a></div>
-
+  <div class="top-buttons"><a href="index.html">HOME</a></div>
   <h1 class="title">Music</h1>
 
+  <div class="container">
+
+      <div id="grid" class="grid" aria-live="polite"></div>
+  </div>
+
+  <!-- Centered lightbox + full viewer with controls -->
+  <dialog id="viewer" aria-labelledby="viewerHeading">
+    <div class="viewer-bar">
+      <div class="viewer-title" id="viewerHeading">Loading…</div>
+      <div class="viewer-actions">
+        <a class="btn" id="openNewTab" target="_blank" rel="noopener">Open in new tab</a>
+        <button class="btn" id="prevBtn" title="Previous (←)">←</button>
+        <button class="btn" id="nextBtn" title="Next (→)">→</button>
+        <button class="btn" id="closeBtn">x</button>
+      </div>
+    </div>
+    <div class="viewer-body">
+      <iframe id="pdfFrame" src="" title="PDF viewer"></iframe>
+    </div>
+  </dialog>
+
+  <script>
+    const gridEl = document.getElementById('grid');
+    const viewer = document.getElementById('viewer');
+    const pdfFrame = document.getElementById('pdfFrame');
+    const viewerHeading = document.getElementById('viewerHeading');
+    const openNewTab = document.getElementById('openNewTab');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const closeBtn = document.getElementById('closeBtn');
+
+    let items = [];      // [{file, title, url}]
+    let currentIndex = 0;
+
+    // Make a readable title from filename
+    function friendlyTitle(name) {
+      let base = name.replace(/\.[^/.]+$/, '');
+      base = base.replace(/[_]+/g, ' ').replace(/\s{2,}/g, ' ').trim();
+      base = base.replace(/\s*\(full\s*score\)\s*/i, ' (Full Score)');
+      base = base.replace(/\bfull\s*score\b/ig, 'Full Score');
+      return base;
+    }
+
+    function buildCard(item, index) {
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      const thumb = document.createElement('div');
+      thumb.className = 'thumb';
+
+      const emb = document.createElement('embed');
+      emb.src = `${item.url}#page=1&view=FitH`;
+      emb.type = 'application/pdf';
+      thumb.appendChild(emb);
+
+      // overlay to catch hover/click
+      const overlay = document.createElement('div');
+      overlay.className = 'overlay';
+      overlay.addEventListener('click', () => openViewer(index));
+      thumb.appendChild(overlay);
+
+      const caption = document.createElement('div');
+      caption.className = 'title-caption';
+      caption.textContent = item.title;
+
+      card.appendChild(thumb);
+      card.appendChild(caption);
+      return card;
+    }
+
+
+    function renderGrid() {
+      gridEl.innerHTML = '';
+      items.forEach((it, i) => gridEl.appendChild(buildCard(it, i)));
+    }
+
+    function openViewer(index) {
+      currentIndex = index;
+      const it = items[currentIndex];
+      viewerHeading.textContent = it.title;
+      // Put the PDF inside the “lightbox sized” iframe
+      pdfFrame.src = `${it.url}#view=FitH`;
+      openNewTab.href = it.url;
+      if (!viewer.open) viewer.showModal(); // triggers centered grow-in via CSS
+      pdfFrame.focus();
+      updateNavButtons();
+    }
+
+    function closeViewer() {
+      if (viewer.open) viewer.close();
+      pdfFrame.src = '';
+    }
+
+    function next() {
+      if (currentIndex < items.length - 1) {
+        openViewer(currentIndex + 1);
+      }
+    }
+    function prev() {
+      if (currentIndex > 0) {
+        openViewer(currentIndex - 1);
+      }
+    }
+    function updateNavButtons() {
+      prevBtn.disabled = currentIndex === 0;
+      nextBtn.disabled = currentIndex === items.length - 1;
+    }
+
+    // Events
+    closeBtn.addEventListener('click', closeViewer);
+    prevBtn.addEventListener('click', prev);
+    nextBtn.addEventListener('click', next);
+
+    // Click outside the inner iframe area closes the dialog
+    viewer.addEventListener('click', (e) => {
+      // Close only if clicking the backdrop of the dialog, not inside content
+      const rect = viewer.getBoundingClientRect();
+      const x = e.clientX, y = e.clientY;
+      const inside = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+      if (!inside) return; // unlikely, safety
+      // If target is the dialog itself (backdrop), close
+      if (e.target === viewer) closeViewer();
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (!viewer.open) return;
+      if (e.key === 'Escape') closeViewer();
+      if (e.key === 'ArrowRight') next();
+      if (e.key === 'ArrowLeft') prev();
+    });
+
+    // Load data
+    async function init() {
+      try {
+        const res = await fetch('scores.json');
+        const data = await res.json();
+        items = (data.scores || []).map(file => ({
+          file,
+          title: friendlyTitle(file),
+          url: `scores/${encodeURI(file)}`
+        }));
+        renderGrid();
+      } catch (err) {
+        gridEl.innerHTML = '<p>Could not load scores.json.</p>';
+        console.error(err);
+      }
+    }
+    init();
+  </script>
 </body>
 
 </html>
