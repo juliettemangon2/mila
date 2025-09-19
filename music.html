@@ -14,9 +14,11 @@
   <style>
     :root {
       --softgray: #fffff7;
+      --pill-text: #fff;
       --caput: #63281E;
       --caribbean: #265E60;
       --eggplant: #6A4059;
+      --eggplant2: rgb(219, 175, 201)9;
       --darkslate: #324340;
       --moss: #A7A448;
       --indigo: #0D5375;
@@ -32,11 +34,7 @@
       --dot-strong: rgba(0, 0, 0, 0.60);
     }
 
-    html,
-    body {
-      height: 100%
-    }
-
+    html, body { height: 100%; }
     body {
       margin: 0;
       font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -62,21 +60,60 @@
           rgba(0, 0, 0, 0.25) 72%, rgba(0, 0, 0, 0) 85%);
     }
 
-    .top-buttons {
-      position: absolute;
-      left: 20px;
+
+
+    /* Nav/button styles from aboutme.html */
+    .nav {
+      width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 0.75rem;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 1rem 4rem;
     }
 
-    .top-buttons a {
-      font-weight: 600;
-      padding: .6rem 1.2rem;
-      color: var(--eggplant);
-      font-size: 1.2rem;
+    .btn {
+      display: block;
       text-decoration: none;
+      color: var(--pill-text);
+      padding: 0.5rem 0.3rem;
+      border-radius: 6px;
+      font-size: clamp(0.9rem, 2.1vw, 1.2rem);
+      font-weight: 500;
+      line-height: 1;
+      transition: transform 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+      box-shadow: none;
+      -webkit-tap-highlight-color: transparent;
     }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(0.95);
+    }
+
+    .btn-about {
+      background: var(--caribbean);
+    }
+
+    .btn-visual {
+      background: var(--eggplant);
+    }
+
+    .btn-music {
+      background: var(--moss);
+    }
+
+    .btn-contact {
+      background: var(--indigo);
+    }
+
+    .btn-home {
+      background: var(--fairytale);
+    }
+
+
+
 
     .title {
       text-align: center;
@@ -85,7 +122,9 @@
       text-transform: uppercase;
       letter-spacing: .06em;
       color: var(--indigo);
-      margin: 3rem auto 1rem;
+      margin: 3rem auto 5rem;
+      margin-top: -10rem;
+
       max-width: 1000px;
       position: relative;
       z-index: 1;
@@ -233,21 +272,7 @@
       align-items: center;
     }
 
-    .btn {
-      appearance: none;
-      border: 1px solid rgba(13, 83, 117, .25);
-      background: #fff;
-      color: var(--indigo);
-      padding: .45rem .7rem;
-      border-radius: 10px;
-      font-weight: 700;
-      cursor: pointer;
-      font-size: .95rem;
-    }
-
-    .btn:hover {
-      background: var(--bg);
-    }
+    
 
     .viewer-body {
       width: 100%;
@@ -294,12 +319,20 @@
 </head>
 
 <body>
-  <div class="top-buttons"><a href="index.html">HOME</a></div>
+  <!-- Nav bar (same as aboutme.html) -->
+  <nav class="nav" aria-label="Primary">
+    <a class="btn btn-about" href="aboutme.html">About Me</a>
+    <a class="btn btn-visual" href="visual.html">Visual</a>
+    <a class="btn btn-music" href="music.html">Music</a>
+    <a class="btn btn-contact" href="contact.html">Contact</a>
+    <a class="btn btn-home" href="index.html">Home</a>
+  </nav>
+
   <h1 class="title">Music</h1>
 
   <div class="container">
 
-      <div id="grid" class="grid" aria-live="polite"></div>
+    <div id="grid" class="grid" aria-live="polite"></div>
   </div>
 
   <!-- Centered lightbox + full viewer with controls -->

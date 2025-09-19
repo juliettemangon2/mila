@@ -27,10 +27,11 @@
       --saffron: #E5C457;
       --viridian: #2F8F77;
 
-      --bg: #e2f0f6;
-      --text: var(--eggplant);
-      --accent: var(--indigo);
-      --cyan: var(--lightblue);
+  --bg: #e2f0f6;
+  --text: var(--eggplant);
+  --accent: var(--indigo);
+  --cyan: var(--lightblue);
+  --pill-text: #fff;
     }
 
     html, body { height: 100%; }
@@ -83,6 +84,39 @@
       position: relative;
       z-index: 1;
     }
+
+    /* Nav/button styles from aboutme.html */
+    .nav {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .btn {
+      display: block;
+      text-decoration: none;
+      color: var(--pill-text);
+      padding: 0.5rem 0.3rem;
+      border-radius: 6px;
+      font-size: clamp(0.9rem, 2.1vw, 1.2rem);
+      font-weight: 500;
+      line-height: 1;
+      transition: transform 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+      box-shadow: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn:hover { transform: translateY(-1px); filter: brightness(0.95); }
+
+    .btn-about { background: var(--caribbean); }
+    .btn-visual { background: var(--eggplant); }
+    .btn-music { background: var(--moss); }
+    .btn-contact { background: var(--indigo); }
+    .btn-home { background: var(--fairytale); }
 
     .container {
       max-width: 1300px;
@@ -192,7 +226,15 @@
 </head>
 
 <body>
-  <div class="top-buttons"><a href="index.html">HOME</a></div>
+  <!-- Nav bar (same as aboutme.html) -->
+  <nav class="nav" aria-label="Primary">
+    <a class="btn btn-about" href="aboutme.html">About Me</a>
+    <a class="btn btn-visual" href="visual.html">Visual</a>
+    <a class="btn btn-music" href="music.html">Music</a>
+    <a class="btn btn-contact" href="contact.html">Contact</a>
+    <a class="btn btn-home" href="index.html">Home</a>
+  </nav>
+
 
   <h1 class="title">Visual Gallery</h1>
 

@@ -7,9 +7,14 @@
   <title>About | Mila Baumann</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
+  <!-- Inter font for nav consistency with index.html -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
+
   <style>
     :root {
-      /* Palette from the image */
+      /* Palette */
       --yellow: #fdffe1;
       --softgray: #fffff7;
       --caput: #63281E;
@@ -25,15 +30,11 @@
       --lightblue: #A9CFCC;
       --saffron: #E5C457;
       --viridian: #2F8F77;
-      --card-bg: rgba(255, 255, 255, 0.64);
-      /* Glassy white */
-      --card-hover-bg: rgba(255, 255, 255, 0.81);
-      --card-shadow: 0 4px 28px 2px rgba(0, 0, 0, 0.08), 0 0 0 2px rgba(255, 255, 255, 0.13);
 
       --bg: #e2f0f6;
-      /* soft background similar to the reference */
       --text: var(--eggplant);
-      /* title and buttons text color */
+
+      --pill-text: #fff;
     }
 
     *,
@@ -50,15 +51,8 @@
           var(--cream) 50px 100px);
     }
 
-    /* THEME 2 STRIPES & SWAP */
-    html.theme2 {
-      background: repeating-linear-gradient(to right,
-          var(--lightblue1) 0 50px,
-          var(--lightblue) 50px 100px);
-    }
-
     html {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       font-size: 16px;
       line-height: 1.75;
       scroll-behavior: smooth;
@@ -66,85 +60,84 @@
 
     body {
       min-height: 100vh;
-      color: var(--text);
-      padding: 40px;
+      background: transparent;
       position: relative;
+      display: block;
+      color: var(--eggplant);
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-
-    html.theme2 .top-buttons a {
-      background: var(--highlight);
-      color: var(--text);
-      border-color: var(--highlight);
-    }
-
-
-
-    .toggle-switch {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 50px;
-      height: 24px;
-    }
-
-    .toggle-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .toggle-switch label {
-      position: absolute;
+    /* Nav + buttons: match styles from index.html */
+    .nav {
       width: 100%;
-      height: 100%;
-      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      /* stack vertically */
+      gap: 0.75rem;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .btn {
+      display: block;
+      text-decoration: none;
+      color: var(--pill-text);
+      padding: 0.5rem 0.3rem;
+      border-radius: 6px;
+      font-size: clamp(0.9rem, 2.1vw, 1.2rem);
+      font-weight: 500;
+      line-height: 1;
+      transition: transform 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+      box-shadow: none;
+      /* no border look */
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(0.95);
+    }
+
+    .btn-about {
+      background: var(--caribbean);
+    }
+
+    .btn-visual {
       background: var(--eggplant);
-
-      cursor: pointer;
-      transition: background-color 0.3s;
     }
 
-    .toggle-switch label::after {
-      content: '';
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #fff;
-      top: 3px;
-      left: 3px;
-      transition: transform 0.3s;
+    .btn-music {
+      background: var(--moss);
     }
 
-    .toggle-switch input:checked+label {
-      background: var(--eggplant);
+    .btn-contact {
+      background: var(--indigo);
     }
 
-    .toggle-switch input:checked+label::after {
-      transform: translateX(26px);
+    .btn-home {
+      background: var(--fairytale);
     }
 
+    /* === About Me title === */
     .section-title {
       text-align: center;
-      font-size: 2.4rem;
-      font-weight: 900;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
       font-size: clamp(2.8rem, 5vw, 9rem);
-      color: var(--accent);
-      -webkit-text-stroke: 2px var(--accent);
-      margin: 0.2rem auto 1rem;
-      margin-bottom: 0rem;
-      max-width: 1000px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin: -16rem 0 4rem 1rem;
+      /* negative top margin pulls it upward */
+      color: var(--text);
+      line-height: 1;
+      position: relative;
+      z-index: 1;
+      /* keeps it above background stripes */
     }
 
-    html.theme2 .section-title {
-      color: var(--highlight);
-      -webkit-text-stroke: 2px var(--highlight);
-    }
 
-    /* First section grid: larger photo */
+    /* === Keep original About Me content === */
     .content-grid {
       display: flex;
       gap: 3rem;
@@ -162,7 +155,7 @@
       width: 100%;
       height: auto;
       margin-top: .7rem;
-      border: 2px solid var(--highlight);
+      border: 2px solid var(--lightblue1);
       border-radius: 0;
     }
 
@@ -180,104 +173,28 @@
       border: none;
       transition: transform .22s, background .22s, box-shadow .22s;
       font-size: 2.1rem;
-      line-height: 1.8;
-      margin-top: .2rem;
+      line-height: 1.5;
+      margin-top: 1.2rem;
       margin-bottom: 2rem;
-      font-weight:400;
-    }
-
-    /* Full-width second section */
-    .full-width {
-      max-width: 1200px;
-      margin: 0 auto 3rem;
-    }
-
-    .edu-grid {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-      max-width: 1200px;
-      margin: 0 auto 3rem;
-    }
-
-    .edu-col {
-      flex: 1 1 450px;
-      background: var(--yellow);
-      padding: 1.5rem 2rem;
-      border-radius: 0px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-      font-size: 1.2rem;
-      line-height: 1.8;
-    }
-
-    .top-buttons {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .top-buttons a {
-      font-weight: 600;
-      padding: 0.6rem 1.2rem;
-      color: var(--eggplant);
-      font-size: 1.2rem;
-      border: 3px solid var(--cyan);
-      text-decoration: none;
-      box-shadow: 0 0 0 2px var(--accent);
-      transition: background 0.3s, color 0.3s, transform 0.3s;
-    }
-
-
-    .works-container {
-      display: flex;
-      gap: 2rem;
-      justify-content: center;
-      align-items: stretch;
-      flex-wrap: wrap;
-      padding: 2rem 1.25rem 3.5rem;
-      position: relative;
-      z-index: 1;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .work-box {
-      display: grid;
-      grid-template-rows: auto 1fr;
-      place-items: center;
-      text-align: center;
-      background: var(--card-bg);
-      backdrop-filter: blur(7px);
-      -webkit-backdrop-filter: blur(7px);
-      color: var(--eggplant);
-      text-decoration: none;
-      box-shadow: var(--card-shadow);
-      border: none;
-      padding: 1.5rem;
-      width: clamp(220px, 40vw, 360px);
-      border-radius: 16px;
-      transition: transform .22s, background .22s, box-shadow .22s;
-    }
-
-    .work-box h2 {
-      margin: 0 0 .5rem 0;
-      font-size: 1.7rem;
-      font-weight: 800;
-      line-height: 1.2;
-    }
-
-    .work-box p {
-      margin: 0;
-      font-size: 1rem;
-      opacity: .85;
+      font-weight: 500;
     }
 
     @media (max-width: 768px) {
       body {
         padding: 20px;
+      }
+
+      .nav {
+        padding-top: 1rem;
+      }
+
+      .btn {
+        padding: 0.55em 1.05em;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-left: 0;
       }
 
       .content-grid {
@@ -297,13 +214,19 @@
 </head>
 
 <body>
-  <div class="top-buttons"><a href="index.html">Home</a></div>
-  <div class="toggle-switch"><input type="checkbox" id="theme-toggle" /><label for="theme-toggle"></label></div>
+  <!-- Nav bar (same as index.html) -->
+  <nav class="nav" aria-label="Primary">
+    <a class="btn btn-about" href="aboutme.html">About Me</a>
+    <a class="btn btn-visual" href="visual.html">Visual</a>
+    <a class="btn btn-music" href="music.html">Music</a>
+    <a class="btn btn-contact" href="contact.html">Contact</a>
+    <a class="btn btn-home" href="index.html">Home</a>
+  </nav>
 
-  <!-- ABOUT -->
+  <!-- Title -->
   <h2 class="section-title">About Me</h2>
 
-  <!-- First section: photo + first text block -->
+  <!-- First section: photo + text -->
   <div class="content-grid">
     <div class="photo-col">
       <img src="mila.jpeg" alt="Photo of Mila">
@@ -313,19 +236,10 @@
         <p>My name is Mila Baumann and I am currently a junior in composition and film scoring at NYU. I started playing
           the violin in second grade eventually leading me to study at a music conservatory where I discovered my love
           for composition. I am interested in contemporary classical music, particularly how the lines of music and
-          sound are blurred with the use of extended techniques and the combination of electronic tools and music. </p>
+          sound are blurred with the use of extended techniques and the combination of electronic tools and music.</p>
       </div>
     </div>
   </div>
-
-
-
-  <script>
-    document.getElementById('theme-toggle').addEventListener('change', () => {
-      document.documentElement.classList.toggle('theme2');
-      document.documentElement.classList.toggle('theme1');
-    });
-  </script>
 </body>
 
 </html>

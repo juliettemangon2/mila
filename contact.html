@@ -6,36 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact | Mila Baumann</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --yellow: #fdffe1;
-      /* light yellow */
-      --cyan: #d5eff5;
-      /* light cyan */
-      --softgray: #fffff7;
-      --lightblue1: #d7e2e4;
-      --accent: #4a537b;
-      --lightpink: #ffe9ee;
-      --darkblue: #00285d;
-      --blue: #185ab0;
-      --azure: #eefcff;
-      --caput: #63281E;
-      --caribbean: #265E60;
-      --eggplant: #6A4059;
-      --darkslate: #324340;
-      --moss: #A7A448;
-      --indigo: #0D5375;
-      --fairytale: #E9BFC7;
-      --cream: #fff8e7;
-      --lightblue: #A9CFCC;
-      --saffron: #E5C457;
-      --viridian: #2F8F77;
-
-      --bg: #e2f0f6;
-      /* soft background similar to the reference */
-      --text: var(--eggplant);
-      /* title and buttons text color */
+      --caput: #63281e;
+      --caribbean: #265e60;
+      --eggplant: #6a4059;
+      --moss: #a7a448;
+      --indigo: #0d5375;
+      --fairytale: #e9bfc7;
+      --lightblue: #a9cfcc;
+      --saffron: #e5c457;
+      --viridian: #2f8f77;
+      --pill-text: #fff;
     }
 
     *,
@@ -46,18 +32,17 @@
       box-sizing: border-box;
     }
 
-    /* THEME 1 STRIPES */
+    /* Keep striped background themes */
     html.theme1 {
       background: repeating-linear-gradient(to right,
-          var(--lightpink) 0 50px,
-          var(--softgray) 50px 100px);
+          #ffe9ee 0 50px,
+          #fff8e7 50px 100px);
     }
 
-    /* THEME 2 STRIPES & SWAP */
     html.theme2 {
       background: repeating-linear-gradient(to right,
-          var(--lightblue1) 0 50px,
-          var(--lightblue) 50px 100px);
+          #d7e2e4 0 50px,
+          #a9cfcc 50px 100px);
     }
 
     html {
@@ -68,30 +53,67 @@
 
     body {
       min-height: 100vh;
-      padding: 80px 30px;
-      color: var(--eggplant);
       background: transparent;
       position: relative;
-    }
-
-    .top-buttons {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .top-buttons a {
-      font-weight: 600;
-      padding: 0.6rem 1.2rem;
-      font-size: 1.2rem;
+      display: block;
       color: var(--eggplant);
-      text-decoration: none;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
+    /* Nav + buttons: match styles from index.html */
+    .nav {
+      width: 100%;
+      display: flex;
+      flex-direction: column; /* stack vertically */
+      gap: 0.75rem;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 1rem 4rem;
+    }
 
+    .btn {
+      display: block;
+      text-decoration: none;
+      color: var(--pill-text);
+      padding: 0.5rem 0.3rem;
+      border-radius: 6px;
+      font-size: clamp(0.9rem, 2.1vw, 1.2rem);
+      font-weight: 500;
+      line-height: 1;
+      transition: transform 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+      box-shadow: none; /* no border look */
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn:focus-visible {
+      outline: 2px solid rgba(0, 0, 0, 0.6);
+      outline-offset: 3px;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(0.95);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-about { background: var(--caribbean); }
+    .btn-visual { background: var(--eggplant); }
+    .btn-music  { background: var(--moss); color: #fff; }
+    .btn-contact{ background: var(--indigo); }
+    .btn-home   { background: var(--fairytale); }
+
+    /* Mobile adjustments to match index.html behavior */
+    @media (max-width:700px) {
+      .nav { padding-top: 1rem; }
+      .btn { padding: 0.55em 1.05em; }
+    }
+
+    /* Theme toggle preserved */
     .toggle-switch {
       position: absolute;
       top: 20px;
@@ -129,30 +151,29 @@
     }
 
     .toggle-switch input:checked+label {
-      background: var(--accent);
+      background: var(--eggplant);
     }
 
     .toggle-switch input:checked+label::after {
       transform: translateX(26px);
     }
 
-    /* MAIN CARD */
+    /* Contact content restored */
     .contact-card {
       max-width: 700px;
       margin: 120px auto 0;
       padding: 2rem;
-      
+      margin-top:-5rem;
       text-align: center;
     }
-
 
     .contact-card h2 {
       font-size: 2.6rem;
       font-weight: 700;
       text-align: center;
       margin-bottom: 1.5rem;
-      color: var(--accent);
-      -webkit-text-stroke: 2.5px var(--accent);
+      color: var(--eggplant);
+      -webkit-text-stroke: 2.5px var(--eggplant);
       letter-spacing: 0.1em;
     }
 
@@ -161,30 +182,21 @@
       align-items: center;
       justify-content: center;
       gap: 0.8rem;
-      font-size: 4.7rem;
+      font-size: 4rem;
       margin: 1rem 0;
-      position: relative;
-    }
-
-    .contact-item::before {
-      font-size: .6rem;
-      color: var(--accent);
     }
 
     .contact-item a {
       color: var(--eggplant);
       font-weight: 600;
       text-decoration: none;
-      text-align: center;
-      padding-bottom: 2px;
       transition: color 0.3s, transform 0.3s;
     }
 
     .contact-item a:hover {
-      color: var(--accent);
-      transform: translateX(30px);
+      color: var(--indigo);
+      transform: translateX(10px);
     }
-
 
     @media (max-width: 600px) {
       .contact-card {
@@ -195,33 +207,34 @@
       .contact-card h2 {
         font-size: 2rem;
       }
-
-      .contact-item {
-        font-size: 1.1rem;
-      }
     }
   </style>
 </head>
 
 <body>
-  <div class="top-buttons">
-    <a href="index.html">Home</a>
-  </div>
+  <!-- Nav from index.html -->
+  <nav class="nav" aria-label="Primary">
+    <a class="btn btn-about" href="aboutme.html">About Me</a>
+    <a class="btn btn-visual" href="visual.html">Visual</a>
+    <a class="btn btn-music" href="music.html">Music</a>
+    <a class="btn btn-contact" href="contact.html">Contact</a>
+    <a class="btn btn-home" href="index.html">Home</a>
+  </nav>
+
+  <!-- Theme toggle -->
   <div class="toggle-switch">
     <input type="checkbox" id="theme-toggle" />
     <label for="theme-toggle"></label>
   </div>
 
+  <!-- Contact info (unchanged) -->
   <div class="contact-card">
-
     <div class="contact-item">
       <a href="mailto:mila_baumann@icloud.com">mila_baumann@icloud.com</a>
     </div>
     <div class="contact-item">
-      <a href="tel:+3107015726">+1 (310) 701-5726</a>
+      <a href="tel:+13107015726">+1 (310) 701-5726</a>
     </div>
-
-
   </div>
 
   <script>

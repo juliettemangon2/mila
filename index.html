@@ -6,10 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mila Baumann</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
   <style>
     :root {
       --caput: #63281e;
@@ -23,6 +22,7 @@
       --viridian: #2f8f77;
       --bg: #e2f0f6;
 
+      /* Polka dots (large, airy grid) */
       --dots: radial-gradient(circle 18px, #265e60 99%, transparent 100%),
         radial-gradient(circle 18px, #2f8f77 99%, transparent 100%),
         radial-gradient(circle 18px, #0d5375 99%, transparent 100%),
@@ -32,170 +32,173 @@
         radial-gradient(circle 18px, #6a4059 99%, transparent 100%),
         radial-gradient(circle 18px, #e9bfc7 99%, transparent 100%),
         radial-gradient(circle 18px, #a9cfcc 99%, transparent 100%);
-      --dots-size: 400px 400px, 400px 400px, 400px 400px, 400px 400px,
-        400px 400px, 400px 400px, 400px 400px, 400px 400px, 400px 400px;
-      --dots-pos: 0 0, 200px 0, 0 200px, 200px 200px, 100px 100px, 300px 100px,
-        100px 300px, 300px 300px, 400px 200px;
+      --dots-size: 400px 400px, 400px 400px, 400px 400px, 400px 400px, 400px 400px, 400px 400px, 400px 400px, 400px 400px, 400px 400px;
+      --dots-pos: 0 0, 200px 0, 0 200px, 200px 200px, 100px 100px, 300px 100px, 100px 300px, 300px 300px, 400px 200px;
+
+      /* Pill buttons (light, no borders) */
+      --pill-bg: var(--caribbean);
+      /* light, playful */
+      --pill-text: #fff;
+      /* like your screenshot */
+      --pill-bg-hover: #dff4ff;
+    }
+
+    * {
+      box-sizing: border-box
     }
 
     html,
     body {
-      height: 100%;
+      height: 100%
     }
 
     body {
-      min-height: 100dvh;
       margin: 0;
-      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial,
-        sans-serif;
-      background: #fff;
-      color: var(--moss);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      overflow-x: hidden;
-      transition: background 0.18s;
-      position: relative;
-    }
-
-    /* Alt mode: show blue + dots bg */
-    body.alt {
-      background-color: var(--bg);
-      background-image: var(--dots);
-      background-size: var(--dots-size);
-      background-position: var(--dots-pos);
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color: #fff;
-    }
-
-    .hero {
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      min-height: 55vh;
-      flex: 1;
-      position: relative;
-      z-index: 1;
-    }
-
-    @media (max-width: 700px) {
-      .hero {
-        min-height: 33vh;
-      }
-
-      .title {
-        font-size: clamp(1.4rem, 10vw, 3.2rem);
-      }
-    }
-
-    @media (max-width: 420px) {
-      .title {
-        font-size: clamp(1.1rem, 14vw, 2.2rem);
-      }
-    }
-
-    .title {
-      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial,
-        sans-serif;
-      font-weight: 900;
-      letter-spacing: 0.05em;
-      font-size: clamp(2.8rem, 9vw, 9rem);
-      line-height: 1;
-      margin: 0;
-      text-transform: uppercase;
-      cursor: pointer;
-      outline: none;
-      user-select: none;
-      /* Dots + blue as background for the text only */
+      justify-content: flex-start;
       background-color: var(--bg);
       background-image: var(--dots);
       background-size: var(--dots-size);
       background-position: var(--dots-pos);
       background-repeat: repeat;
       background-attachment: fixed;
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      -webkit-text-fill-color: transparent;
-      text-shadow: none;
-      position: relative;
-      z-index: 1;
-      transition: color 0.18s, background 0.18s, -webkit-text-fill-color 0.18s;
     }
 
-    /* In alt mode, title is solid white */
-    body.alt .title {
-      background: none !important;
-      color: #fff !important;
-      -webkit-text-fill-color: #fff;
+    .hero {
+      width: 100%;
+      display: flex;
+      align-items: flex-start;
+      /* push toward top */
+      justify-content: flex-start;
+      /* align to left */
+      min-height: 56vh;
+      padding: 6vh 1rem 2vh;
+      /* increase top padding so title sits slightly lower */
+      text-align: left;
+    }
+
+    .title {
+      margin: 0;
+      /* reset heavy margins */
+      padding: 18rem 0 0 0rem;
+      /* push down and give slight left inset */
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      text-align: left;
+      font-size: clamp(2.8rem, 9vw, 9rem);
+      color: #fff;
+      /* solid for clarity over dots */
+      text-rendering: optimizeLegibility;
+      max-width: 70ch;
     }
 
     .nav {
+      width: 100%;
       display: flex;
-      gap: clamp(1.25rem, 4vw, 4rem);
-      justify-content: center;
-      align-items: center;
-      padding: 2.5rem 1rem 3rem;
-      position: relative;
-      z-index: 1;
+      flex-direction: column;
+      /* stack vertically */
+      gap: 0.75rem;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 2rem 1rem 4rem;
     }
 
+    /* Pill buttons */
     .btn {
-      appearance: none;
-      background: none;
-      color: var(--moss);
-      font-weight: 700;
-      font-size: 1.14rem;
+      display: block;
       text-decoration: none;
-      letter-spacing: 0.02em;
-      border: none;
+      color: var(--pill-text);
+      padding: 0.5rem 0.3rem;
+      border-radius: 6px;
+      font-size: clamp(0.9rem, 2.1vw, 1.2rem);
+      font-weight: 500;
+      line-height: 1;
+      transition: transform 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
       box-shadow: none;
-      border-radius: 0;
-      padding: 0.05em 0.4em;
-      cursor: pointer;
-      outline: none;
-      position: relative;
-      transition: color 0.15s;
-      z-index: 1;
+      /* no border look */
+      -webkit-tap-highlight-color: transparent;
     }
 
-    /* ALT mode: nav links solid white */
-    body.alt .btn {
-      color: #fff !important;
-      -webkit-text-fill-color: #fff;
-      background: none;
-      transition: none;
+    .btn:focus-visible {
+      outline: 2px solid rgba(0, 0, 0, 0.6);
+      outline-offset: 3px;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(0.95);
+    }
+
+    /* Per-button backgrounds */
+    .btn-about {
+      background: var(--caribbean);
+    }
+
+    .btn-visual {
+      background: var(--eggplant);
+    }
+
+    .btn-music {
+      background: var(--moss);
+      color: #fff;
+    }
+
+    .btn-contact {
+      background: var(--indigo);
+    }
+     .btn-home {
+      background: var(--fairytale);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    /* Subtle spacing on small screens */
+    @media (max-width:700px) {
+      .hero {
+        min-height: 40vh;
+        padding-top: 8vh;
+        justify-content: center;
+        align-items: center
+      }
+
+      .nav {
+        padding-top: 1rem
+      }
+
+      .btn {
+        padding: 0.55em 1.05em
+      }
+
+      .title {
+        text-align: center;
+        padding: 1.2rem 0 0 0
+      }
     }
   </style>
 </head>
 
 <body>
-  <main class="hero" aria-labelledby="site-title">
-    <h1 id="site-title" class="title" tabindex="0">Mila Baumann</h1>
-  </main>
   <nav class="nav" aria-label="Primary">
-    <a class="btn" href="aboutme.html">About Me</a>
-    <a class="btn" href="visual.html">Visual</a>
-    <a class="btn" href="music.html">Music</a>
-    <a class="btn" href="contact.html">Contact</a>
-
-
+    <a class="btn btn-about" href="aboutme.html">About Me</a>
+    <a class="btn btn-visual" href="visual.html">Visual</a>
+    <a class="btn btn-music" href="music.html">Music</a>
+    <a class="btn btn-contact" href="contact.html">Contact</a>
+    <a class="btn btn-home" href="index.html" >Home</a>
   </nav>
-  <script>
-    // Toggle alt class on body when the title is clicked
-    document.querySelector(".title").addEventListener("click", function () {
-      document.body.classList.toggle("alt");
-    });
-    // Also allow pressing Enter/Space on the title for accessibility
-    document
-      .querySelector(".title")
-      .addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-          document.body.classList.toggle("alt");
-          e.preventDefault();
-        }
-      });
-  </script>
+  <main class="hero" aria-labelledby="site-title">
+    <h1 id="site-title" class="title">Mila Baumann</h1>
+  </main>
+
+  
 </body>
 
 </html>
