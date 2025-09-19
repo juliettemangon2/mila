@@ -124,15 +124,17 @@
     /* === About Me title === */
     .section-title {
       text-align: center;
-      font-size: clamp(2.8rem, 5vw, 9rem);
-      font-weight: 700;
+      font-size: 6rem;
+      font-weight: 900;
       text-transform: uppercase;
       margin: -16rem 0 4rem 1rem;
       /* negative top margin pulls it upward */
-      color: var(--text);
+        -webkit-text-stroke: 4px var(--moss);
+      color: var(--bg);
       line-height: 1;
       position: relative;
       z-index: 1;
+      pointer-events: none;
       /* keeps it above background stripes */
     }
 
@@ -143,7 +145,8 @@
       gap: 3rem;
       align-items: start;
       max-width: 1200px;
-      margin: 0 auto 3rem;
+      margin: 0 auto 0rem;
+      
       flex-wrap: wrap;
     }
 
@@ -186,6 +189,7 @@
 
       .nav {
         padding-top: 1rem;
+         z-index: 3;
       }
 
       .btn {

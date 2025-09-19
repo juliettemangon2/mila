@@ -22,18 +22,19 @@
       --viridian: #2f8f77;
       --bg: #e2f0f6;
 
-      /* Polka dots (large, airy grid) */
-      --dots: radial-gradient(circle 18px, #265e60 99%, transparent 100%),
-        radial-gradient(circle 18px, #2f8f77 99%, transparent 100%),
-        radial-gradient(circle 18px, #0d5375 99%, transparent 100%),
-        radial-gradient(circle 18px, #a7a448 99%, transparent 100%),
-        radial-gradient(circle 18px, #e5c457 99%, transparent 100%),
-        radial-gradient(circle 18px, #63281e 99%, transparent 100%),
-        radial-gradient(circle 18px, #6a4059 99%, transparent 100%),
-        radial-gradient(circle 18px, #e9bfc7 99%, transparent 100%),
-        radial-gradient(circle 18px, #a9cfcc 99%, transparent 100%);
-      --dots-size: 400px 400px, 400px 400px, 400px 400px, 400px 400px, 400px 400px, 400px 400px, 400px 400px, 400px 400px, 400px 400px;
-      --dots-pos: 0 0, 200px 0, 0 200px, 200px 200px, 100px 100px, 300px 100px, 100px 300px, 300px 300px, 400px 200px;
+  /* Polka dots (large, airy grid) */
+  --dot-scale: 1; /* multiply positions/sizes by this to change spacing */
+  --dots: radial-gradient(circle 30px, #265e60 99%, transparent 100%),
+        radial-gradient(circle 30px, #2f8f77 99%, transparent 100%),
+        radial-gradient(circle 30px, #0d5375 99%, transparent 100%),
+        radial-gradient(circle 30px, #a7a448 99%, transparent 100%),
+        radial-gradient(circle 30px, #e5c457 99%, transparent 100%),
+        radial-gradient(circle 30px, #63281e 99%, transparent 100%),
+        radial-gradient(circle 30px, #6a4059 99%, transparent 100%),
+        radial-gradient(circle 30px, #e9bfc7 99%, transparent 100%),
+        radial-gradient(circle 30px, #a9cfcc 99%, transparent 100%);
+  --dots-size: 600px 600px, 600px 600px, 600px 600px, 600px 600px, 600px 600px, 600px 600px, 600px 600px, 600px 600px, 600px 600px;
+  --dots-pos: 0 0, 300px 0, 0 300px, 300px 300px, 150px 150px, 450px 150px, 150px 450px, 450px 450px, 600px 300px;
 
       /* Pill buttons (light, no borders) */
       --pill-bg: var(--caribbean);
@@ -93,7 +94,9 @@
       text-transform: uppercase;
       text-align: left;
       font-size: clamp(2.8rem, 9vw, 9rem);
-      color: #fff;
+        -webkit-text-stroke: 3px var(--lightblue); /* outline width + color */
+  color: #fff;    
+      
       /* solid for clarity over dots */
       text-rendering: optimizeLegibility;
       max-width: 70ch;

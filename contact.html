@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="theme1">
+<html lang="en" class="theme2">
 
 <head>
   <meta charset="UTF-8" />
@@ -22,6 +22,11 @@
       --saffron: #e5c457;
       --viridian: #2f8f77;
       --pill-text: #fff;
+      --card-bg: #ffffff;
+      --card-text: #1d1d1f;
+      --card-muted: #6b7280;
+      --card-shadow: rgba(0, 0, 0, 0.08);
+      --focus: 2px solid rgba(13, 83, 117, 0.8);
     }
 
     *,
@@ -32,13 +37,7 @@
       box-sizing: border-box;
     }
 
-    /* Keep striped background themes */
-    html.theme1 {
-      background: repeating-linear-gradient(to right,
-          #ffe9ee 0 50px,
-          #fff8e7 50px 100px);
-    }
-
+    /* Theme 2 only */
     html.theme2 {
       background: repeating-linear-gradient(to right,
           #d7e2e4 0 50px,
@@ -54,19 +53,18 @@
     body {
       min-height: 100vh;
       background: transparent;
-      position: relative;
-      display: block;
       color: var(--eggplant);
       font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Nav + buttons: match styles from index.html */
+    /* NAVIGATION — unchanged */
     .nav {
       width: 100%;
       display: flex;
-      flex-direction: column; /* stack vertically */
+      flex-direction: column;
+      /* stack vertically */
       gap: 0.75rem;
       justify-content: flex-start;
       align-items: flex-start;
@@ -83,12 +81,12 @@
       font-weight: 500;
       line-height: 1;
       transition: transform 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
-      box-shadow: none; /* no border look */
+      box-shadow: none;
       -webkit-tap-highlight-color: transparent;
     }
 
     .btn:focus-visible {
-      outline: 2px solid rgba(0, 0, 0, 0.6);
+      outline: var(--focus);
       outline-offset: 3px;
     }
 
@@ -101,118 +99,125 @@
       transform: translateY(0);
     }
 
-    .btn-about { background: var(--caribbean); }
-    .btn-visual { background: var(--eggplant); }
-    .btn-music  { background: var(--moss); color: #fff; }
-    .btn-contact{ background: var(--indigo); }
-    .btn-home   { background: var(--fairytale); }
-
-    /* Mobile adjustments to match index.html behavior */
-    @media (max-width:700px) {
-      .nav { padding-top: 1rem; }
-      .btn { padding: 0.55em 1.05em; }
+    .btn-about {
+      background: var(--caribbean);
     }
 
-    /* Theme toggle preserved */
-    .toggle-switch {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      width: 50px;
-      height: 24px;
-    }
-
-    .toggle-switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .toggle-switch label {
-      position: absolute;
-      cursor: pointer;
-      background-color: var(--viridian);
-      border-radius: 24px;
-      width: 100%;
-      height: 100%;
-      transition: background-color 0.3s;
-    }
-
-    .toggle-switch label::after {
-      content: '';
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #fff;
-      top: 3px;
-      left: 3px;
-      transition: transform 0.3s;
-    }
-
-    .toggle-switch input:checked+label {
+    .btn-visual {
       background: var(--eggplant);
     }
 
-    .toggle-switch input:checked+label::after {
-      transform: translateX(26px);
+    .btn-music {
+      background: var(--moss);
+      color: #fff;
     }
 
-    /* Contact content restored */
+    .btn-contact {
+      background: var(--indigo);
+    }
+
+    .btn-home {
+      background: var(--fairytale);
+    }
+
+    @media (max-width:700px) {
+      .nav {
+        padding-top: 1rem;
+      }
+
+      .btn {
+        padding: 0.55em 1.05em;
+      }
+    }
+
+    /* CONTACT AREA */
+    .contact-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1rem 4rem;
+    }
+
+    /* simple separating rule to echo the Julia vibe without changing nav */
+    .rule {
+      height: 1px;
+      border-top: 10px dotted var(--eggplant);
+  width: 100%;
+      margin: -1rem 0 1.25rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(260px, 1fr));
+      gap: 1rem;
+      align-items: stretch;
+      justify-items: stretch;
+    }
+
+    @media (max-width: 640px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .contact-card {
-      max-width: 700px;
-      margin: 120px auto 0;
-      padding: 2rem;
-      margin-top:-5rem;
-      text-align: center;
-    }
-
-    .contact-card h2 {
-      font-size: 2.6rem;
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 1.5rem;
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      grid-template-rows: auto auto;
+      gap: 4px 12px;
+      align-items: center;
+      text-decoration: none;
+      background: var(--card-bg);
       color: var(--eggplant);
-      -webkit-text-stroke: 2.5px var(--eggplant);
-      letter-spacing: 0.1em;
+      border-radius: 12px;
+      padding: 16px 18px;
+      box-shadow: 0 6px 18px var(--card-shadow);
+      transition: transform 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
     }
 
-    .contact-item {
-      display: flex;
+    .contact-card:focus-visible {
+      outline: var(--focus);
+      outline-offset: 3px;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .contact-card:active {
+      transform: translateY(0);
+    }
+
+    .contact-icon {
+      grid-row: 1 / span 2;
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.8rem;
-      font-size: 4rem;
-      margin: 1rem 0;
+      color: var(--moss);
+      opacity: 0.9;
     }
 
-    .contact-item a {
+    .contact-label {
+      font-size: 1.1rem;
+      text-transform: lowercase;
+      letter-spacing: 0.02em;
       color: var(--eggplant);
-      font-weight: 600;
-      text-decoration: none;
-      transition: color 0.3s, transform 0.3s;
     }
 
-    .contact-item a:hover {
+    .contact-value {
+      font-size: 1.15rem;
+      font-weight: 700;
       color: var(--indigo);
-      transform: translateX(10px);
-    }
-
-    @media (max-width: 600px) {
-      .contact-card {
-        margin: 80px 1rem 0;
-        padding: 1.5rem;
-      }
-
-      .contact-card h2 {
-        font-size: 2rem;
-      }
+      line-height: 1.35;
+      word-break: break-word;
     }
   </style>
 </head>
 
 <body>
-  <!-- Nav from index.html -->
+  <!-- NAV (unchanged) -->
   <nav class="nav" aria-label="Primary">
     <a class="btn btn-about" href="aboutme.html">About Me</a>
     <a class="btn btn-visual" href="visual.html">Visual</a>
@@ -220,34 +225,37 @@
     <a class="btn btn-contact" href="contact.html">Contact</a>
     <a class="btn btn-home" href="index.html">Home</a>
   </nav>
+  
 
-  <!-- Theme toggle -->
-  <div class="toggle-switch">
-    <input type="checkbox" id="theme-toggle" />
-    <label for="theme-toggle"></label>
-  </div>
+  <main class="contact-wrap" aria-label="Contact methods">
+    <div class="rule"></div>
 
-  <!-- Contact info (unchanged) -->
-  <div class="contact-card">
-    <div class="contact-item">
-      <a href="mailto:mila_baumann@icloud.com">mila_baumann@icloud.com</a>
-    </div>
-    <div class="contact-item">
-      <a href="tel:+13107015726">+1 (310) 701-5726</a>
-    </div>
-  </div>
+    <section class="contact-grid">
+      <!-- Email -->
+      <a class="contact-card" href="mailto:mila_baumann@icloud.com" aria-label="Email">
+        <span class="contact-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <path
+              d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5v2Z" />
+          </svg>
+        </span>
+        <span class="contact-label">email</span>
+        <span class="contact-value">mila_baumann@icloud.com</span>
+      </a>
 
-  <script>
-    const checkbox = document.getElementById('theme-toggle');
-    checkbox.addEventListener('change', () => {
-      const html = document.documentElement;
-      if (checkbox.checked) {
-        html.classList.replace('theme1', 'theme2');
-      } else {
-        html.classList.replace('theme2', 'theme1');
-      }
-    });
-  </script>
+      <!-- Phone -->
+      <a class="contact-card" href="tel:+13107015726" aria-label="Call">
+        <span class="contact-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+            <path
+              d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10 21 3 14 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.6a1 1 0 0 1-.25 1l-2.22 2.2Z" />
+          </svg>
+        </span>
+        <span class="contact-label">phone</span>
+        <span class="contact-value">+1 (310) 701-5726</span>
+      </a>
+    </section>
+  </main>
 </body>
 
 </html>

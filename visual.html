@@ -19,26 +19,30 @@
       --caput: #63281E;
       --caribbean: #265E60;
       --eggplant: #6A4059;
-      --darkslate: #324340;
       --moss: #A7A448;
       --indigo: #0D5375;
       --fairytale: #E9BFC7;
       --lightblue: #A9CFCC;
       --saffron: #E5C457;
       --viridian: #2F8F77;
+      --bg: #e2f0f6;
 
-  --bg: #e2f0f6;
-  --text: var(--eggplant);
-  --accent: var(--indigo);
-  --cyan: var(--lightblue);
-  --pill-text: #fff;
+      --lightpink: #f9edef;
+      --text: var(--eggplant);
+      --accent: var(--indigo);
+      --cyan: var(--lightblue);
+      --pill-text: #fff;
     }
 
-    html, body { height: 100%; }
+    html,
+    body {
+      height: 100%;
+    }
+
     body {
       margin: 0;
       font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background-color: var(--bg);
+      background-color: var(--saffron);
       color: var(--text);
       overflow-x: hidden;
       min-height: 100dvh;
@@ -46,14 +50,7 @@
     }
 
     /* Polka dots background (no overlay container) */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image: radial-gradient(#fff 4px, transparent 2.6px);
-      background-size: 50px 50px;
-    }
+
 
     .top-buttons {
       position: absolute;
@@ -62,8 +59,9 @@
       flex-direction: column;
       gap: 10px;
       z-index: 2;
-      
+
     }
+
     .top-buttons a {
       font-weight: 600;
       padding: 0.6rem 1.2rem;
@@ -74,12 +72,19 @@
 
     .title {
       text-align: center;
-      font-size: clamp(2.2rem, 9vw, 3.8rem);
+      font-size: 6rem;
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: .06em;
-      color: var(--indigo);
+      color: var(--lightblue);
+      text-shadow: 
+    -3px -3px 0 var(--bg),
+     3px -3px 0 var(--bg),
+    -3px  3px 0 var(--bg),
+     3px  3px 0 var(--bg);
       margin: 3rem auto 1rem;
+      margin-top: -15rem;
+      margin-bottom: 4rem;
       max-width: 1000px;
       position: relative;
       z-index: 1;
@@ -110,13 +115,30 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    .btn:hover { transform: translateY(-1px); filter: brightness(0.95); }
+    .btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(0.95);
+    }
 
-    .btn-about { background: var(--caribbean); }
-    .btn-visual { background: var(--eggplant); }
-    .btn-music { background: var(--moss); }
-    .btn-contact { background: var(--indigo); }
-    .btn-home { background: var(--fairytale); }
+    .btn-about {
+      background: var(--caribbean);
+    }
+
+    .btn-visual {
+      background: var(--eggplant);
+    }
+
+    .btn-music {
+      background: var(--moss);
+    }
+
+    .btn-contact {
+      background: var(--indigo);
+    }
+
+    .btn-home {
+      background: var(--fairytale);
+    }
 
     .container {
       max-width: 1300px;
@@ -131,37 +153,53 @@
       column-count: 4;
       column-gap: 16px;
     }
+
     @media (max-width: 900px) {
-      .grid { column-count: 2; }
+      .grid {
+        column-count: 2;
+      }
     }
+
     @media (max-width: 560px) {
-      .grid { column-count: 1; }
+      .grid {
+        column-count: 1;
+      }
     }
 
     /* Each thumb flows in columns; no fixed aspect ratio, no borders */
     .thumb {
-      display: block;              /* needed to avoid inline gaps */
+      display: block;
+      /* needed to avoid inline gaps */
       break-inside: avoid;
-      margin-bottom: 16px;         /* vertical spacing between items */
+      margin-bottom: 16px;
+      /* vertical spacing between items */
       background: transparent;
       border: none;
       padding: 0;
       cursor: pointer;
     }
+
     .thumb img {
-      width: 100%;                 /* fit column width */
-      height: auto;                /* keep natural aspect ratio */
-      object-fit: contain;         /* never crop */
+      width: 100%;
+      /* fit column width */
+      height: auto;
+      /* keep natural aspect ratio */
+      object-fit: contain;
+      /* never crop */
       display: block;
       transition: transform .18s ease;
       user-select: none;
       -webkit-user-drag: none;
-      border: none;                /* ensure no gray borders */
+      border: none;
+      /* ensure no gray borders */
       outline: none;
       box-shadow: none;
       background: transparent;
     }
-    .thumb:hover img { transform: scale(1.01); }
+
+    .thumb:hover img {
+      transform: scale(1.01);
+    }
 
     /* Minimal lightbox */
     dialog#lightbox {
@@ -174,7 +212,10 @@
       max-height: none;
       overflow: visible;
     }
-    dialog::backdrop { background: rgba(0, 0, 0, .7); }
+
+    dialog::backdrop {
+      background: rgba(0, 0, 0, .7);
+    }
 
     /* Center the image and constrain it to viewport without extra padding */
     .lb-wrap {
@@ -182,8 +223,10 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      padding: 24px;               /* breathing room around the image */
+      padding: 24px;
+      /* breathing room around the image */
     }
+
     .lb-img {
       max-width: 95vw;
       max-height: 95vh;
@@ -212,15 +255,55 @@
       padding: 0 8px;
       user-select: none;
     }
+
     .lb-close:focus {
       outline: 2px solid rgba(255, 255, 255, .6);
       outline-offset: 4px;
     }
 
     @media (max-width: 480px) {
-      .top-buttons { position: static; padding: 1rem; }
-      .title { margin-top: 1rem; }
-      .lb-close { top: 10px; right: 12px; font-size: 30px; }
+      .top-buttons {
+        position: static;
+        padding: 1rem;
+      }
+
+      .title {
+        margin-top: 1rem;
+      }
+
+      .lb-close {
+        top: 10px;
+        right: 12px;
+        font-size: 30px;
+      }
+    }
+
+    /* floating control for visual dot spacing */
+    .dot-control {
+      position: fixed;
+      right: 12px;
+      bottom: 12px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #111;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 13px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      z-index: 9999;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .dot-control input[type="range"] {
+      width: 120px;
+    }
+
+    .dot-control input[type="number"] {
+      width: 56px;
+      font-size: 13px;
+      padding: 2px 6px;
     }
   </style>
 </head>
@@ -242,13 +325,16 @@
     <div id="grid" class="grid" aria-live="polite"></div>
   </main>
 
+
+
   <!-- Lightbox (transparent dialog + centered image) -->
   <dialog id="lightbox" aria-labelledby="lbHeading">
     <button class="lb-close" id="closeBtn" aria-label="Close">×</button>
     <div class="lb-wrap">
       <img id="lbImg" class="lb-img" alt="">
     </div>
-    <h2 id="lbHeading" style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">Image viewer</h2>
+    <h2 id="lbHeading" style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">Image
+      viewer</h2>
   </dialog>
 
   <script>
@@ -345,5 +431,18 @@
     }
     init();
   </script>
+  <script>
+    // visual.html dot spacing control
+    (function () {
+      const range = document.getElementById('visualDot');
+      const num = document.getElementById('visualDotNum');
+      const root = document.documentElement;
+      function apply(v) { root.style.setProperty('--visual-dot-size', v + 'px'); }
+      range.addEventListener('input', () => { num.value = range.value; apply(range.value); });
+      num.addEventListener('change', () => { let v = Math.max(30, Math.min(220, Number(num.value) || 80)); num.value = v; range.value = v; apply(v); });
+      apply(range.value);
+    })();
+  </script>
 </body>
+
 </html>
