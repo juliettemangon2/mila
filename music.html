@@ -14,6 +14,7 @@
   <style>
     :root {
       --softgray: #fffff7;
+      --cream: #fff8e7;
       --pill-text: #fff;
       --caput: #63281E;
       --caribbean: #265E60;
@@ -23,6 +24,7 @@
       --moss: #A7A448;
       --indigo: #0D5375;
       --fairytale: #E9BFC7;
+      --lightpink: #fff0f3;
       --lightblue: #A9CFCC;
       --saffron: #E5C457;
       --viridian: #2F8F77;
@@ -50,7 +52,7 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background-image: radial-gradient(#fff 10px, transparent 2.6px);
+      background-image: radial-gradient(#c0d5ea 10px, transparent 2.6px);
       background-size: 16px 16px;
       -webkit-mask-image: radial-gradient(circle at 50% 50%,
           rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.9) 38%, rgba(0, 0, 0, 0.55) 58%,
@@ -117,13 +119,17 @@
 
     .title {
       text-align: center;
-      font-size: 8rem;
+      font-size: 6rem;
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: .06em;
       margin: 3rem auto 5rem;
-        -webkit-text-stroke: 6px var(--indigo);
-              color: var(--fairytale);
+      color: var(--fairytale);
+      text-shadow: 
+    -5px -3px 0 var(--lightpink),
+     3px -3px 0 var(--lightpink),
+    -3px  3px 0 var(--lightpink),
+     3px  3px 0 var(--lightpink);
 
       margin-top: -15rem;
       margin-bottom:5rem;
