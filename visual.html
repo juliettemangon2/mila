@@ -117,7 +117,7 @@
 
     .jump {
       position: relative;
-       z-index: 10;
+      z-index: 10;
       text-align: right;
       padding-right: 1rem;
       margin-top: 0rem;
@@ -452,18 +452,58 @@
 
     function buildCarousel() {
       track.innerHTML = '';
-      // first loop
+      // Build exactly one copy of the full list
       items.forEach((it, i) => track.appendChild(buildCarouselThumb(it, i)));
-      // duplicate for seamless loop
-      items.forEach((it, i) => track.appendChild(buildCarouselThumb(it, i + items.length)));
 
-      // measure after images settle
+      // Wait a frame so widths are measurable (images might be lazy-loading)
       requestAnimationFrame(() => {
-        stripWidth = 0;
-        const kids = Array.from(track.children).slice(0, items.length);
-        kids.forEach(el => { stripWidth += el.getBoundingClientRect().width + 12; }); // 12px gap
+        // Nudge pos so we start cleanly
+        pos = 0;
       });
     }
+
+    // Reusable helper: physical width (including our 12px gap)
+    function childOuterWidth(el) {
+      const rect = el.getBoundingClientRect();
+      // We know our gap is 12px between items; add it to simulate spacing
+      return rect.width + 12;
+    }
+
+    // Very slow, seamless auto-scroll that cycles the full list
+    function tick(ts) {
+      if (lastTs == null) lastTs = ts;
+      const dt = (ts - lastTs) / 1000;
+      lastTs = ts;
+
+      const motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (motionOK && !paused && track.children.length) {
+        pos -= speed * dt;
+
+        // While the first child is fully off-screen to the left, recycle it
+        // Compare against its width so we move exactly one child at a time
+        let first = track.firstElementChild;
+        while (first) {
+          const firstWidth = childOuterWidth(first);
+          // If the left translate (negative pos) passed this child's width
+          if (-pos >= firstWidth) {
+            // Move the child to the end
+            track.appendChild(first);
+            // Compensate the translate so there's no visual jump
+            pos += firstWidth;
+            // Check again in case very high FPS/low speed mismatches
+            first = track.firstElementChild;
+          } else {
+            break;
+          }
+        }
+
+        track.style.transform = `translateX(${pos}px)`;
+      }
+
+      requestAnimationFrame(tick);
+    }
+
 
     function openLightbox(index) {
       currentIndex = ((index % items.length) + items.length) % items.length;
@@ -495,22 +535,7 @@
     viewport.addEventListener('focusin', () => paused = true);
     viewport.addEventListener('focusout', () => paused = false);
 
-    // Very slow, seamless auto-scroll
-    function tick(ts) {
-      if (lastTs == null) lastTs = ts;
-      const dt = (ts - lastTs) / 1000;
-      lastTs = ts;
-
-      const motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      if (motionOK && !paused && stripWidth > 0) {
-        pos -= speed * dt;
-        if (-pos >= stripWidth) pos += stripWidth; // loop
-        track.style.transform = `translateX(${pos}px)`;
-      }
-      requestAnimationFrame(tick);
-    }
-
+    
     async function init() {
       try {
         const res = await fetch('visual.json');
