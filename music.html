@@ -6,151 +6,94 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Music | Mila Baumann</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Gilda+Display&display=swap"
+    rel="stylesheet" />
 
   <style>
     :root {
-      --softgray: #fffff7;
-      --cream: #fff8e7;
-      --pill-text: #fff;
-      --caput: #63281E;
-      --caribbean: #265E60;
-      --eggplant: #6A4059;
-      --eggplant2: rgb(219, 175, 201)9;
-      --darkslate: #324340;
-      --moss: #A7A448;
-      --indigo: #0D5375;
-      --fairytale: #E9BFC7;
-      --lightpink: #fff0f3;
-      --lightblue: #A9CFCC;
-      --saffron: #E5C457;
-      --viridian: #2F8F77;
-      --bg: #e2f0f6;
-      --text: var(--eggplant);
-      --accent: var(--indigo);
-      --cyan: var(--lightblue);
-      --dot: rgba(0, 0, 0, 0.38);
-      --dot-strong: rgba(0, 0, 0, 0.60);
+      --red: #e40200;
+      --darkred: #8c0004;
+      --paper: #fff;
+      --ink: #1d1d1f;
     }
 
-    html, body { height: 100%; }
-    body {
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
       margin: 0;
-      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      overflow-x: hidden;
-      min-height: 100dvh;
-      position: relative;
+      padding: 0;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image: radial-gradient(#c0d5ea 10px, transparent 2.6px);
-      background-size: 16px 16px;
-      -webkit-mask-image: radial-gradient(circle at 50% 50%,
-          rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.9) 38%, rgba(0, 0, 0, 0.55) 58%,
-          rgba(0, 0, 0, 0.25) 72%, rgba(0, 0, 0, 0) 85%);
-      mask-image: radial-gradient(circle at 50% 50%,
-          rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.9) 38%, rgba(0, 0, 0, 0.55) 58%,
-          rgba(0, 0, 0, 0.25) 72%, rgba(0, 0, 0, 0) 85%);
-    }
-
-
-
-    /* Nav/button styles from aboutme.html */
-    .nav {
-      width: 100%;
+    body {
+      min-height: 100vh;
+      background: var(--red);
+      color: var(--darkred);
+      font-family: "Gilda Display", serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
-      justify-content: flex-start;
-      align-items: flex-start;
-      padding: 2rem 1rem 4rem;
+      overflow-x: hidden;
+    }
+
+    /* Right-side vertical nav */
+    .nav {
+      position: fixed;
+      inset-block: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 1rem;
+      padding: 2rem;
+      margin-top: -28rem;
+      z-index: 3;
     }
 
     .btn {
-      display: block;
+      font-size: 2.3rem;
+      font-weight: 700;
       text-decoration: none;
-      color: var(--pill-text);
-      padding: 0.5rem 0.3rem;
-      border-radius: 6px;
-      font-size: clamp(0.9rem, 2.1vw, 1.2rem);
-      font-weight: 500;
-      line-height: 1;
-      transition: transform 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
-      box-shadow: none;
-      -webkit-tap-highlight-color: transparent;
+      color: var(--darkred);
+      transition: opacity .2s, transform .2s;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      font-family: "Gilda Display", serif;
     }
 
     .btn:hover {
-      transform: translateY(-1px);
-      filter: brightness(0.95);
+      opacity: .7;
+      transform: translateX(-3px);
     }
 
-    .btn-about {
-      background: var(--caribbean);
+    .hero {
+      width: 100%;
+      padding: 8rem 2rem 2rem;
     }
-
-    .btn-visual {
-      background: var(--eggplant);
-    }
-
-    .btn-music {
-      background: var(--moss);
-    }
-
-    .btn-contact {
-      background: var(--indigo);
-    }
-
-    .btn-home {
-      background: var(--fairytale);
-    }
-
-
-
 
     .title {
-      text-align: center;
-      font-size: 6rem;
+      font-family: "Inter", serif;
+      margin-top: 3rem;
+      font-size: clamp(3rem, 9vw, 9rem);
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: .06em;
-      margin: 3rem auto 5rem;
-      color: var(--fairytale);
-      text-shadow: 
-    -5px -3px 0 var(--lightpink),
-     3px -3px 0 var(--lightpink),
-    -3px  3px 0 var(--lightpink),
-     3px  3px 0 var(--lightpink);
-
-      margin-top: -15rem;
-      margin-bottom:5rem;
-      max-width: 1000px;
-      position: relative;
-      z-index: 1;
+      line-height: 1;
+      color: var(--darkred);
     }
 
     .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 1rem 1.25rem 3rem;
-      position: relative;
-      z-index: 1;
+      max-width: 1280px;
+      margin-left: 1rem;
     }
 
-    /* Grid of scores */
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 2rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     @media (max-width:900px) {
@@ -169,80 +112,64 @@
       display: flex;
       flex-direction: column;
       gap: .6rem;
-      background: rgba(255, 255, 255, 0.65);
-      border: 1px solid rgba(13, 83, 117, 0.2);
-      border-radius: 14px;
-      padding: .8rem;
-      transition: transform .18s ease, box-shadow .18s ease;
       cursor: pointer;
+      background: rgba(255, 255, 255, .12);
+      border: 1px solid rgba(140, 0, 4, .25);
+      padding: .8rem;
+      transition: transform .18s, box-shadow .18s, background .18s;
     }
 
     .card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      background: rgba(255, 255, 255, .16);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, .12);
     }
 
     .thumb {
       position: relative;
       width: 100%;
       aspect-ratio: 3/4;
-      border-radius: 10px;
       overflow: hidden;
-      background: linear-gradient(0deg, rgba(169, 207, 204, .35), rgba(169, 207, 204, .35));
-      border: 1px solid rgba(13, 83, 117, 0.18);
+      background: var(--paper);
       display: flex;
       align-items: center;
       justify-content: center;
+      border: 1px solid rgba(140, 0, 4, .25);
     }
 
-    /* overlay that sits above embed/iframe */
-    .thumb .overlay {
-      position: absolute;
-      inset: 0;
-      background: transparent;
-      /* stays invisible */
-      cursor: pointer;
-    }
-
-
-    .thumb embed,
-    .thumb iframe,
-    .thumb object {
+    .thumb embed {
       width: 100%;
       height: 100%;
       border: 0;
     }
 
-    .fallback {
-      font-weight: 800;
-      color: var(--indigo);
-      opacity: .8;
-      font-size: 1.1rem;
-      text-align: center;
-      padding: 1rem;
+    .thumb .overlay {
+      position: absolute;
+      inset: 0;
+      background: transparent;
     }
 
     .title-caption {
-      font-size: 1rem;
-      line-height: 1.35;
-      color: var(--eggplant);
-      font-weight: 700;
+      font: 500 1rem/1.35 "Inter", sans-serif;
+      color: var(--darkred);
       word-break: break-word;
     }
 
-    /* Modal viewer (centered grow-in) */
+    /* Book viewer dialog */
     dialog#viewer {
-      width: min(1100px, 96vw);
-      height: min(90vh, 900px);
-      border: 1px solid rgba(13, 83, 117, .25);
-      border-radius: 14px;
-      padding: 0;
+      width: min(1200px, 96vw);
+      height: min(88vh, 920px);
+      border: 1px solid rgba(0, 0, 0, .15);
+      margin-top: 4rem;
+      margin-left: 4rem;
       overflow: hidden;
-      background: var(--softgray);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, .25);
+      background: var(--red);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .28);
       opacity: 0;
-      transform: scale(.92);
-      transition: opacity .18s ease, transform .18s ease;
+      transform: scale(.96);
+      transition: opacity .18s, transform .18s;
+      position: relative;
+      /* for piece arrows positioning */
     }
 
     dialog[open]#viewer {
@@ -252,127 +179,259 @@
 
     dialog::backdrop {
       background: rgba(0, 0, 0, .42);
-      transition: background .18s ease;
     }
 
     .viewer-bar {
-      height: 52px;
+      height: 54px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 .6rem 0 .8rem;
-      background: rgba(255, 255, 255, .92);
-      backdrop-filter: saturate(1.2) blur(6px);
+      padding: 0 .75rem;
+      background: #fff;
     }
 
     .viewer-title {
-      font-weight: 800;
-      color: var(--indigo);
-      font-size: 1rem;
+      font: 800 1rem/1 "Inter", sans-serif;
+      color: var(--darkred);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      max-width: 60%;
     }
 
     .viewer-actions {
       display: flex;
-      gap: .35rem;
       align-items: center;
+      gap: .35rem;
     }
 
-    
+    .act {
+      font: 700 .95rem/1 "Inter", sans-serif;
+      background: transparent;
+      color: var(--darkred);
+      border: 1px solid rgba(140, 0, 4, .35);
+      border-radius: 8px;
+      padding: .4rem .6rem;
+      cursor: pointer;
+      transition: background .15s, transform .12s, opacity .15s;
+      text-decoration: none;
+    }
+
+    .act:hover {
+      background: rgba(140, 0, 4, .10);
+    }
+
+    .act:disabled {
+      opacity: .45;
+      cursor: not-allowed;
+    }
 
     .viewer-body {
       width: 100%;
-      height: calc(100% - 52px);
+      height: calc(100% - 54px);
+      background: var(--paper);
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 1);
     }
 
-    /* The iframe is smaller than dialog to give a lightbox feel */
-    .viewer-body iframe {
-      width: min(90vw, 88%);
-      height: min(84vh, 95%);
-      border: 0;
-      border-radius: 10px;
-      background: #fff;
+    /* Two-page spread */
+    .spread {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      width: min(1100px, 94%);
+      height: 92%;
+      align-items: stretch;
+      justify-items: stretch;
+      background: var(--paper);
     }
 
-    .sr-only {
-      position: absolute;
-      left: -10000px;
-      width: 1px;
-      height: 1px;
+    .page {
+      position: relative;
+      background: var(--paper);
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    @media (max-width:480px) {
-      .top-buttons {
-        position: static;
+    canvas {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    .blank {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font: 600 .9rem/1 "Inter", sans-serif;
+    }
+
+    /* Piece-to-piece big arrows (inside dialog, outside content) */
+    .piece-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--darkred);
+      cursor: pointer;
+      user-select: none;
+      font: 900 22px/1 "Inter", sans-serif;
+      transition: transform .12s, background .12s, opacity .12s;
+      z-index: 5;
+    }
+
+    .piece-arrow:hover {
+      background: rgba(255, 255, 255, 1);
+      transform: translateY(-50%) scale(1.04);
+    }
+
+    .piece-arrow.left {
+      left: 8px;
+    }
+
+    .piece-arrow.right {
+      right: 8px;
+    }
+
+    @media (max-width:820px) {
+      .spread {
+        grid-template-columns: 1fr;
+        height: 92%;
+      }
+    }
+
+    @media (max-width:700px) {
+      .nav {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        top: 0;
+        right: 0;
         padding: 1rem;
+        margin-top: 0;
+      }
+
+      .btn {
+        font-size: 1rem;
+      }
+
+      .hero {
+        padding: 4rem 1rem 1rem;
+        text-align: center;
       }
 
       .title {
-        margin-top: 1rem;
+        margin-top: 10rem;
       }
 
-      .viewer-body iframe {
-        width: 94vw;
-        height: 78vh;
+      .container {
+        padding: 0 1rem 2.5rem;
       }
+
+      .piece-arrow {
+        display: none;
+      }
+
+      /* hide big arrows on very small screens */
     }
   </style>
 </head>
 
 <body>
-  <!-- Nav bar (same as aboutme.html) -->
+  <!-- Right-side nav -->
   <nav class="nav" aria-label="Primary">
-    <a class="btn btn-about" href="aboutme.html">About Me</a>
-    <a class="btn btn-visual" href="visual.html">Visual</a>
-    <a class="btn btn-music" href="music.html">Music</a>
-    <a class="btn btn-contact" href="contact.html">Contact</a>
-    <a class="btn btn-home" href="index.html">Home</a>
+    <a class="btn" href="index.html">Home</a>
+    <a class="btn" href="aboutme.html">About Me</a>
+    <a class="btn" href="visual.html">Visual</a>
+    <a class="btn" href="music.html">Music</a>
+    <a class="btn" href="contact.html">Contact</a>
   </nav>
 
-  <h1 class="title">Scores</h1>
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <h1 id="page-title" class="title">Scores</h1>
+    </section>
 
-  <div class="container">
+    <section class="container">
+      <div id="grid" class="grid" aria-live="polite"></div>
+    </section>
+  </main>
 
-    <div id="grid" class="grid" aria-live="polite"></div>
-  </div>
-
-  <!-- Centered lightbox + full viewer with controls -->
+  <!-- Book-style two-page viewer -->
   <dialog id="viewer" aria-labelledby="viewerHeading">
+    <!-- piece-to-piece arrows (prev/next score) -->
+    <button class="piece-arrow left" id="piecePrev" aria-label="Previous piece">←</button>
+    <button class="piece-arrow right" id="pieceNext" aria-label="Next piece">→</button>
+
     <div class="viewer-bar">
       <div class="viewer-title" id="viewerHeading">Loading…</div>
       <div class="viewer-actions">
-        <a class="btn" id="openNewTab" target="_blank" rel="noopener">Open in new tab</a>
-        <button class="btn" id="prevBtn" title="Previous (←)">←</button>
-        <button class="btn" id="nextBtn" title="Next (→)">→</button>
-        <button class="btn" id="closeBtn">x</button>
+        <button class="act" id="zoomOutBtn" title="Zoom out">−</button>
+        <button class="act" id="zoomInBtn" title="Zoom in">+</button>
+        <a class="act" id="openNewTab" target="_blank" rel="noopener">Open</a>
+        <button class="act" id="prevBtn" title="Previous spread (←)">←</button>
+        <button class="act" id="nextBtn" title="Next spread (→)">→</button>
+        <button class="act" id="closeBtn" title="Close">Close</button>
       </div>
     </div>
+
     <div class="viewer-body">
-      <iframe id="pdfFrame" src="" title="PDF viewer"></iframe>
+      <div class="spread">
+        <div class="page">
+          <canvas id="canvasLeft"></canvas>
+          <div id="blankLeft" class="blank" hidden></div>
+        </div>
+        <div class="page">
+          <canvas id="canvasRight"></canvas>
+          <div id="blankRight" class="blank" hidden></div>
+        </div>
+      </div>
     </div>
   </dialog>
 
+  <!-- PDF.js -->
+  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
   <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
+
+    // Elements
     const gridEl = document.getElementById('grid');
+
     const viewer = document.getElementById('viewer');
-    const pdfFrame = document.getElementById('pdfFrame');
     const viewerHeading = document.getElementById('viewerHeading');
     const openNewTab = document.getElementById('openNewTab');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+
     const closeBtn = document.getElementById('closeBtn');
+    const prevBtn = document.getElementById('prevBtn');   // spread prev
+    const nextBtn = document.getElementById('nextBtn');   // spread next
+    const zoomInBtn = document.getElementById('zoomInBtn');
+    const zoomOutBtn = document.getElementById('zoomOutBtn');
 
-    let items = [];      // [{file, title, url}]
-    let currentIndex = 0;
+    const piecePrevBtn = document.getElementById('piecePrev'); // piece prev
+    const pieceNextBtn = document.getElementById('pieceNext'); // piece next
 
-    // Make a readable title from filename
+    const canvasLeft = document.getElementById('canvasLeft');
+    const canvasRight = document.getElementById('canvasRight');
+    const blankLeft = document.getElementById('blankLeft');
+    const blankRight = document.getElementById('blankRight');
+
+    // State
+    let items = [];           // [{file, title, url}]
+    let currentIndex = 0;     // which score
+    let pdfDoc = null;        // current PDFDocumentProxy
+    let leftPage = 1;         // left page number for current spread
+    let scale = 1.0;          // zoom scale (relative to "fit")
+
+    // Helpers
     function friendlyTitle(name) {
       let base = name.replace(/\.[^/.]+$/, '');
       base = base.replace(/[_]+/g, ' ').replace(/\s{2,}/g, ' ').trim();
@@ -393,7 +452,6 @@
       emb.type = 'application/pdf';
       thumb.appendChild(emb);
 
-      // overlay to catch hover/click
       const overlay = document.createElement('div');
       overlay.className = 'overlay';
       overlay.addEventListener('click', () => openViewer(index));
@@ -408,68 +466,137 @@
       return card;
     }
 
-
     function renderGrid() {
       gridEl.innerHTML = '';
       items.forEach((it, i) => gridEl.appendChild(buildCard(it, i)));
     }
 
-    function openViewer(index) {
-      currentIndex = index;
+    // Book layout helpers
+    function setSpreadStart(pageNum) {
+      if (pageNum <= 1) { leftPage = 0; }           // cover: only right page = 1
+      else if (pageNum % 2 === 0) { leftPage = pageNum; } // even left
+      else { leftPage = pageNum - 1; }                      // odd -> pair with previous even
+    }
+
+    function computeFitScale(viewport, targetCanvas) {
+      const maxW = targetCanvas.parentElement.clientWidth;
+      const maxH = targetCanvas.parentElement.clientHeight;
+      const sW = maxW / viewport.width;
+      const sH = maxH / viewport.height;
+      return Math.min(sW, sH);
+    }
+
+    async function renderPageToCanvas(pdf, pageNumber, canvas, blankDiv) {
+      if (pageNumber <= 0 || pageNumber > pdf.numPages) {
+        canvas.hidden = true;
+        blankDiv.hidden = false;
+        blankDiv.textContent = '';
+        return;
+      }
+      const page = await pdf.getPage(pageNumber);
+
+      const viewport1x = page.getViewport({ scale: 1 });
+      const fit = computeFitScale(viewport1x, canvas);
+      const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, 2));
+      const finalScale = fit * scale * dpr;
+
+      const vp = page.getViewport({ scale: finalScale });
+      const ctx = canvas.getContext('2d', { alpha: false, desynchronized: true });
+      canvas.width = Math.floor(vp.width);
+      canvas.height = Math.floor(vp.height);
+
+      const cssScale = 1 / dpr;
+      canvas.style.width = Math.floor(vp.width * cssScale) + 'px';
+      canvas.style.height = Math.floor(vp.height * cssScale) + 'px';
+
+      ctx.imageSmoothingEnabled = false;
+
+      await page.render({ canvasContext: ctx, viewport: vp, intent: 'display' }).promise;
+      canvas.hidden = false;
+      blankDiv.hidden = true;
+    }
+
+    async function renderSpread() {
+      if (!pdfDoc) return;
+      const leftNum = (leftPage === 0) ? 0 : leftPage;
+      const rightNum = (leftPage === 0) ? 1 : leftPage + 1;
+
+      await Promise.all([
+        renderPageToCanvas(pdfDoc, leftNum, canvasLeft, blankLeft),
+        renderPageToCanvas(pdfDoc, rightNum, canvasRight, blankRight),
+      ]);
+    }
+
+    // Piece loading
+    async function loadPiece(index) {
+      currentIndex = (index + items.length) % items.length;
+      scale = 1.0;
       const it = items[currentIndex];
       viewerHeading.textContent = it.title;
-      // Put the PDF inside the “lightbox sized” iframe
-      pdfFrame.src = `${it.url}#view=FitH`;
       openNewTab.href = it.url;
-      if (!viewer.open) viewer.showModal(); // triggers centered grow-in via CSS
-      pdfFrame.focus();
-      updateNavButtons();
+
+      pdfDoc = await pdfjsLib.getDocument(it.url).promise;
+      setSpreadStart(1); // start at cover each time
+      await renderSpread();
+    }
+
+    async function openViewer(index) {
+      if (!viewer.open) viewer.showModal();
+      await loadPiece(index);
     }
 
     function closeViewer() {
       if (viewer.open) viewer.close();
-      pdfFrame.src = '';
+      [canvasLeft, canvasRight].forEach(c => {
+        const ctx = c.getContext('2d'); ctx && ctx.clearRect(0, 0, c.width, c.height);
+      });
+      pdfDoc = null;
     }
 
-    function next() {
-      if (currentIndex < items.length - 1) {
-        openViewer(currentIndex + 1);
-      }
+    // Spread navigation
+    function nextSpread() {
+      if (leftPage === 0) leftPage = 2; else leftPage += 2;
+      renderSpread();
     }
-    function prev() {
-      if (currentIndex > 0) {
-        openViewer(currentIndex - 1);
-      }
-    }
-    function updateNavButtons() {
-      prevBtn.disabled = currentIndex === 0;
-      nextBtn.disabled = currentIndex === items.length - 1;
+    function prevSpread() {
+      if (leftPage === 0) return;
+      if (leftPage === 2) leftPage = 0; else leftPage = Math.max(2, leftPage - 2);
+      renderSpread();
     }
 
     // Events
     closeBtn.addEventListener('click', closeViewer);
-    prevBtn.addEventListener('click', prev);
-    nextBtn.addEventListener('click', next);
+    nextBtn.addEventListener('click', nextSpread);
+    prevBtn.addEventListener('click', prevSpread);
 
-    // Click outside the inner iframe area closes the dialog
-    viewer.addEventListener('click', (e) => {
-      // Close only if clicking the backdrop of the dialog, not inside content
-      const rect = viewer.getBoundingClientRect();
-      const x = e.clientX, y = e.clientY;
-      const inside = x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
-      if (!inside) return; // unlikely, safety
-      // If target is the dialog itself (backdrop), close
-      if (e.target === viewer) closeViewer();
-    });
+    zoomInBtn.addEventListener('click', () => { scale = Math.min(3, scale + 0.1); renderSpread(); });
+    zoomOutBtn.addEventListener('click', () => { scale = Math.max(0.3, scale - 0.1); renderSpread(); });
+
+    pieceNextBtn.addEventListener('click', () => loadPiece(currentIndex + 1));
+    piecePrevBtn.addEventListener('click', () => loadPiece(currentIndex - 1));
+
+    viewer.addEventListener('click', (e) => { if (e.target === viewer) closeViewer(); });
 
     window.addEventListener('keydown', (e) => {
       if (!viewer.open) return;
       if (e.key === 'Escape') closeViewer();
-      if (e.key === 'ArrowRight') next();
-      if (e.key === 'ArrowLeft') prev();
+
+      // Spread nav
+      if (e.key === 'ArrowRight' && !e.shiftKey) nextSpread();
+      if (e.key === 'ArrowLeft' && !e.shiftKey) prevSpread();
+
+      // Piece nav with Shift + Arrow
+      if (e.key === 'ArrowRight' && e.shiftKey) loadPiece(currentIndex + 1);
+      if (e.key === 'ArrowLeft' && e.shiftKey) loadPiece(currentIndex - 1);
+
+      // Zoom
+      if (e.key === '+') { scale = Math.min(3, scale + 0.1); renderSpread(); }
+      if (e.key === '-') { scale = Math.max(0.3, scale - 0.1); renderSpread(); }
     });
 
-    // Load data
+    window.addEventListener('resize', () => { if (viewer.open) renderSpread(); });
+
+    // Load list of scores
     async function init() {
       try {
         const res = await fetch('scores.json');
@@ -481,7 +608,7 @@
         }));
         renderGrid();
       } catch (err) {
-        gridEl.innerHTML = '<p>Could not load scores.json.</p>';
+        gridEl.innerHTML = '<p style="color:#300;padding:1rem;background:rgba(255,255,255,.25);border-radius:8px;">Could not load scores.json.</p>';
         console.error(err);
       }
     }

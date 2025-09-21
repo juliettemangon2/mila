@@ -5,150 +5,183 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Visual | Mila Baumann</title>
-
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Gilda+Display&display=swap"
+    rel="stylesheet" />
 
   <style>
     :root {
-      --yellow: #fdffe1;
-      --softgray: #fffff7;
-      --caput: #63281E;
-      --caribbean: #265E60;
-      --eggplant: #6A4059;
-      --moss: #A7A448;
-      --indigo: #0D5375;
-      --fairytale: #E9BFC7;
-      --lightblue: #A9CFCC;
-      --saffron: #E5C457;
-      --viridian: #2F8F77;
-      --bg: #e2f0f6;
-
-      --lightpink: #f9edef;
-      --text: var(--eggplant);
-      --accent: var(--indigo);
-      --cyan: var(--lightblue);
-      --pill-text: #fff;
+      --red: #e91511;
+      --darkred: #7c0004;
     }
 
-    html,
-    body {
-      height: 100%;
-    }
-
-    body {
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
       margin: 0;
-      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background-color: var(--saffron);
-      color: var(--text);
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--red);
+      color: var(--darkred);
+      font-family: "Gilda Display", serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      flex-direction: column;
       overflow-x: hidden;
-      min-height: 100dvh;
-      position: relative;
     }
 
-    /* Polka dots background (no overlay container) */
-
-
-    .top-buttons {
-      position: absolute;
-      left: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      z-index: 2;
-
-    }
-
-    .top-buttons a {
-      font-weight: 600;
-      padding: 0.6rem 1.2rem;
-      color: var(--eggplant);
-      font-size: 1.2rem;
-      text-decoration: none;
-    }
-
-    .title {
-      text-align: center;
-      font-size: 6rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      color: var(--lightblue);
-      text-shadow: 
-    -3px -3px 0 var(--bg),
-     3px -3px 0 var(--bg),
-    -3px  3px 0 var(--bg),
-     3px  3px 0 var(--bg);
-      margin: 3rem auto 1rem;
-      margin-top: -15rem;
-      margin-bottom: 4rem;
-      max-width: 1000px;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Nav/button styles from aboutme.html */
+    /* Right-side vertical nav — same as index.html */
     .nav {
-      width: 100%;
+      position: fixed;
+      inset-block: 0;
+      right: 0;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
-      justify-content: flex-start;
-      align-items: flex-start;
-      padding: 2rem 1rem 4rem;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 1rem;
+      padding: 2rem;
+      margin-top: -28rem;
+      z-index: 3;
     }
 
     .btn {
-      display: block;
+      font-size: 2.3rem;
+      font-weight: 700;
       text-decoration: none;
-      color: var(--pill-text);
-      padding: 0.5rem 0.3rem;
-      border-radius: 6px;
-      font-size: clamp(0.9rem, 2.1vw, 1.2rem);
-      font-weight: 500;
-      line-height: 1;
-      transition: transform 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
-      box-shadow: none;
-      -webkit-tap-highlight-color: transparent;
+      color: var(--darkred);
+      transition: opacity .2s ease, transform .2s ease;
     }
 
     .btn:hover {
+      opacity: .7;
+      transform: translateX(-3px);
+    }
+
+    .thumb {
+      display: inline-block;
+      border: none;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .thumb img {
+      height: 300px;
+      /* strip height */
+      width: auto;
+      display: block;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+      transition: transform .18s ease, opacity .18s ease;
+      border: none;
+      outline: none;
+      box-shadow: none;
+      background: transparent;
+    }
+
+    .thumb:hover img {
+      transform: scale(1.02);
+      opacity: .95;
+    }
+
+    /* Header sits close to the carousel */
+    .hero {
+      width: 100%;
+      padding: .5rem 2rem 0;
+    }
+
+    /* tighter */
+    .title {
+      font-family: "Inter", serif;
+      margin-top: 15.25rem;
+      /* much less space */
+      font-size: clamp(3rem, 9vw, 9rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 0rem;
+      color: var(--darkred);
+    }
+
+    .jump {
+      position: relative;
+       z-index: 10;
+      text-align: right;
+      padding-right: 1rem;
+      margin-top: 0rem;
+      /* you can keep 3rem if you prefer the space */
+    }
+
+
+
+    .jump a {
+      text-align: right;
+      display: inline-block;
+      pointer-events: auto;
+      font-family: "Inter", sans-serif;
+      font-weight: 800;
+      text-decoration: none;
+      color: var(--darkred);
+      font-size: 1.25rem;
+      border-bottom: 2px solid rgba(140, 0, 4, .35);
+      transition: opacity .2s ease, border-color .2s ease, transform .2s ease;
+    }
+
+    .jump a:hover {
+      opacity: .75;
+      border-color: rgba(140, 0, 4, .35);
       transform: translateY(-1px);
-      filter: brightness(0.95);
     }
 
-    .btn-about {
-      background: var(--caribbean);
-    }
-
-    .btn-visual {
-      background: var(--eggplant);
-    }
-
-    .btn-music {
-      background: var(--moss);
-    }
-
-    .btn-contact {
-      background: var(--indigo);
-    }
-
-    .btn-home {
-      background: var(--fairytale);
-    }
-
-    .container {
+    /* Gallery section (masonry columns) */
+    .gallery {
       max-width: 1300px;
-      margin: 0 auto;
-      padding: 1rem 1.25rem 4rem;
+      padding: 0 2rem 3rem;
       position: relative;
       z-index: 1;
     }
 
-    /* Masonry via CSS columns so images keep their natural aspect ratio */
+    #gallery-section {
+      scroll-margin-top: 16px;
+      /* adjust if you want more space on arrival */
+    }
+
+    /* Carousel strip under nav (top of page) */
+    .carousel-section {
+      width: 100%;
+      padding: 2rem 0 .25rem;
+      /* tighter top + bottom */
+      position: relative;
+      z-index: 1;
+      margin-bottom: 20rem;
+    }
+
+    .carousel-viewport {
+      width: 100%;
+      overflow: hidden;
+      padding-right: 14rem;
+      /* keep clear of right nav */
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      will-change: transform;
+    }
+
     .grid {
       column-count: 4;
       column-gap: 16px;
@@ -166,42 +199,35 @@
       }
     }
 
-    /* Each thumb flows in columns; no fixed aspect ratio, no borders */
-    .thumb {
+    .gthumb {
       display: block;
-      /* needed to avoid inline gaps */
       break-inside: avoid;
       margin-bottom: 16px;
-      /* vertical spacing between items */
       background: transparent;
       border: none;
       padding: 0;
       cursor: pointer;
     }
 
-    .thumb img {
+    .gthumb img {
       width: 100%;
-      /* fit column width */
       height: auto;
-      /* keep natural aspect ratio */
       object-fit: contain;
-      /* never crop */
       display: block;
       transition: transform .18s ease;
       user-select: none;
       -webkit-user-drag: none;
       border: none;
-      /* ensure no gray borders */
       outline: none;
       box-shadow: none;
       background: transparent;
     }
 
-    .thumb:hover img {
+    .gthumb:hover img {
       transform: scale(1.01);
     }
 
-    /* Minimal lightbox */
+    /* Lightbox */
     dialog#lightbox {
       border: none;
       padding: 0;
@@ -217,14 +243,12 @@
       background: rgba(0, 0, 0, .7);
     }
 
-    /* Center the image and constrain it to viewport without extra padding */
     .lb-wrap {
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
       padding: 24px;
-      /* breathing room around the image */
     }
 
     .lb-img {
@@ -240,7 +264,6 @@
       box-shadow: none;
     }
 
-    /* Simple X close button in the corner */
     .lb-close {
       position: fixed;
       top: 16px;
@@ -261,73 +284,100 @@
       outline-offset: 4px;
     }
 
-    @media (max-width: 480px) {
-      .top-buttons {
-        position: static;
+    /* Mobile */
+    @media (max-width:700px) {
+      .nav {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        top: 0;
+        right: 0;
         padding: 1rem;
+        margin-top: 0;
+      }
+
+      .btn {
+        font-size: 1rem;
+      }
+
+      .carousel-section {
+        padding-top: 5rem;
+      }
+
+      .carousel-viewport {
+        padding-right: 0;
+      }
+
+      .thumb img {
+        height: 110px;
+      }
+
+      .hero {
+        padding: 1rem 1rem 0;
+        text-align: center;
       }
 
       .title {
         margin-top: 1rem;
       }
 
-      .lb-close {
-        top: 10px;
-        right: 12px;
-        font-size: 30px;
+      .jump {
+        padding: .5rem 1rem 1rem;
+        text-align: center;
+      }
+
+      .gallery {
+        padding: 0 1rem 2.5rem;
       }
     }
 
-    /* floating control for visual dot spacing */
-    .dot-control {
-      position: fixed;
-      right: 12px;
-      bottom: 12px;
-      background: rgba(255, 255, 255, 0.92);
-      color: #111;
-      border-radius: 8px;
-      padding: 8px 10px;
-      font-family: Inter, system-ui, sans-serif;
-      font-size: 13px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-      z-index: 9999;
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce) {
 
-    .dot-control input[type="range"] {
-      width: 120px;
-    }
-
-    .dot-control input[type="number"] {
-      width: 56px;
-      font-size: 13px;
-      padding: 2px 6px;
+      .thumb img,
+      .gthumb img {
+        transition: none;
+      }
     }
   </style>
 </head>
 
 <body>
-  <!-- Nav bar (same as aboutme.html) -->
   <nav class="nav" aria-label="Primary">
+    <a class="btn btn-home" href="index.html">Home</a>
     <a class="btn btn-about" href="aboutme.html">About Me</a>
     <a class="btn btn-visual" href="visual.html">Visual</a>
     <a class="btn btn-music" href="music.html">Music</a>
     <a class="btn btn-contact" href="contact.html">Contact</a>
-    <a class="btn btn-home" href="index.html">Home</a>
   </nav>
 
+  <section class="hero" aria-labelledby="page-title">
+    <h1 id="page-title" class="title">Visual</h1>
+  </section>
+  <div class="jump">
+    <a href="#gallery-section" aria-label="Jump to gallery view">Gallery view ↓</a>
+  </div>
 
-  <h1 class="title">Visual Gallery</h1>
+  <!-- Horizontal, slowly auto-scrolling carousel strip -->
+  <section class="carousel-section" aria-label="Visual carousel">
+    <div class="carousel-viewport" id="carouselViewport">
+      <div class="carousel-track" id="carouselTrack" aria-live="off"></div>
+    </div>
+  </section>
 
-  <main class="container">
-    <div id="grid" class="grid" aria-live="polite"></div>
+  <main>
+
+
+    <!-- Minimal button that scrolls down to the full gallery -->
+
+    <!-- Full gallery (masonry) -->
+    <section id="gallery-section" class="gallery" aria-label="Gallery view">
+      <div id="galleryGrid" class="grid"></div>
+    </section>
   </main>
 
-
-
-  <!-- Lightbox (transparent dialog + centered image) -->
+  <!-- Lightbox -->
   <dialog id="lightbox" aria-labelledby="lbHeading">
     <button class="lb-close" id="closeBtn" aria-label="Close">×</button>
     <div class="lb-wrap">
@@ -338,25 +388,35 @@
   </dialog>
 
   <script>
-    const gridEl = document.getElementById('grid');
+    const track = document.getElementById('carouselTrack');
+    const viewport = document.getElementById('carouselViewport');
+    const gridEl = document.getElementById('galleryGrid');
+
     const lightbox = document.getElementById('lightbox');
     const lbImg = document.getElementById('lbImg');
     const closeBtn = document.getElementById('closeBtn');
 
-    let items = [];       // [{file, title, url}]
+    let items = [];          // [{file, title, url}]
     let currentIndex = 0;
+
+    // Auto-scroll state
+    let pos = 0;             // translateX position
+    let speed = 40;          // px/s (slow)
+    let lastTs = null;
+    let stripWidth = 0;      // width of one content loop
+    let paused = false;
 
     function friendlyTitle(name) {
       const base = name.replace(/\.[^.]+$/, '');
       return base.replace(/[_-]+/g, ' ').trim();
     }
 
-    function buildThumb(item, index) {
+    function buildCarouselThumb(item, i) {
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'thumb';
       btn.setAttribute('aria-label', `Open ${item.title}`);
-      btn.addEventListener('click', () => openLightbox(index));
+      btn.addEventListener('click', () => openLightbox(i));
 
       const img = document.createElement('img');
       img.src = item.url;
@@ -368,18 +428,49 @@
       return btn;
     }
 
-    function renderGrid() {
+    function buildGalleryThumb(item, i) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'gthumb';
+      btn.setAttribute('aria-label', `Open ${item.title}`);
+      btn.addEventListener('click', () => openLightbox(i));
+
+      const img = document.createElement('img');
+      img.src = item.url;
+      img.alt = item.title;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+
+      btn.appendChild(img);
+      return btn;
+    }
+
+    function renderGallery() {
       gridEl.innerHTML = '';
-      items.forEach((it, i) => gridEl.appendChild(buildThumb(it, i)));
+      items.forEach((it, i) => gridEl.appendChild(buildGalleryThumb(it, i)));
+    }
+
+    function buildCarousel() {
+      track.innerHTML = '';
+      // first loop
+      items.forEach((it, i) => track.appendChild(buildCarouselThumb(it, i)));
+      // duplicate for seamless loop
+      items.forEach((it, i) => track.appendChild(buildCarouselThumb(it, i + items.length)));
+
+      // measure after images settle
+      requestAnimationFrame(() => {
+        stripWidth = 0;
+        const kids = Array.from(track.children).slice(0, items.length);
+        kids.forEach(el => { stripWidth += el.getBoundingClientRect().width + 12; }); // 12px gap
+      });
     }
 
     function openLightbox(index) {
-      currentIndex = index;
+      currentIndex = ((index % items.length) + items.length) % items.length;
       const it = items[currentIndex];
       lbImg.src = it.url;
       lbImg.alt = it.title;
       if (!lightbox.open) lightbox.showModal();
-      // lock background scroll
       document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
     }
@@ -391,28 +482,34 @@
       document.body.style.overflow = '';
     }
 
-    function next() {
-      if (currentIndex < items.length - 1) openLightbox(currentIndex + 1);
-    }
-    function prev() {
-      if (currentIndex > 0) openLightbox(currentIndex - 1);
-    }
-
-    // Events
     closeBtn.addEventListener('click', closeLightbox);
-
-    // Click backdrop to close
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-
-    // Keyboard: Esc closes; Left/Right navigate
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
     window.addEventListener('keydown', (e) => {
       if (!lightbox.open) return;
       if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') next();
-      if (e.key === 'ArrowLeft') prev();
     });
+
+    // Pause auto-scroll on hover/focus
+    viewport.addEventListener('mouseenter', () => paused = true);
+    viewport.addEventListener('mouseleave', () => paused = false);
+    viewport.addEventListener('focusin', () => paused = true);
+    viewport.addEventListener('focusout', () => paused = false);
+
+    // Very slow, seamless auto-scroll
+    function tick(ts) {
+      if (lastTs == null) lastTs = ts;
+      const dt = (ts - lastTs) / 1000;
+      lastTs = ts;
+
+      const motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (motionOK && !paused && stripWidth > 0) {
+        pos -= speed * dt;
+        if (-pos >= stripWidth) pos += stripWidth; // loop
+        track.style.transform = `translateX(${pos}px)`;
+      }
+      requestAnimationFrame(tick);
+    }
 
     async function init() {
       try {
@@ -423,25 +520,16 @@
           title: friendlyTitle(file),
           url: `visual/${encodeURI(file)}`
         }));
-        renderGrid();
+        buildCarousel();
+        renderGallery();
+        requestAnimationFrame(tick);
       } catch (err) {
-        gridEl.innerHTML = '<p>Could not load visuals.json.</p>';
+        track.innerHTML = '<p style="padding:1rem">Could not load visuals.json.</p>';
+        gridEl.innerHTML = '<p style="padding:1rem">Could not load visuals.json.</p>';
         console.error(err);
       }
     }
     init();
-  </script>
-  <script>
-    // visual.html dot spacing control
-    (function () {
-      const range = document.getElementById('visualDot');
-      const num = document.getElementById('visualDotNum');
-      const root = document.documentElement;
-      function apply(v) { root.style.setProperty('--visual-dot-size', v + 'px'); }
-      range.addEventListener('input', () => { num.value = range.value; apply(range.value); });
-      num.addEventListener('change', () => { let v = Math.max(30, Math.min(220, Number(num.value) || 80)); num.value = v; range.value = v; apply(v); });
-      apply(range.value);
-    })();
   </script>
 </body>
 

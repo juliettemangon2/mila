@@ -6,185 +6,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mila Baumann</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Gilda+Display&display=swap" rel="stylesheet" />
+
   <style>
     :root {
-      --caput: #63281e;
-      --caribbean: #265e60;
-      --eggplant: #6a4059;
-      --moss: #a7a448;
-      --indigo: #0d5375;
-      --fairytale: #e9bfc7;
-      --lightblue: #a9cfcc;
-      --saffron: #e5c457;
-      --viridian: #2f8f77;
-      --bg: #e2f0f6;
-
-      /* Polka dots (large, airy grid) */
-      --dot-scale: 1;
-      /* multiply positions/sizes by this to change spacing */
-      --dots: radial-gradient(circle 30px, #265e60 99%, transparent 100%),
-        radial-gradient(circle 30px, #2f8f77 99%, transparent 100%),
-        radial-gradient(circle 30px, #0d5375 99%, transparent 100%),
-        radial-gradient(circle 30px, #a7a448 99%, transparent 100%),
-        radial-gradient(circle 30px, #e5c457 99%, transparent 100%),
-        radial-gradient(circle 30px, #63281e 99%, transparent 100%),
-        radial-gradient(circle 30px, #6a4059 99%, transparent 100%),
-        radial-gradient(circle 30px, #e9bfc7 99%, transparent 100%),
-        radial-gradient(circle 30px, #a9cfcc 99%, transparent 100%);
-      --dots-size: 600px 600px, 600px 600px, 600px 600px, 600px 600px, 600px 600px, 600px 600px, 600px 600px, 600px 600px, 600px 600px;
-      --dots-pos: 0 0, 300px 0, 0 300px, 300px 300px, 150px 150px, 450px 150px, 150px 450px, 450px 450px, 600px 300px;
-
-      /* Pill buttons (light, no borders) */
-      --pill-bg: var(--caribbean);
-      /* light, playful */
-      --pill-text: #fff;
-      /* like your screenshot */
-      --pill-bg-hover: #dff4ff;
+      --red: #e91511;
+      --darkred: #7c0004;
     }
 
     * {
-      box-sizing: border-box
-    }
-
-    html,
-    body {
-      height: 100%
+      box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: #fff;
-      min-height: 100dvh;
+      font-family: "Gilda Display", serif;
+      color: var(--darkred);
+      min-height: 100vh;
+      background-color: var(--red);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      background-color: var(--bg);
-      background-image: var(--dots);
-      background-size: var(--dots-size);
-      background-position: var(--dots-pos);
-      background-repeat: repeat;
-      background-attachment: fixed;
+    }
+
+    .nav {
+      position: fixed;
+      inset-block: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 1rem;
+      padding: 2rem;
+      margin-top: -28rem;
+    }
+
+    .btn {
+      font-size: 2.3rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--darkred);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn:hover {
+      opacity: 0.7;
+      transform: translateX(-3px);
     }
 
     .hero {
       width: 100%;
-      display: flex;
-      align-items: flex-start;
-      /* push toward top */
-      justify-content: flex-start;
-      /* align to left */
-      min-height: 56vh;
-      padding: 6vh 1rem 2vh;
-      /* increase top padding so title sits slightly lower */
-      text-align: left;
+      padding: 8rem 2rem;
     }
 
     .title {
-      margin: 0;
-      /* reset heavy margins */
-      padding: 18rem 0 0 0rem;
-      /* push down and give slight left inset */
-      line-height: 1;
+      font-family: "Inter", serif;
+      margin-top: 32rem;
+      font-size: clamp(3rem, 9vw, 9rem);
       font-weight: 900;
-      letter-spacing: 0.02em;
       text-transform: uppercase;
-      text-align: left;
-      font-size: clamp(2.8rem, 9vw, 9rem);
-      color: #fff;
-
-      /* solid for clarity over dots */
-      text-rendering: optimizeLegibility;
-      max-width: 70ch;
-    }
-
-    .nav {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      /* stack vertically */
-      gap: 0.75rem;
-      justify-content: flex-start;
-      align-items: flex-start;
-      padding: 2rem 1rem 4rem;
-    }
-
-    /* Pill buttons */
-    .btn {
-      display: block;
-      text-decoration: none;
-      color: var(--pill-text);
-      padding: 0.5rem 0.3rem;
-      border-radius: 6px;
-      font-size: clamp(0.9rem, 2.1vw, 1.2rem);
-      font-weight: 500;
       line-height: 1;
-      transition: transform 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
-      box-shadow: none;
-      /* no border look */
-      -webkit-tap-highlight-color: transparent;
+      color: var(--darkred);
     }
 
-    .btn:focus-visible {
-      outline: 2px solid rgba(0, 0, 0, 0.6);
-      outline-offset: 3px;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      filter: brightness(0.95);
-    }
-
-    /* Per-button backgrounds */
-    .btn-about {
-      background: var(--caribbean);
-    }
-
-    .btn-visual {
-      background: var(--eggplant);
-    }
-
-    .btn-music {
-      background: var(--moss);
-      color: #fff;
-    }
-
-    .btn-contact {
-      background: var(--indigo);
-    }
-
-    .btn-home {
-      background: var(--fairytale);
-    }
-
-    .btn:active {
-      transform: translateY(0);
-    }
-
-    /* Subtle spacing on small screens */
-    @media (max-width:700px) {
-      .hero {
-        min-height: 40vh;
-        padding-top: 8vh;
-        justify-content: center;
-        align-items: center
-      }
-
+    @media (max-width: 700px) {
       .nav {
-        padding-top: 1rem
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        top: 0;
+        right: 0;
+        padding: 1rem;
       }
 
       .btn {
-        padding: 0.55em 1.05em
+        font-size: 1rem;
       }
 
-      .title {
+      .hero {
+        padding: 4rem 1rem;
         text-align: center;
-        padding: 1.2rem 0 0 0
       }
     }
   </style>
@@ -192,17 +96,16 @@
 
 <body>
   <nav class="nav" aria-label="Primary">
+    <a class="btn btn-home" href="index.html">Home</a>
     <a class="btn btn-about" href="aboutme.html">About Me</a>
     <a class="btn btn-visual" href="visual.html">Visual</a>
     <a class="btn btn-music" href="music.html">Music</a>
     <a class="btn btn-contact" href="contact.html">Contact</a>
-    <a class="btn btn-home" href="index.html">Home</a>
   </nav>
+
   <main class="hero" aria-labelledby="site-title">
     <h1 id="site-title" class="title">Mila Baumann</h1>
   </main>
-
-
 </body>
 
 </html>
