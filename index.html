@@ -8,7 +8,8 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Gilda+Display&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Gilda+Display&display=swap"
+    rel="stylesheet" />
 
   <style>
     :root {
@@ -31,7 +32,7 @@
     }
 
     .nav {
-      position: fixed;
+      position: absolute;
       inset-block: 0;
       right: 0;
       display: flex;
@@ -71,6 +72,24 @@
       color: var(--darkred);
     }
 
+    .flower {
+      position: fixed;
+      top: 50%;
+      left: 0;
+      transform: translateY(-25%) ;
+      /* centers vertically + rotates */
+      width: 600px;
+      /* adjust size as needed */
+      height: auto;
+      z-index: -1;
+      /* keeps it behind your text/nav */
+      opacity: 0.9;
+      /* optional: makes it blend with background */
+      margin-left: 1rem;
+      
+    }
+
+
     @media (max-width: 700px) {
       .nav {
         flex-direction: row;
@@ -95,6 +114,8 @@
 </head>
 
 <body>
+  <img src="flower1.svg" alt="Flower drawing" class="flower">
+
   <nav class="nav" aria-label="Primary">
     <a class="btn btn-home" href="index.html">Home</a>
     <a class="btn btn-about" href="aboutme.html">About Me</a>
