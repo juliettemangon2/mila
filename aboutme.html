@@ -49,6 +49,21 @@
       padding: 2rem;
       margin-top: -28rem;
     }
+    .mila {
+      position: fixed;
+      top: 35%;
+      left: 45%;
+      transform: translateY(-25%) translateX(50%)  ;
+      /* centers vertically + rotates */
+      width: 50px;
+      /* adjust size as needed */
+      height: auto;
+      z-index: -1;
+      /* keeps it behind your text/nav */
+      opacity: 0.9;
+      /* optional: makes it blend with background */
+      
+    }
 
     .btn {
       font-size: 2.3rem;
@@ -105,6 +120,9 @@
       border: none;
       /* minimal poster vibe */
     }
+    .highlight-name {
+  color: white;
+}
 
     .text-col {
       flex: 1 1 60%;
@@ -153,6 +171,7 @@
 </head>
 
 <body>
+  <img src="mila.svg" alt="mila cartoon" class="mila">
   <nav class="nav" aria-label="Primary">
     <a class="btn btn-home" href="index.html">Home</a>
     <a class="btn btn-about" href="aboutme.html">About Me</a>
@@ -170,7 +189,7 @@
       </div>
       <div class="text-col">
         <div class="text-block">
-          <p>My name is Mila Baumann and I am currently a junior in composition and film scoring at NYU. I started
+          <p>My name is <span class="highlight-name">Mila Baumann</span> and I am currently a junior in composition and film scoring at NYU. I started
             playing
             the violin in second grade eventually leading me to study at a music conservatory where I discovered my love
             for composition. I am interested in contemporary classical music, particularly how the lines of music and
