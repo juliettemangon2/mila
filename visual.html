@@ -12,8 +12,9 @@
 
   <style>
     :root {
-      --red: rgb(175, 205, 191);
-      --darkred: #7c0004;
+      --red: rgb(205, 223, 236);
+      --darkred: #5c2f5f;
+      --bigtext: #5c2f5f;
     }
 
     *,
@@ -60,11 +61,11 @@
       font-weight: 700;
       text-decoration: none;
       color: var(--darkred);
-      transition: opacity .2s ease, transform .2s ease;
+      transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
     .btn:hover {
-      opacity: .7;
+      opacity: 0.7;
       transform: translateX(-3px);
     }
 
@@ -112,7 +113,7 @@
       text-transform: uppercase;
       line-height: 1;
       margin-bottom: 0rem;
-      color: var(--darkred);
+      color: var(--bigtext);
     }
 
     .jump {
@@ -285,7 +286,7 @@
     }
 
     /* Mobile */
-    @media (max-width:700px) {
+    @media (max-width: 700px) {
       .nav {
         flex-direction: row;
         justify-content: center;
@@ -303,6 +304,7 @@
 
       .carousel-section {
         padding-top: 5rem;
+        margin-bottom: 5rem;
       }
 
       .carousel-viewport {

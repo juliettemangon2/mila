@@ -12,8 +12,8 @@
 
   <style>
     :root {
-      --red: #ffbc9d;
-      --darkred: #7c0004;
+      --red: #213e7b;
+      --darkred: #dca2a4;
     }
 
     *,
@@ -35,9 +35,9 @@
       flex-direction: column;
     }
 
-    /* Right-side vertical nav — same as your latest index.html */
+    /* Right-side vertical nav — same as index.html */
     .nav {
-      position: fixed;
+      position: absolute;
       inset-block: 0;
       right: 0;
       display: flex;
@@ -54,11 +54,11 @@
       font-weight: 700;
       text-decoration: none;
       color: var(--darkred);
-      transition: opacity .2s ease, transform .2s ease;
+      transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
     .btn:hover {
-      opacity: .7;
+      opacity: 0.7;
       transform: translateX(-3px);
     }
 
@@ -156,7 +156,7 @@
     }
 
     /* Mobile */
-    @media (max-width:700px) {
+    @media (max-width: 700px) {
       .nav {
         flex-direction: row;
         justify-content: center;
@@ -184,10 +184,15 @@
       .content {
         padding: 1rem 1rem 2.5rem;
         font-size: 1.15rem;
+        margin-top: 2rem;
       }
 
       .label {
         min-width: auto;
+      }
+
+      .flower, .flower2 {
+        display: none;
       }
     }
   </style>
