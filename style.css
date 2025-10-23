@@ -1,0 +1,91 @@
+/* ===== Uniform Circle Nav (use on every page) ===== */
+:root{
+  /* circle palette */
+  --teal: #63e0e6;
+  --lemon: #fff06a;
+  --pink: #ff94e1;
+  --red:  #ff2d55;
+  --blue: #2d7bff;
+
+  /* sizing */
+  --nav-size: 110px;   /* desktop circle size */
+  --nav-gap: 1.85rem;  /* desktop spacing between circles */
+}
+
+/* Desktop / default (unchanged) */
+.nav{
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--nav-gap);
+  padding: 0;
+  z-index: 1000;
+}
+
+.btn{
+  width: var(--nav-size);
+  height: var(--nav-size);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  font-family: "Figtree", sans-serif;
+  font-weight: 700;
+  font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+  letter-spacing: 0.08em;
+  color: #000;
+  background: #ddd; /* replaced by color classes */
+  border: none;
+  transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
+}
+
+.btn:hover,
+.btn:focus-visible{
+  transform: rotate(-6deg) scale(1.06);
+}
+
+/* colors */
+.btn.teal  { background: var(--teal); }
+.btn.lemon { background: var(--lemon); }
+.btn.pink  { background: var(--pink); }
+.btn.red   { background: var(--red); }
+.btn.blue  { background: var(--blue); color: #fff; }
+
+/* ===== Mobile: match index.html two-row wrap (3 on first row, 2 on second) ===== */
+@media (max-width: 700px){
+  /* Let small screens scroll so nothing gets cut off behind fixed nav */
+  body{ overflow: auto !important; }
+
+  .nav{
+    top: .75rem !important;
+    right: .75rem !important;
+
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 0.6rem !important;
+
+    /* smaller circles on mobile */
+    --nav-size: 78px;
+
+    /* wrap after ~3 items: 3*size + 2 gaps */
+    max-width: calc((var(--nav-size) * 3) + (0.6rem * 2)) !important;
+
+    justify-content: flex-end !important;
+    align-items: center !important;
+  }
+
+  .btn{
+    width: var(--nav-size) !important;
+    height: var(--nav-size) !important;
+    font-size: .8rem !important;
+  }
+}
+
+/* Optional: respect reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .btn{ transition: none; }
+}

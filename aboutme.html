@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Gilda+Display&display=swap"
     rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@700;900&display=swap" rel="stylesheet" />
-
+<link rel="stylesheet" href="style.css">
   <style>
     :root {
       --red: rgb(252, 254, 255);
@@ -184,16 +184,7 @@
 
     /* responsive protection only */
     @media (max-width: 1100px) {
-      .nav {
-        position: static;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        padding: 1.5rem;
-        margin-top: 0;
-        background: none;
-      }
+
 
       .mila {
         display: none;
@@ -221,6 +212,26 @@
         padding: 0 0.5rem;
       }
     }
+    @media (max-width: 700px) {
+      .nav {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        top: 0;
+        right: 0;
+        padding: 1rem;
+        position: absolute;
+      }
+
+      .btn {
+        font-size: 1rem;
+      }
+      .photo-col img {
+        margin-top: 1rem;
+    }
+  }
+
 
     @media (max-width: 600px) {
       .btn {
@@ -237,6 +248,32 @@
         line-height: 1.5;
       }
     }
+    /* Mobile-only safety for About page */
+@media (max-width: 700px){
+  /* ensure page can scroll on small screens */
+  body{ overflow: auto !important; }
+
+  /* create clear space beneath the fixed two-row nav cluster */
+  main{
+    padding-top: calc((var(--nav-size) * 2) + 1.75rem); /* two circles + a bit of breathing room */
+    padding-right: .75rem;  /* avoids hugging the right edge under the nav */
+  }
+
+  /* tighten image spacing so it never collides with the nav */
+  .photo-col img{
+    margin-top: 0 !important;
+    width: 90%;
+  }
+
+  /* keep text comfortable on small screens */
+  .text-block{
+    margin-top: 0 !important;
+    font-size: 1.1rem;
+    line-height: 1.5;
+  }
+}
+
+    
   </style>
 
 
