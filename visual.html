@@ -15,19 +15,16 @@
 
   <style>
     :root {
-      --red: rgb(252, 254, 255);
+      --bg: rgb(252, 254, 255);
       --darkred: #000000;
       --bigtext: #000000;
-      --teal: #63e0e6;
-      /* bright teal like your mock */
-      --lemon: #fff06a;
-      /* light bright yellow */
-      --neon-pink: #ff94e1;
-      /* neon pink */
-      --neon-red: #ff2d55;
-      /* neon red/coral */
+      --teal: #420014;
+      --lemon: #766102;
+      --pink: #b8bfd9;
+      --red: #d86e2d;
+      --blue: #fdd9cb;
       --nav-safe: 160px;
-      --electric-blue: #2d7bff;
+
     }
 
     .hero,
@@ -51,7 +48,7 @@
 
     body {
       min-height: 100vh;
-      background: var(--red);
+      background: var(--bg);
       color: var(--darkred);
       font-family: "Figtree", sans-serif;
       text-transform: uppercase;
@@ -105,25 +102,26 @@
     /* Individual colors */
     .btn.teal {
       background: var(--teal);
+      color: #fff;
     }
 
     .btn.lemon {
       background: var(--lemon);
-    }
-
-    .btn.pink {
-      background: var(--neon-pink);
-    }
-
-    .btn.red {
-      background: var(--neon-red);
-    }
-
-    .btn.blue {
-      background: var(--electric-blue);
       color: #fff;
     }
 
+    .btn.pink {
+      background: var(--pink);
+    }
+
+    .btn.red {
+      background: var(--red);
+    }
+
+    .btn.blue {
+      background: var(--blue);
+      
+    }
 
     .thumb {
       display: inline-block;

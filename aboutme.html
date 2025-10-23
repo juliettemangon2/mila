@@ -14,18 +14,14 @@
 <link rel="stylesheet" href="style.css">
   <style>
     :root {
-      --red: rgb(252, 254, 255);
+      --bg: rgb(252, 254, 255);
       --darkred: #000000;
       --bigtext: #000000;
-      --teal: #63e0e6;
-      /* bright teal like your mock */
-      --lemon: #fff06a;
-      /* light bright yellow */
-      --neon-pink: #ff94e1;
-      /* neon pink */
-      --neon-red: #ff2d55;
-      /* neon red/coral */
-      --electric-blue: #2d7bff;
+      --teal: #420014;
+      --lemon: #766102;
+      --pink: #b8bfd9;
+      --red: #d86e2d;
+      --blue: #fdd9cb;
     }
 
     *,
@@ -38,7 +34,7 @@
 
     body {
       min-height: 100vh;
-      background: var(--red);
+      background: var(--bg);
       color: var(--darkred);
       font-family: "Figtree", sans-serif;
       text-transform: uppercase;
@@ -103,23 +99,25 @@
     /* Individual colors */
     .btn.teal {
       background: var(--teal);
+      color: #fff;
     }
 
     .btn.lemon {
       background: var(--lemon);
+      color: #fff;
     }
 
     .btn.pink {
-      background: var(--neon-pink);
+      background: var(--pink);
     }
 
     .btn.red {
-      background: var(--neon-red);
+      background: var(--red);
     }
 
     .btn.blue {
-      background: var(--electric-blue);
-      color: #fff;
+      background: var(--blue);
+      
     }
 
     .hero {
@@ -164,7 +162,8 @@
     }
 
     .highlight-name {
-      color: rgb(250, 119, 206);
+      color: var(--lemon);
+      font-weight: 600;
     }
 
     .text-col {

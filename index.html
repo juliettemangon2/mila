@@ -12,22 +12,19 @@
     rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@700;900&display=swap" rel="stylesheet" />
 
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 
   <style>
     :root {
-      --red: rgb(252, 254, 255);
+      --bg: rgb(252, 254, 255);
       --darkred: #000000;
       --bigtext: #000000;
-      --teal: #63e0e6;
-      /* bright teal like your mock */
-      --lemon: #fff06a;
-      /* light bright yellow */
-      --neon-pink: #ff94e1;
-      /* neon pink */
-      --neon-red: #ff2d55;
-      /* neon red/coral */
-      --electric-blue: #2d7bff;
+      --teal: #420014;
+      --lemon: #766102;
+      --pink: #b8bfd9;
+      --red: #d86e2d;
+      --blue: #fdd9cb;
+
     }
 
     * {
@@ -41,7 +38,7 @@
       color: var(--darkred);
       height: 100vh;
       width: 100vw;
-      background-color: var(--red);
+      background-color: var(--bg);
       display: flex;
       justify-content: flex-start;
       /* left instead of right */
@@ -87,6 +84,7 @@
       transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
       border: none;
     }
+
     .btn:hover,
     .btn:focus-visible {
       transform: rotate(-6deg) scale(1.06);
@@ -96,23 +94,25 @@
     /* Individual colors */
     .btn.teal {
       background: var(--teal);
+      color: #fff;
     }
 
     .btn.lemon {
       background: var(--lemon);
+      color: #fff;
     }
 
     .btn.pink {
-      background: var(--neon-pink);
+      background: var(--pink);
     }
 
     .btn.red {
-      background: var(--neon-red);
+      background: var(--red);
     }
 
     .btn.blue {
-      background: var(--electric-blue);
-      color: #fff;
+      background: var(--blue);
+      
     }
 
     /* white text on blue */
@@ -256,107 +256,123 @@
         text-align: center;
       }
     }
+
     /* ---- FORCE mobile nav to wrap into two lines and keep circles visible ---- */
-@media (max-width: 700px){
-  /* Let the page scroll on small screens so nothing gets clipped */
-  body{ overflow: auto !important; }
+    @media (max-width: 700px) {
 
-  /* Two-line layout using flex-wrap (3 on top, 2 on bottom) */
-  .nav{
-    top: .75rem !important;
-    right: .75rem !important;
+      /* Let the page scroll on small screens so nothing gets clipped */
+      body {
+        overflow: auto !important;
+      }
 
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
-    gap: 0.6rem !important;
+      /* Two-line layout using flex-wrap (3 on top, 2 on bottom) */
+      .nav {
+        top: .75rem !important;
+        right: .75rem !important;
 
-    /* smaller circles on mobile */
-    --size: 78px;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 0.6rem !important;
 
-    /* wrap after ~3 items: 3*size + 2 gaps */
-    max-width: calc((var(--size) * 3) + (0.6rem * 2)) !important;
+        /* smaller circles on mobile */
+        --size: 78px;
 
-    /* keep the cluster right-aligned in the corner */
-    justify-content: flex-end !important;
-    align-items: center !important;
-    z-index: 1000 !important;
-  }
+        /* wrap after ~3 items: 3*size + 2 gaps */
+        max-width: calc((var(--size) * 3) + (0.6rem * 2)) !important;
 
-  .btn{
-    width: var(--size) !important;
-    height: var(--size) !important;
-    font-size: .8rem !important;
-  }
-}
-/* ============ MOBILE ONLY (<=700px) ============ */
-@media (max-width: 700px){
+        /* keep the cluster right-aligned in the corner */
+        justify-content: flex-end !important;
+        align-items: center !important;
+        z-index: 1000 !important;
+      }
 
-  /* Let the page scroll so nothing gets cut off */
-  body{ overflow: auto !important; }
+      .btn {
+        width: var(--size) !important;
+        height: var(--size) !important;
+        font-size: .8rem !important;
+      }
+    }
 
-  /* 1) Nav: two horizontal lines in the top-right, smaller circles */
-  .nav{
-    top: .75rem !important;
-    right: .75rem !important;
+    /* ============ MOBILE ONLY (<=700px) ============ */
+    @media (max-width: 700px) {
 
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
-    gap: 0.6rem !important;
+      /* Let the page scroll so nothing gets cut off */
+      body {
+        overflow: auto !important;
+      }
 
-    /* three on the first row, two on the second */
-    --size: 78px;
-    max-width: calc((var(--size) * 3) + (0.6rem * 2)) !important;
+      /* 1) Nav: two horizontal lines in the top-right, smaller circles */
+      .nav {
+        top: .75rem !important;
+        right: .75rem !important;
 
-    justify-content: flex-end !important;
-    align-items: center !important;
-    z-index: 1000 !important;
-  }
-  .btn{
-    width: var(--size) !important;
-    height: var(--size) !important;
-    font-size: .8rem !important;
-  }
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 0.6rem !important;
 
-  /* 2) Title: same look, just tighter & safe on small screens */
-  .hero{
-    /* keep bottom-left placement but respect iPhone safe area */
-    position: fixed;
-    left: 1rem;
-    bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
-    line-height: normal !important;
-  }
-  .title{
-    font-size: clamp(3.5rem, 18vw, 8rem) !important;
-    line-height: 0.95 !important;
-    letter-spacing: 0.01em;
-    margin: 0;
-  }
+        /* three on the first row, two on the second */
+        --size: 78px;
+        max-width: calc((var(--size) * 3) + (0.6rem * 2)) !important;
 
-  /* 3) Shorter, thinner L-bars so they never cross the letters */
-  :root{
-    --bar-right: clamp(4rem, 28vw, 7rem);
-    --bar-left:  clamp(3.5rem, 24vw, 6.5rem);
-    --bar-thick: clamp(6px, 1.12em, 12px);
-    --bar-gap: 0ch;
-    --bar-offset: 0.648em;   /* sits neatly under “MI” on phones */
-  }
-  .L.right{ margin-right: calc(var(--bar-right) + var(--bar-gap)) !important; }
-  .L.right::after{
-    top: var(--bar-offset) !important;
-    width: var(--bar-right) !important;
-    height: var(--bar-thick) !important;
-  }
-  .L.left{ margin-left: calc(var(--bar-left) + var(--bar-gap)) !important; }
-  .L.left::before{
-    top: calc(1em - var(--bar-thick)) !important;
-    width: var(--bar-left) !important;
-    height: var(--bar-thick) !important;
-  }
-}
+        justify-content: flex-end !important;
+        align-items: center !important;
+        z-index: 1000 !important;
+      }
 
+      .btn {
+        width: var(--size) !important;
+        height: var(--size) !important;
+        font-size: .8rem !important;
+      }
 
+      /* 2) Title: same look, just tighter & safe on small screens */
+      .hero {
+        /* keep bottom-left placement but respect iPhone safe area */
+        position: fixed;
+        left: 1rem;
+        bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
+        line-height: normal !important;
+      }
+
+      .title {
+        font-size: clamp(3.5rem, 18vw, 8rem) !important;
+        line-height: 0.95 !important;
+        letter-spacing: 0.01em;
+        margin: 0;
+      }
+
+      /* 3) Shorter, thinner L-bars so they never cross the letters */
+      :root {
+        --bar-right: clamp(4rem, 28vw, 7rem);
+        --bar-left: clamp(3.5rem, 24vw, 6.5rem);
+        --bar-thick: clamp(6px, 1.12em, 12px);
+        --bar-gap: 0ch;
+        --bar-offset: 0.648em;
+        /* sits neatly under “MI” on phones */
+      }
+
+      .L.right {
+        margin-right: calc(var(--bar-right) + var(--bar-gap)) !important;
+      }
+
+      .L.right::after {
+        top: var(--bar-offset) !important;
+        width: var(--bar-right) !important;
+        height: var(--bar-thick) !important;
+      }
+
+      .L.left {
+        margin-left: calc(var(--bar-left) + var(--bar-gap)) !important;
+      }
+
+      .L.left::before {
+        top: calc(1em - var(--bar-thick)) !important;
+        width: var(--bar-left) !important;
+        height: var(--bar-thick) !important;
+      }
+    }
   </style>
 </head>
 
@@ -364,12 +380,12 @@
 
 
   <nav class="nav" aria-label="Primary">
-  <a class="btn teal"  href="index.html">Home</a>
-  <a class="btn lemon" href="aboutme.html">About</a>
-  <a class="btn pink"  href="music.html">Scores</a>
-  <a class="btn red"   href="visual.html">Visual</a>
-  <a class="btn blue"  href="contact.html">Contact</a>
-</nav>
+    <a class="btn teal" href="index.html">Home</a>
+    <a class="btn lemon" href="aboutme.html">About</a>
+    <a class="btn pink" href="music.html">Scores</a>
+    <a class="btn red" href="visual.html">Visual</a>
+    <a class="btn blue" href="contact.html">Contact</a>
+  </nav>
 
 
   <main class="hero" aria-labelledby="site-title">

@@ -1,11 +1,11 @@
 /* ===== Uniform Circle Nav (use on every page) ===== */
 :root{
   /* circle palette */
-  --teal: #63e0e6;
-  --lemon: #fff06a;
-  --pink: #ff94e1;
-  --red:  #ff2d55;
-  --blue: #2d7bff;
+  --teal: #420014;
+  --lemon: #766102;
+  --pink: #b8bfd9;
+  --red:  #d86e2d;
+  --blue: #fdd9cb;
 
   /* sizing */
   --nav-size: 110px;   /* desktop circle size */
@@ -14,7 +14,7 @@
 
 /* Desktop / default (unchanged) */
 .nav{
-  position: fixed;
+  position: absolute;
   top: 1rem;
   right: 1rem;
   display: flex;
@@ -48,11 +48,11 @@
 }
 
 /* colors */
-.btn.teal  { background: var(--teal); }
-.btn.lemon { background: var(--lemon); }
+.btn.teal  { background: var(--teal); color: #fff;}
+.btn.lemon { background: var(--lemon);color: #fff; }
 .btn.pink  { background: var(--pink); }
 .btn.red   { background: var(--red); }
-.btn.blue  { background: var(--blue); color: #fff; }
+.btn.blue  { background: var(--blue);  }
 
 /* ===== Mobile: match index.html two-row wrap (3 on first row, 2 on second) ===== */
 @media (max-width: 700px){
