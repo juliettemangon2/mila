@@ -9,12 +9,22 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Gilda+Display&display=swap"
     rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@700;900&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --red: rgb(205, 223, 236);
-      --darkred: #5c2f5f;
-      --bigtext: #5c2f5f;
+      --red: rgb(252, 254, 255);
+      --darkred: #000000;
+      --bigtext: #000000;
+      --teal: #63e0e6;
+      /* bright teal like your mock */
+      --lemon: #fff06a;
+      /* light bright yellow */
+      --neon-pink: #ff94e1;
+      /* neon pink */
+      --neon-red: #ff2d55;
+      /* neon red/coral */
+      --electric-blue: #2d7bff;
     }
 
     *,
@@ -29,7 +39,8 @@
       min-height: 100vh;
       background: var(--red);
       color: var(--darkred);
-      font-family: "Gilda Display", serif;
+      font-family: "Figtree", sans-serif;
+  text-transform: uppercase;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       display: flex;
@@ -38,30 +49,65 @@
 
     /* Right-side vertical nav — same as index.html */
     .nav {
-      position: absolute;
-      inset-block: 0;
-      right: 0;
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: flex-end;
-      gap: 1rem;
-      padding: 2rem;
-      margin-top: -28rem;
+      gap: 1.85rem;
+      padding: 0;
+      /* remove extra padding so it hugs the corner */
+      z-index: 10;
     }
 
     .btn {
-      font-size: 2.3rem;
-      font-weight: 700;
+      --size: 110px;
+      /* desktop circle size */
+      width: var(--size);
+      height: var(--size);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
       text-decoration: none;
-      color: var(--darkred);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      font-family: "Figtree", sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      color: #000;
+      background: #ddd;
+      transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
+      border: none;
     }
 
-    .btn:hover {
-      opacity: 0.7;
-      transform: translateX(-3px);
+    .btn:hover,
+    .btn:focus-visible {
+      transform: rotate(-6deg) scale(1.06);
+
     }
+
+    /* Individual colors */
+    .btn.teal {
+      background: var(--teal);
+    }
+
+    .btn.lemon {
+      background: var(--lemon);
+    }
+
+    .btn.pink {
+      background: var(--neon-pink);
+    }
+
+    .btn.red {
+      background: var(--neon-red);
+    }
+
+    .btn.blue {
+      background: var(--electric-blue);
+      color: #fff;
+    }
+
 
     /* Header */
     .hero {
@@ -113,6 +159,9 @@
 
     /* Contact list — minimal, large type */
     .content {
+      text-transform: none;
+      color: var(--bigtext);
+      font-family: "Gilda Display", serif;
       max-width: 960px;
       padding: 2rem;
       font-size: 3rem;
@@ -134,6 +183,22 @@
       gap: .75rem 1rem;
       align-items: baseline;
     }
+    .flower3 {
+      position: fixed;
+      top: 50%;
+      left: 0;
+      transform: translateY(-25%);
+      /* centers vertically + rotates */
+      width: 600px;
+      /* adjust size as needed */
+      height: auto;
+      z-index: -1;
+      /* keeps it behind your text/nav */
+      opacity: 0.9;
+      /* optional: makes it blend with background */
+      margin-left: 1rem;
+
+    }
 
     .label {
 
@@ -144,7 +209,7 @@
     }
 
     .value a {
-      color: var(--darkred);
+      color: var(--bigtext);
       text-decoration: none;
       border-bottom: 2px solid transparent;
       transition: opacity .2s ease, border-color .2s ease;
@@ -200,16 +265,15 @@
 </head>
 
 <body>
-    <img src="flower2.svg" alt="Flower drawing" class="flower">
-        <img src="flower2.svg" alt="Flower drawing" class="flower2">
+
 
 
   <nav class="nav" aria-label="Primary">
-   <a class="btn" href="index.html">Home</a>
-    <a class="btn" href="aboutme.html">About Me</a>
-    <a class="btn" href="music.html">Scores</a>
-    <a class="btn" href="visual.html">Visual</a>
-    <a class="btn" href="contact.html">Contact</a>
+    <a class="btn teal" href="index.html">Home</a>
+    <a class="btn lemon" href="aboutme.html">About</a>
+    <a class="btn pink" href="music.html">Scores</a>
+    <a class="btn red" href="visual.html">Visual</a>
+    <a class="btn blue" href="contact.html">Contact</a>
   </nav>
 
   <main>

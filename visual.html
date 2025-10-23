@@ -9,12 +9,31 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Gilda+Display&display=swap"
     rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@700;900&display=swap" rel="stylesheet" />
+
 
   <style>
     :root {
-      --red: rgb(205, 223, 236);
-      --darkred: #5c2f5f;
-      --bigtext: #5c2f5f;
+      --red: rgb(252, 254, 255);
+      --darkred: #000000;
+      --bigtext: #000000;
+      --teal: #63e0e6;
+      /* bright teal like your mock */
+      --lemon: #fff06a;
+      /* light bright yellow */
+      --neon-pink: #ff94e1;
+      /* neon pink */
+      --neon-red: #ff2d55;
+      /* neon red/coral */
+      --nav-safe: 160px;
+      --electric-blue: #2d7bff;
+    }
+
+    .hero,
+    .jump,
+    .carousel-viewport,
+    .gallery {
+      padding-right: var(--nav-safe);
     }
 
     *,
@@ -33,7 +52,8 @@
       min-height: 100vh;
       background: var(--red);
       color: var(--darkred);
-      font-family: "Gilda Display", serif;
+      font-family: "Figtree", sans-serif;
+      text-transform: uppercase;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       display: flex;
@@ -43,31 +63,66 @@
 
     /* Right-side vertical nav — same as index.html */
     .nav {
-      position: absolute;
-      inset-block: 0;
-      right: 0;
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: flex-end;
-      gap: 1rem;
-      padding: 2rem;
-      margin-top: -28rem;
-      z-index: 3;
+      gap: 1.85rem;
+      padding: 0;
+      /* remove extra padding so it hugs the corner */
+      z-index: 10;
     }
+
 
     .btn {
-      font-size: 2.3rem;
-      font-weight: 700;
+      --size: 110px;
+      /* desktop circle size */
+      width: var(--size);
+      height: var(--size);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
       text-decoration: none;
-      color: var(--darkred);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      font-family: "Figtree", sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      color: #000;
+      background: #ddd;
+      transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
+      border: none;
     }
 
-    .btn:hover {
-      opacity: 0.7;
-      transform: translateX(-3px);
+    .btn:hover,
+    .btn:focus-visible {
+      transform: rotate(-6deg) scale(1.06);
+
     }
+
+    /* Individual colors */
+    .btn.teal {
+      background: var(--teal);
+    }
+
+    .btn.lemon {
+      background: var(--lemon);
+    }
+
+    .btn.pink {
+      background: var(--neon-pink);
+    }
+
+    .btn.red {
+      background: var(--neon-red);
+    }
+
+    .btn.blue {
+      background: var(--electric-blue);
+      color: #fff;
+    }
+
 
     .thumb {
       display: inline-block;
@@ -116,14 +171,11 @@
       color: var(--bigtext);
     }
 
-    .jump {
-      position: relative;
-      z-index: 10;
-      text-align: right;
-      padding-right: 1rem;
-      margin-top: 0rem;
-      /* you can keep 3rem if you prefer the space */
-    }
+    .jump{
+  width: calc(100% - var(--nav-safe));
+  margin-left: auto;     /* keeps it flush to the right edge of the safe area */
+  text-align: right;
+}
 
 
 
@@ -174,6 +226,14 @@
       overflow: hidden;
       padding-right: 14rem;
       /* keep clear of right nav */
+    }
+
+    .carousel-viewport {
+      width: calc(100% - var(--nav-safe));
+      /* remove any padding-right you added earlier on this element */
+      padding-right: 0 !important;
+      overflow: hidden;
+      /* keep it as the clipping box */
     }
 
     .carousel-track {
@@ -347,11 +407,11 @@
 
 <body>
   <nav class="nav" aria-label="Primary">
-    <a class="btn" href="index.html">Home</a>
-    <a class="btn" href="aboutme.html">About Me</a>
-    <a class="btn" href="music.html">Scores</a>
-    <a class="btn" href="visual.html">Visual</a>
-    <a class="btn" href="contact.html">Contact</a>
+    <a class="btn teal" href="index.html">Home</a>
+    <a class="btn lemon" href="aboutme.html">About</a>
+    <a class="btn pink" href="music.html">Scores</a>
+    <a class="btn red" href="visual.html">Visual</a>
+    <a class="btn blue" href="contact.html">Contact</a>
   </nav>
 
   <section class="hero" aria-labelledby="page-title">
@@ -537,7 +597,7 @@
     viewport.addEventListener('focusin', () => paused = true);
     viewport.addEventListener('focusout', () => paused = false);
 
-    
+
     async function init() {
       try {
         const res = await fetch('visual.json');

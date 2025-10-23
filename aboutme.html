@@ -10,198 +10,246 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Gilda+Display&display=swap"
     rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@700;900&display=swap" rel="stylesheet" />
 
-<style>
-  :root {
-      --red: rgb(205, 223, 236);
-      --darkred: #5c2f5f;
-      --bigtext: #5c2f5f;
+  <style>
+    :root {
+      --red: rgb(252, 254, 255);
+      --darkred: #000000;
+      --bigtext: #000000;
+      --teal: #63e0e6;
+      /* bright teal like your mock */
+      --lemon: #fff06a;
+      /* light bright yellow */
+      --neon-pink: #ff94e1;
+      /* neon pink */
+      --neon-red: #ff2d55;
+      /* neon red/coral */
+      --electric-blue: #2d7bff;
     }
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
 
-  body {
-    min-height: 100vh;
-    background: var(--red);
-    color: var(--darkred);
-    font-family: "Gilda Display", serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
-  }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  /* original desktop layout preserved */
-  .nav {
-    position: absolute;
-    inset-block: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
-    gap: 1rem;
-    padding: 2rem;
-    margin-top: -28rem;
-    z-index: 10;
-  }
+    body {
+      min-height: 100vh;
+      background: var(--red);
+      color: var(--darkred);
+      font-family: "Figtree", sans-serif;
+      text-transform: uppercase;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      overflow: hidden;
+    }
 
-  .mila {
-    position: fixed;
-    top: 17%;
-    left: 45%;
-    transform: translateY(-25%) translateX(50%);
-    width: 50px;
-    height: auto;
-    z-index: -1;
-    opacity: 1.0;
-  }
-
-  .btn {
-    font-size: 2.3rem;
-    font-weight: 700;
-    text-decoration: none;
-    color: var(--darkred);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-  }
-
-  .btn:hover {
-    opacity: 0.7;
-    transform: translateX(-3px);
-  }
-
-  .hero {
-    width: 100%;
-    padding: 8rem 2rem;
-  }
-
-  .title {
-    font-family: "Inter", serif;
-    margin-top: 32rem;
-    font-size: clamp(3rem, 9vw, 9rem);
-    font-weight: 900;
-    text-transform: uppercase;
-    line-height: 1;
-    color: var(--darkred);
-  }
-
-  .content-grid {
-    display: flex;
-    gap: 1.5rem;
-    align-items: flex-start;
-    max-width: 1200px;
-    margin: 0 auto 2rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-    font-size: 1.15rem;
-    line-height: 1.6;
-    margin-left: 2rem;
-  }
-
-  .photo-col {
-    flex: 0 0 35%;
-    min-width: 260px;
-  }
-
-  .photo-col img {
-    width: 90%;
-    height: auto;
-    margin-left: 1rem;
-    margin-top: 12.7rem;
-    border: none;
-  }
-
-  .highlight-name {
-    color: rgb(250, 119, 206);
-  }
-
-  .text-col {
-    flex: 1 1 60%;
-    min-width: 300px;
-  }
-
-  .text-block {
-    font-family: "Inter", serif;
-    margin-top: 13rem;
-    font-weight: 500;
-    font-size: 1.5rem;
-    text-align: justify;
-  }
-
-  /* responsive protection only */
-  @media (max-width: 1100px) {
+    /* original desktop layout preserved */
     .nav {
-      position: static;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.5rem;
-      margin-top: 0;
-      background: none;
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1.85rem;
+      padding: 0;
+      /* remove extra padding so it hugs the corner */
+      z-index: 10;
     }
 
     .mila {
-      display: none;
+      position: fixed;
+      top: 17%;
+      left: 45%;
+      transform: translateY(-25%) translateX(50%);
+      width: 50px;
+      height: auto;
+      z-index: -1;
+      opacity: 1.0;
+    }
+
+    .btn {
+      --size: 110px;
+      /* desktop circle size */
+      width: var(--size);
+      height: var(--size);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      font-family: "Figtree", sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      color: #000;
+      background: #ddd;
+      transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
+      border: none;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: rotate(-6deg) scale(1.06);
+
+    }
+
+    /* Individual colors */
+    .btn.teal {
+      background: var(--teal);
+    }
+
+    .btn.lemon {
+      background: var(--lemon);
+    }
+
+    .btn.pink {
+      background: var(--neon-pink);
+    }
+
+    .btn.red {
+      background: var(--neon-red);
+    }
+
+    .btn.blue {
+      background: var(--electric-blue);
+      color: #fff;
+    }
+
+    .hero {
+      width: 100%;
+      padding: 8rem 2rem;
+    }
+
+    .title {
+      font-family: "Inter", serif;
+      margin-top: 32rem;
+      font-size: clamp(3rem, 9vw, 9rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 1;
+      color: var(--darkred);
     }
 
     .content-grid {
-      flex-direction: column;
-      margin: 2rem auto;
-      margin-left: 0;
-      align-items: center;
-      gap: 2rem;
-      padding: 0 1rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+      font-size: 1.15rem;
+      line-height: 1.6;
+      margin-left: 2rem;
+    }
+
+    .photo-col {
+      flex: 0 0 35%;
+      min-width: 260px;
     }
 
     .photo-col img {
-      margin: 0 auto;
-      width: 80%;
-      max-width: 400px;
+      width: 90%;
+      height: auto;
+      margin-left: 1rem;
+      margin-top: 12.7rem;
+      border: none;
+    }
+
+    .highlight-name {
+      color: rgb(250, 119, 206);
+    }
+
+    .text-col {
+      flex: 1 1 60%;
+      min-width: 300px;
     }
 
     .text-block {
-      margin-top: 1rem;
-      font-size: 1.25rem;
-      text-align: left;
-      padding: 0 0.5rem;
-    }
-  }
-
-  @media (max-width: 600px) {
-    .btn {
-      font-size: 1.1rem;
+      font-family: "Inter", serif;
+      margin-top: 13rem;
+      font-weight: 500;
+      font-size: 1.5rem;
+      text-align: justify;
+      text-transform: none;
+      color: var(--bigtext);
     }
 
-    .photo-col img {
-      width: 100%;
-      margin-top: 1rem;
+    /* responsive protection only */
+    @media (max-width: 1100px) {
+      .nav {
+        position: static;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.5rem;
+        margin-top: 0;
+        background: none;
+      }
+
+      .mila {
+        display: none;
+      }
+
+      .content-grid {
+        flex-direction: column;
+        margin: 2rem auto;
+        margin-left: 0;
+        align-items: center;
+        gap: 2rem;
+        padding: 0 1rem;
+      }
+
+      .photo-col img {
+        margin: 0 auto;
+        width: 80%;
+        max-width: 400px;
+      }
+
+      .text-block {
+        margin-top: 1rem;
+        font-size: 1.25rem;
+        text-align: left;
+        padding: 0 0.5rem;
+      }
     }
 
-    .text-block {
-      font-size: 1.1rem;
-      line-height: 1.5;
+    @media (max-width: 600px) {
+      .btn {
+        font-size: 1.1rem;
+      }
+
+      .photo-col img {
+        width: 100%;
+        margin-top: 1rem;
+      }
+
+      .text-block {
+        font-size: 1.1rem;
+        line-height: 1.5;
+      }
     }
-  }
-</style>
+  </style>
 
 
 </head>
 
 <body>
-  <img src="mila.svg" alt="mila cartoon" class="mila">
+
   <nav class="nav" aria-label="Primary">
-   <a class="btn" href="index.html">Home</a>
-    <a class="btn" href="aboutme.html">About Me</a>
-    <a class="btn" href="music.html">Scores</a>
-    <a class="btn" href="visual.html">Visual</a>
-    <a class="btn" href="contact.html">Contact</a>
+    <a class="btn teal" href="index.html">Home</a>
+    <a class="btn lemon" href="aboutme.html">About</a>
+    <a class="btn pink" href="music.html">Scores</a>
+    <a class="btn red" href="visual.html">Visual</a>
+    <a class="btn blue" href="contact.html">Contact</a>
   </nav>
 
   <main>
@@ -216,11 +264,11 @@
           <p>My name is <span class="highlight-name">Mila Baumann</span> and I am currently a junior studying
             composition and film scoring at NYU. I began playing violin in second grade, which eventually led me to a
             conservatory education; and it was there that I discovered my passion for composition.</p>
-            <p>In 2021 I was selected for the Los Angeles Philharmonic's Composer Fellowship Program, an experience
+          <p>In 2021 I was selected for the Los Angeles Philharmonic's Composer Fellowship Program, an experience
             that deeply shaped my artistic voice and gave me the opportunity to work alongside world-class musicians and
             mentors.</p>
 
-            <p>
+          <p>
             My current interests lie in contemporary classical music, particularly in exploring how the boundaries
             between music and sound can be blurred through extended techniques and the integration of electronic tools.
           </p>

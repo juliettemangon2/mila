@@ -10,12 +10,23 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Gilda+Display&display=swap"
     rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@700;900&display=swap" rel="stylesheet" />
+
 
   <style>
     :root {
-      --red: rgb(205, 223, 236);
-      --darkred: #5c2f5f;
-      --bigtext: #5c2f5f;
+      --red: rgb(252, 254, 255);
+      --darkred: #000000;
+      --bigtext: #000000;
+      --teal: #63e0e6;
+      /* bright teal like your mock */
+      --lemon: #fff06a;
+      /* light bright yellow */
+      --neon-pink: #ff94e1;
+      /* neon pink */
+      --neon-red: #ff2d55;
+      /* neon red/coral */
+      --electric-blue: #2d7bff;
     }
 
     * {
@@ -24,55 +35,186 @@
 
     body {
       margin: 0;
-      font-family: "Gilda Display", serif;
+      font-family: "Figtree", sans-serif;
+      text-transform: uppercase;
       color: var(--darkred);
-      min-height: 100vh;
+      height: 100vh;
+      width: 100vw;
       background-color: var(--red);
       display: flex;
-      flex-direction: column;
+      justify-content: flex-start;
+      /* left instead of right */
+      align-items: flex-end;
+      /* bottom */
+      overflow: hidden;
+      /* disable scrolling */
     }
+
+
 
     .nav {
-      position: absolute;
-      inset-block: 0;
-      right: 0;
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: flex-end;
-      gap: 1rem;
-      padding: 2rem;
-      margin-top: -28rem;
+      gap: 1.85rem;
+      padding: 0;
+      /* remove extra padding so it hugs the corner */
+      z-index: 10;
     }
 
+
+
+    /* Circle buttons */
     .btn {
-      font-size: 2.3rem;
-      font-weight: 700;
+      --size: 110px;
+      /* desktop circle size */
+      width: var(--size);
+      height: var(--size);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
       text-decoration: none;
-      color: var(--darkred);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      font-family: "Figtree", sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      color: #000;
+      background: #ddd;
+      transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
+      border: none;
+    }
+    .btn:hover,
+    .btn:focus-visible {
+      transform: rotate(-6deg) scale(1.06);
+
     }
 
-    .btn:hover {
-      opacity: 0.7;
-      transform: translateX(-3px);
+    /* Individual colors */
+    .btn.teal {
+      background: var(--teal);
+    }
 
+    .btn.lemon {
+      background: var(--lemon);
+    }
+
+    .btn.pink {
+      background: var(--neon-pink);
+    }
+
+    .btn.red {
+      background: var(--neon-red);
+    }
+
+    .btn.blue {
+      background: var(--electric-blue);
+      color: #fff;
+    }
+
+    /* white text on blue */
+
+    /* Mobile: smaller circles, horizontal row */
+    @media (max-width: 700px) {
+      .nav {
+        top: 0.75rem;
+        right: 0.75rem;
+        flex-direction: row;
+        gap: 0.6rem;
+      }
+
+      .btn {
+        --size: 78px;
+        font-size: 0.8rem;
+      }
     }
 
     .hero {
-      width: 100%;
-      padding: 8rem 2rem;
+      position: fixed;
+      bottom: 1rem;
+      left: 1rem;
+      /* bottom-left corner */
+      text-align: left;
+      line-height: 0.1;
+      /* reduces vertical gap between “Mila” and “Lou” */
     }
 
+
     .title {
-      font-family: "Inter", serif;
-      margin-top: 13rem;
-      font-size: clamp(3rem, 9vw, 9rem);
+
+      font-size: clamp(5rem, 9vw, 9rem);
       font-weight: 900;
       text-transform: uppercase;
       line-height: 1;
       color: var(--bigtext);
     }
+
+    /* Make it large and use Figtree */
+    .title {
+      font-family: "Figtree", sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      line-height: 0.3;
+      letter-spacing: 0.02em;
+      color: var(--bigtext);
+      font-size: clamp(6rem, 20vw, 16rem)
+        /* bigger overall */
+    }
+
+    /* Controls for the L extensions */
+    :root {
+      --bar-right: 12rem;
+      /* length after the upper L */
+      --bar-left: 10rem;
+      /* length before the lower L */
+      --bar-thick: 0.17em;
+      /* thickness of the bar */
+      --bar-gap: 0.1ch;
+      /* tiny gap between bar end and next letter */
+    }
+
+    .L {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Upper L: draw bar to the RIGHT and reserve space before the A */
+    .L.right {
+      margin-right: calc(var(--bar-right) + var(--bar-gap));
+    }
+
+    .L.right::after {
+      content: "";
+      position: absolute;
+      left: 100%;
+      top: 109.8%;
+      /* tweak between 0.74–0.80em for pixel-perfect match */
+      width: var(--bar-right);
+      height: var(--bar-thick);
+      background: currentColor;
+      margin-left: -0.1em;
+      /* eliminates the hairline gap between bar & L */
+    }
+
+
+    /* Lower L: draw bar to the LEFT and reserve space before the L */
+    .L.left {
+      margin-left: calc(var(--bar-left) + var(--bar-gap));
+    }
+
+    .L.left::before {
+      content: "";
+      position: absolute;
+      right: 100%;
+      top: calc(1em - var(--bar-thick));
+      width: var(--bar-left);
+      height: var(--bar-thick);
+      background: currentColor;
+    }
+
+
 
     .flower {
       position: fixed;
@@ -90,7 +232,7 @@
       margin-left: 1rem;
 
     }
-    
+
 
 
     @media (max-width: 700px) {
@@ -117,18 +259,26 @@
 </head>
 
 <body>
-  <img src="flower1.svg" alt="Flower drawing" class="flower">
+
 
   <nav class="nav" aria-label="Primary">
-   <a class="btn" href="index.html">Home</a>
-    <a class="btn" href="aboutme.html">About Me</a>
-    <a class="btn" href="music.html">Scores</a>
-    <a class="btn" href="visual.html">Visual</a>
-    <a class="btn" href="contact.html">Contact</a>
-  </nav>
+  <a class="btn teal"  href="index.html">Home</a>
+  <a class="btn lemon" href="aboutme.html">About</a>
+  <a class="btn pink"  href="music.html">Scores</a>
+  <a class="btn red"   href="visual.html">Visual</a>
+  <a class="btn blue"  href="contact.html">Contact</a>
+</nav>
+
 
   <main class="hero" aria-labelledby="site-title">
-    <h1 id="site-title" class="title">Mila Baumann</h1>
+    <h1 id="site-title" class="title">
+      MI<span class="L right">L</span>A<br>
+
+    </h1>
+    <h1 id="site-title" class="title">
+      <span class="L right">L</span>OU
+    </h1>
+
   </main>
 </body>
 
