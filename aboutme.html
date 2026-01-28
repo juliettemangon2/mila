@@ -11,17 +11,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Gilda+Display&display=swap"
     rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@700;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
   <style>
     :root {
       --bg: rgb(252, 254, 255);
       --darkred: #000000;
       --bigtext: #000000;
-      --teal: #420014;
-      --lemon: #766102;
-      --pink: #b8bfd9;
-      --red: #d86e2d;
-      --blue: #fdd9cb;
     }
 
     *,
@@ -43,21 +38,6 @@
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
-      overflow: hidden;
-    }
-
-    /* original desktop layout preserved */
-    .nav {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 1.85rem;
-      padding: 0;
-      /* remove extra padding so it hugs the corner */
-      z-index: 10;
     }
 
     .mila {
@@ -69,55 +49,6 @@
       height: auto;
       z-index: -1;
       opacity: 1.0;
-    }
-
-    .btn {
-      --size: 110px;
-      /* desktop circle size */
-      width: var(--size);
-      height: var(--size);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      text-decoration: none;
-      font-family: "Figtree", sans-serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-      color: #000;
-      background: #ddd;
-      transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
-      border: none;
-    }
-
-    .btn:hover,
-    .btn:focus-visible {
-      transform: rotate(-6deg) scale(1.06);
-
-    }
-
-    /* Individual colors */
-    .btn.teal {
-      background: var(--teal);
-      color: #fff;
-    }
-
-    .btn.lemon {
-      background: var(--lemon);
-      color: #fff;
-    }
-
-    .btn.pink {
-      background: var(--pink);
-    }
-
-    .btn.red {
-      background: var(--red);
-    }
-
-    .btn.blue {
-      background: var(--blue);
-      
     }
 
     .hero {
@@ -181,10 +112,8 @@
       color: var(--bigtext);
     }
 
-    /* responsive protection only */
+    /* Tablet adjustments */
     @media (max-width: 1100px) {
-
-
       .mila {
         display: none;
       }
@@ -196,12 +125,21 @@
         align-items: center;
         gap: 2rem;
         padding: 0 1rem;
+        padding-right: 140px; /* Space for nav buttons */
+      }
+
+      .photo-col {
+        min-width: unset;
+        width: 100%;
+        display: flex;
+        justify-content: center;
       }
 
       .photo-col img {
         margin: 0 auto;
-        width: 80%;
-        max-width: 400px;
+        margin-top: 2rem;
+        width: 60%;
+        max-width: 350px;
       }
 
       .text-block {
@@ -211,85 +149,91 @@
         padding: 0 0.5rem;
       }
     }
-    @media (max-width: 700px) {
-      .nav {
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        top: 0;
-        right: 0;
-        padding: 1rem;
-        position: absolute;
+
+    /* Medium-small screens - hide photo earlier */
+    @media (max-width: 900px) {
+      .photo-col {
+        display: none;
       }
 
-      .btn {
-        font-size: 1rem;
-      }
-      .photo-col img {
+      .content-grid {
         margin-top: 1rem;
+        padding-right: 140px;
+      }
     }
-  }
 
-
-    @media (max-width: 600px) {
-      .btn {
-        font-size: 1.1rem;
+    /* Mobile adjustments */
+    @media (max-width: 700px) {
+      body {
+        overflow: auto;
       }
 
-      .photo-col img {
+      /* Hide photo on mobile */
+      .photo-col {
+        display: none;
+      }
+
+      .content-grid {
+        margin-top: 5rem;
+        padding: 0 1.5rem;
+        padding-right: 1.5rem; /* No nav safe space needed - hamburger menu */
+      }
+
+      .text-col {
+        min-width: unset;
         width: 100%;
-        margin-top: 1rem;
       }
 
       .text-block {
+        margin-top: 0;
         font-size: 1.1rem;
-        line-height: 1.5;
+        line-height: 1.6;
+        text-align: left;
       }
     }
-    /* Mobile-only safety for About page */
-@media (max-width: 700px){
-  /* ensure page can scroll on small screens */
-  body{ overflow: auto !important; }
+     @media (max-width: 1400px) {
+      .content-grid {
+        padding-right: 160px;
+        max-width: calc(100% - 140px);
+      }
 
-  /* create clear space beneath the fixed two-row nav cluster */
-  main{
-    padding-top: calc((var(--nav-size) * 2) + 1.75rem); /* two circles + a bit of breathing room */
-    padding-right: .75rem;  /* avoids hugging the right edge under the nav */
-  }
-
-  /* tighten image spacing so it never collides with the nav */
-  .photo-col img{
-    margin-top: 0 !important;
-    width: 90%;
-  }
-
-  /* keep text comfortable on small screens */
-  .text-block{
-    margin-top: 0 !important;
-    font-size: 1.1rem;
-    line-height: 1.5;
-  }
-}
-
-    
+      .text-col {
+        flex: 1;
+        min-width: 0;
+      }
+    }
   </style>
-
-
 </head>
 
 <body>
+  <!-- Hamburger Button (Mobile) -->
+  <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay"></div>
+
+  <!-- Navigation -->
   <nav class="nav" aria-label="Primary">
     <a class="btn teal" href="aboutme.html">About</a>
-    <a class="btn lemon" href="music.html">Scores</a>
-    <a class="btn pink" href="visual.html">Visual</a>
-    <a class="btn red" href="contact.html">Contact</a>
+    <a class="btn lemon" href="contact.html">Contact</a>
+
+    <div class="dropdown">
+      <a class="btn pink dropdownTrigger" href="#" onclick="return false;">
+        Portfolio
+      </a>
+
+      <div class="dropdownMenu" aria-label="Portfolio">
+        <a class="btn red" href="music.html">Music</a>
+        <a class="btn blue" href="visual.html">Visual</a>
+      </div>
+    </div>
   </nav>
 
   <main>
-
-
     <section class="content-grid">
       <div class="photo-col">
         <img src="portrait2.jpeg" alt="Photo of Mila" />
@@ -302,7 +246,6 @@
           <p>In 2021 I was selected for the Los Angeles Philharmonic's Composer Fellowship Program, an experience
             that deeply shaped my artistic voice and gave me the opportunity to work alongside world-class musicians and
             mentors.</p>
-
           <p>
             My current interests lie in contemporary classical music, particularly in exploring how the boundaries
             between music and sound can be blurred through extended techniques and the integration of electronic tools.
@@ -311,7 +254,38 @@
       </div>
     </section>
   </main>
-</body>
 
+  <!-- Mobile Menu Script -->
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.nav');
+    const overlay = document.querySelector('.mobile-menu-overlay');
+
+    function toggleMenu() {
+      const isOpen = hamburger.classList.toggle('active');
+      nav.classList.toggle('active');
+      overlay.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (nav.classList.contains('active')) {
+          toggleMenu();
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('active')) {
+        toggleMenu();
+      }
+    });
+  </script>
+</body>
 
 </html>

@@ -7,7 +7,6 @@
   <title>Mila Baumann</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Gilda+Display&display=swap"
     rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@700;900&display=swap" rel="stylesheet" />
@@ -17,14 +16,7 @@
   <style>
     :root {
       --bg: rgb(252, 254, 255);
-      --darkred: #000000;
-      --bigtext: #000000;
-      --teal: #420014;
-      --lemon: #766102;
-      --pink: #b8bfd9;
-      --red: #d86e2d;
-      --blue: #fdd9cb;
-
+      
     }
 
     * {
@@ -35,124 +27,24 @@
       margin: 0;
       font-family: "Figtree", sans-serif;
       text-transform: uppercase;
-      color: var(--darkred);
+      color: #000;
       height: 100vh;
       width: 100vw;
       background-color: var(--bg);
       display: flex;
       justify-content: flex-start;
-      /* left instead of right */
       align-items: flex-end;
-      /* bottom */
       overflow: hidden;
-      /* disable scrolling */
-    }
-
-
-
-    .nav {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 1.85rem;
-      padding: 0;
-      /* remove extra padding so it hugs the corner */
-      z-index: 10;
-    }
-
-
-
-    /* Circle buttons */
-    .btn {
-      --size: 110px;
-      /* desktop circle size */
-      width: var(--size);
-      height: var(--size);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      text-decoration: none;
-      font-family: "Figtree", sans-serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-      color: #000;
-      background: #ddd;
-      transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
-      border: none;
-    }
-
-    .btn:hover,
-    .btn:focus-visible {
-      transform: rotate(-6deg) scale(1.06);
-
-    }
-
-    /* Individual colors */
-    .btn.teal {
-      background: var(--teal);
-      color: #fff;
-    }
-
-    .btn.lemon {
-      background: var(--lemon);
-      color: #fff;
-    }
-
-    .btn.pink {
-      background: var(--pink);
-    }
-
-    .btn.red {
-      background: var(--red);
-    }
-
-    .btn.blue {
-      background: var(--blue);
-      
-    }
-
-    /* white text on blue */
-
-    /* Mobile: smaller circles, horizontal row */
-    @media (max-width: 700px) {
-      .nav {
-        top: 0.75rem;
-        right: 0.75rem;
-        flex-direction: row;
-        gap: 0.6rem;
-      }
-
-      .btn {
-        --size: 78px;
-        font-size: 0.8rem;
-      }
     }
 
     .hero {
       position: fixed;
       bottom: 1rem;
       left: 1rem;
-      /* bottom-left corner */
       text-align: left;
       line-height: 0.1;
-      /* reduces vertical gap between “Mila” and “Lou” */
     }
 
-
-    .title {
-
-      font-size: clamp(5rem, 9vw, 9rem);
-      font-weight: 900;
-      text-transform: uppercase;
-      line-height: 1;
-      color: var(--bigtext);
-    }
-
-    /* Make it large and use Figtree */
     .title {
       font-family: "Figtree", sans-serif;
       font-weight: 900;
@@ -160,20 +52,14 @@
       line-height: 0.3;
       letter-spacing: 0.02em;
       color: var(--bigtext);
-      font-size: clamp(6rem, 20vw, 16rem)
-        /* bigger overall */
+      font-size: clamp(6rem, 20vw, 16rem);
     }
 
-    /* Controls for the L extensions */
     :root {
       --bar-right: 12rem;
-      /* length after the upper L */
       --bar-left: 10rem;
-      /* length before the lower L */
       --bar-thick: 0.17em;
-      /* thickness of the bar */
       --bar-gap: 0.1ch;
-      /* tiny gap between bar end and next letter */
     }
 
     .L {
@@ -181,7 +67,6 @@
       display: inline-block;
     }
 
-    /* Upper L: draw bar to the RIGHT and reserve space before the A */
     .L.right {
       margin-right: calc(var(--bar-right) + var(--bar-gap));
     }
@@ -191,16 +76,12 @@
       position: absolute;
       left: 100%;
       top: 109.8%;
-      /* tweak between 0.74–0.80em for pixel-perfect match */
       width: var(--bar-right);
       height: var(--bar-thick);
       background: currentColor;
       margin-left: -0.1em;
-      /* eliminates the hairline gap between bar & L */
     }
 
-
-    /* Lower L: draw bar to the LEFT and reserve space before the L */
     .L.left {
       margin-left: calc(var(--bar-left) + var(--bar-gap));
     }
@@ -215,188 +96,139 @@
       background: currentColor;
     }
 
-
-
     .flower {
       position: fixed;
       top: 50%;
       left: 0;
       transform: translateY(-25%);
-      /* centers vertically + rotates */
       width: 600px;
-      /* adjust size as needed */
       height: auto;
       z-index: -1;
-      /* keeps it behind your text/nav */
       opacity: 0.9;
-      /* optional: makes it blend with background */
       margin-left: 1rem;
-
     }
 
-
-
+    /* Mobile styles for hero/title */
     @media (max-width: 700px) {
-      .nav {
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        top: 0;
-        right: 0;
-        padding: 1rem;
-      }
-
-      .btn {
-        font-size: 1rem;
+      body {
+        overflow: auto;
       }
 
       .hero {
-        padding: 4rem 1rem;
-        text-align: center;
-      }
-    }
-
-    /* ---- FORCE mobile nav to wrap into two lines and keep circles visible ---- */
-    @media (max-width: 700px) {
-
-      /* Let the page scroll on small screens so nothing gets clipped */
-      body {
-        overflow: auto !important;
-      }
-
-      /* Two-line layout using flex-wrap (3 on top, 2 on bottom) */
-      .nav {
-        top: .75rem !important;
-        right: .75rem !important;
-
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        gap: 0.6rem !important;
-
-        /* smaller circles on mobile */
-        --size: 78px;
-
-        /* wrap after ~3 items: 3*size + 2 gaps */
-        max-width: calc((var(--size) * 3) + (0.6rem * 2)) !important;
-
-        /* keep the cluster right-aligned in the corner */
-        justify-content: flex-end !important;
-        align-items: center !important;
-        z-index: 1000 !important;
-      }
-
-      .btn {
-        width: var(--size) !important;
-        height: var(--size) !important;
-        font-size: .8rem !important;
-      }
-    }
-
-    /* ============ MOBILE ONLY (<=700px) ============ */
-    @media (max-width: 700px) {
-
-      /* Let the page scroll so nothing gets cut off */
-      body {
-        overflow: auto !important;
-      }
-
-      /* 1) Nav: two horizontal lines in the top-right, smaller circles */
-      .nav {
-        top: .75rem !important;
-        right: .75rem !important;
-
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        gap: 0.6rem !important;
-
-        /* three on the first row, two on the second */
-        --size: 78px;
-        max-width: calc((var(--size) * 3) + (0.6rem * 2)) !important;
-
-        justify-content: flex-end !important;
-        align-items: center !important;
-        z-index: 1000 !important;
-      }
-
-      .btn {
-        width: var(--size) !important;
-        height: var(--size) !important;
-        font-size: .8rem !important;
-      }
-
-      /* 2) Title: same look, just tighter & safe on small screens */
-      .hero {
-        /* keep bottom-left placement but respect iPhone safe area */
         position: fixed;
         left: 1rem;
         bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
-        line-height: normal !important;
+        line-height: normal;
       }
 
       .title {
-        font-size: clamp(3.5rem, 18vw, 8rem) !important;
-        line-height: 0.95 !important;
+        font-size: clamp(3.5rem, 18vw, 8rem);
+        line-height: 0.95;
         letter-spacing: 0.01em;
         margin: 0;
       }
 
-      /* 3) Shorter, thinner L-bars so they never cross the letters */
       :root {
         --bar-right: clamp(4rem, 28vw, 7rem);
         --bar-left: clamp(3.5rem, 24vw, 6.5rem);
         --bar-thick: clamp(6px, 1.12em, 12px);
         --bar-gap: 0ch;
         --bar-offset: 0.648em;
-        /* sits neatly under “MI” on phones */
       }
 
       .L.right {
-        margin-right: calc(var(--bar-right) + var(--bar-gap)) !important;
+        margin-right: calc(var(--bar-right) + var(--bar-gap));
       }
 
       .L.right::after {
-        top: var(--bar-offset) !important;
-        width: var(--bar-right) !important;
-        height: var(--bar-thick) !important;
+        top: var(--bar-offset);
+        width: var(--bar-right);
+        height: var(--bar-thick);
       }
 
       .L.left {
-        margin-left: calc(var(--bar-left) + var(--bar-gap)) !important;
+        margin-left: calc(var(--bar-left) + var(--bar-gap));
       }
 
       .L.left::before {
-        top: calc(1em - var(--bar-thick)) !important;
-        width: var(--bar-left) !important;
-        height: var(--bar-thick) !important;
+        top: calc(1em - var(--bar-thick));
+        width: var(--bar-left);
+        height: var(--bar-thick);
       }
     }
   </style>
 </head>
 
 <body>
+  <!-- Hamburger Button (Mobile) -->
+  <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay"></div>
 
+  <!-- Navigation -->
   <nav class="nav" aria-label="Primary">
     <a class="btn teal" href="aboutme.html">About</a>
-    <a class="btn lemon" href="music.html">Scores</a>
-    <a class="btn pink" href="visual.html">Visual</a>
-    <a class="btn red" href="contact.html">Contact</a>
-  </nav>
+    <a class="btn lemon" href="contact.html">Contact</a>
 
+    <div class="dropdown">
+      <a class="btn pink dropdownTrigger" href="#" onclick="return false;">
+        Portfolio
+      </a>
+
+      <div class="dropdownMenu" aria-label="Portfolio">
+        <a class="btn red" href="music.html">Music</a>
+        <a class="btn blue" href="visual.html">Visual</a>
+      </div>
+    </div>
+  </nav>
 
   <main class="hero" aria-labelledby="site-title">
     <h1 id="site-title" class="title">
       MI<span class="L right">L</span>A<br>
-
     </h1>
-    <h1 id="site-title" class="title">
+    <h1 class="title">
       <span class="L right">L</span>OU
     </h1>
-
   </main>
+
+  <!-- Mobile Menu Script -->
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.nav');
+    const overlay = document.querySelector('.mobile-menu-overlay');
+
+    function toggleMenu() {
+      const isOpen = hamburger.classList.toggle('active');
+      nav.classList.toggle('active');
+      overlay.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+
+    // Close menu when a link is clicked
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (nav.classList.contains('active')) {
+          toggleMenu();
+        }
+      });
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('active')) {
+        toggleMenu();
+      }
+    });
+  </script>
 </body>
 
 </html>

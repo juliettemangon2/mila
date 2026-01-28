@@ -4,12 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Music | Mila Baumann</title>
+  <title>Music</title>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Gilda+Display&display=swap"
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Figtree:wght@700;900&display=swap"
     rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@700;900&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="style.css">
+
   <style>
     :root {
       --bg: rgb(255, 255, 255);
@@ -17,12 +19,29 @@
       --bigtext: #000000;
       --paper: #fff;
       --ink: #1d1d1f;
+
+      /* your palette */
       --teal: #420014;
       --lemon: #766102;
       --pink: #b8bfd9;
       --red: #d86e2d;
       --blue: #fdd9cb;
 
+      --active: #fdd9cb;
+      --hover: #c1b99a;
+
+      /* headphone cable color (soft lavender/blue from your refs) */
+      --cable: #b7bdd6;
+      --cable-dark: #9aa4c8;
+
+      /* iPod body */
+      --ipod: #d26c32;
+      --ipod-dark: #b45929;
+      --screen: #ffffff;
+      --screen-ink: #000000;
+      --wheel: #c7ccdc;
+
+      --radius: 18px;
     }
 
     *,
@@ -46,47 +65,14 @@
       overflow-x: hidden;
     }
 
-    /* Right-side vertical nav */
-    .nav {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 1.85rem;
-      padding: 0;
-      /* remove extra padding so it hugs the corner */
-      z-index: 10;
-    }
 
-
-    .btn {
-      --size: 110px;
-      /* desktop circle size */
-      width: var(--size);
-      height: var(--size);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      text-decoration: none;
-      font-family: "Figtree", sans-serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-      color: #000;
-      background: #ddd;
-      transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
-      border: none;
-    }
+   
 
     .btn:hover,
     .btn:focus-visible {
       transform: rotate(-6deg) scale(1.06);
-
     }
 
-    /* Individual colors */
     .btn.teal {
       background: var(--teal);
       color: #fff;
@@ -107,936 +93,777 @@
 
     .btn.blue {
       background: var(--blue);
-
     }
 
-
-    .hero {
+    /* ===== NEW PAGE LAYOUT ===== */
+    main {
       width: 100%;
-      padding: 8rem 2rem 2rem;
-    }
-
-    .title {
-      font-family: "Inter", serif;
-      margin-top: -3rem;
-      font-size: clamp(3rem, 9vw, 9rem);
-      font-weight: 900;
-      text-transform: uppercase;
-      line-height: 1;
-      color: var(--bigtext);
-    }
-
-    .container {
-      max-width: 1200px;
-      margin-left: 1rem;
-      gap: 0rem;
-      margin-bottom: 3rem;
-    }
-
-    .grid {
+      min-height: 100vh;
       display: grid;
-      gap: 2rem;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: start;
+      padding: 3.25rem 2rem 2.5rem;
     }
 
-    @media (max-width:900px) {
-      .grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    /* Keep content away from right-side nav on smaller desktops */
+    @media (max-width: 1280px) and (min-width: 701px) {
+      main {
+        padding-right: 170px;
       }
     }
 
-    @media (max-width:560px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .card {
-      display: flex;
-      flex-direction: column;
-      gap: .6rem;
-      cursor: pointer;
-      transition: transform .18s, box-shadow .18s, background .18s;
-
-
-    }
-
-    .card:hover {
-      transform: translateY(-2px);
-
-    }
-
-    .thumb {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 3/4;
-      overflow: hidden;
-      background: var(--paper);
-      display: flex;
-      align-items: center;
+    .wrap {
+      display: grid;
+      grid-template-columns: 340px;
       justify-content: center;
+      width: 100%;
+      margin-top: 2rem;
+
     }
 
-    .thumb embed {
+
+    /* Decorative cable across the page (behind content) */
+    .cable-stage {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .cable-stage svg {
       width: 100%;
       height: 100%;
-      border: 0;
     }
 
-    .thumb .overlay {
-      position: absolute;
-      inset: 0;
-      background: transparent;
-    }
-
-    .title-caption {
-      font: 500 1rem/1.35 "Inter", sans-serif;
-      color: var(--darkred);
-      word-break: break-word;
-    }
-
-    /* Book viewer dialog */
-    dialog#viewer {
-      width: min(1200px, 96vw);
-      height: min(88vh, 920px);
-      margin-top: 4rem;
-      margin-left: 4rem;
-      overflow: visible;
-      background: var(--bg);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, .28);
-      opacity: 0;
-      transform: scale(.96);
-      transition: opacity .18s, transform .18s;
+    /* Make actual content above cable */
+    .panel {
       position: relative;
-      border: transparent;
-      /* for piece arrows positioning */
+      z-index: 1;
     }
 
-    dialog[open]#viewer {
-      opacity: 1;
-      transform: scale(1);
+    /* ===== iPod player (left) ===== */
+    .ipod {
+      background: var(--ipod);
+      border-radius: 22px;
+      padding: 18px 18px 16px;
+      border: 3px solid rgba(0, 0, 0, 0.08);
     }
 
-    dialog::backdrop {
-      background: rgba(0, 0, 0, .42);
+    .ipod-inner {
+      display: grid;
+      gap: 14px;
+      grid-template-rows: auto auto;
     }
 
-    .viewer-bar {
-      height: 48px;
+    .ipod-screen {
+      background: var(--screen);
+      border-radius: 12px;
+      border: 3px solid rgba(0, 0, 0, 0.12);
+      padding: 10px 10px 10px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .ipod {
+      width: 340px;
+    }
+
+
+    .screen-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 .75rem;
+      gap: 10px;
+      font-family: Inter, sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+      font-size: 12px;
+      color: var(--screen-ink);
+    }
+
+    .screen-pill {
+      font-family: Inter, sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      font-size: 10px;
+      padding: 3px 6px;
+      border: 2px solid rgba(0, 0, 0, 0.16);
+      border-radius: 999px;
       background: #fff;
-
-    }
-
-    .viewer-title {
-      font: 500 2rem/1 "Inter", sans-serif;
-      color: var(--darkred);
       white-space: nowrap;
-      text-overflow: ellipsis;
-      max-width: 100%;
-      margin-top: 0.5rem;
-      margin-bottom: 0.5rem;
     }
 
-    .viewer-actions {
-      display: flex;
-      align-items: center;
-      gap: .35rem;
+    .tracklist {
+      list-style: none;
+      display: grid;
+      gap: 6px;
+      max-height: 230px;
+      overflow: auto;
+      padding-right: 4px;
     }
 
-    .act {
-      font: 500 1.5rem/1 "Inter", sans-serif;
-      background: transparent;
-      color: var(--darkred);
-      border: 0px;
-      padding: .4rem .6rem;
+    .tracklist::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .tracklist::-webkit-scrollbar-thumb {
+      background: rgba(0, 0, 0, 0.18);
+      border-radius: 999px;
+      border: 3px solid #fff;
+    }
+
+    .track {
+      border-radius: 10px;
+      border: 2px solid rgba(0, 0, 0, 0.10);
+      padding: 8px 8px;
       cursor: pointer;
-      transition: background .15s, transform .12s, opacity .15s;
-      text-decoration: none;
+      background: #fff;
+      transition: transform 140ms ease;
+      display: grid;
+      grid-template-columns: 18px 1fr;
+      gap: 8px;
+      align-items: start;
     }
 
-    .act:hover {
-      background: rgba(140, 0, 4, .10);
+    .track:hover {
+      background: var(--hover);
     }
 
-    .act:disabled {
-      opacity: .45;
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      margin-top: 2px;
+      background: var(--pink);
+      border: 2px solid rgba(0, 0, 0, 0.10);
+    }
+
+    .track:nth-child(4n+1) .dot {
+      background: var(--teal);
+    }
+
+    .track:nth-child(4n+2) .dot {
+      background: var(--lemon);
+    }
+
+    .track:nth-child(4n+3) .dot {
+      background: var(--pink);
+    }
+
+    .track:nth-child(4n+4) .dot {
+      background: var(--red);
+    }
+
+    .t-title {
+      font-family: Inter, sans-serif;
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: #000;
+      line-height: 1.2;
+      word-break: break-word;
+    }
+
+    .t-meta {
+      margin-top: 3px;
+      font-family: Inter, sans-serif;
+      font-weight: 700;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: rgba(0, 0, 0, 0.55);
+      line-height: 1.2;
+    }
+
+    .track[aria-current="true"] {
+      background: var(--active);
+
+      outline-offset: 2px;
+    }
+
+    .wheel {
+      display: grid;
+      place-items: center;
+      padding: 8px 0 6px;
+    }
+
+    .wheel-ring {
+      width: 190px;
+      height: 190px;
+      border-radius: 999px;
+      background: var(--wheel);
+      border: 3px solid rgba(0, 0, 0, 0.10);
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .wheel-center {
+      width: 64px;
+      height: 64px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.10);
+      border: 2px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .wheel-label {
+      position: absolute;
+      font-family: Inter, sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.10em;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.65);
+      user-select: none;
+    }
+
+    .wheel-label.menu {
+      top: 16px;
+    }
+
+    .wheel-label.prev {
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    .wheel-label.next {
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    .wheel-label.play {
+      bottom: 14px;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+
+    .wheel-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .wbtn {
+      font-family: Inter, sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 11px;
+      padding: 10px 10px;
+      border-radius: 999px;
+      border: 2px solid rgba(0, 0, 0, 0.12);
+      background: rgba(255, 255, 255, 0.65);
+      color: #000;
+      cursor: pointer;
+      transition: transform 140ms ease, opacity 140ms ease;
+    }
+
+    .wbtn:hover {
+      transform: translateY(-1px);
+    }
+
+    .wbtn:disabled {
+      opacity: 0.45;
       cursor: not-allowed;
     }
 
-    .viewer-body {
+
+
+    .badge.alt1 {
+      background: var(--pink);
+    }
+
+    .badge.alt2 {
+      background: var(--red);
+      color: #000;
+    }
+
+    .badge.alt3 {
+      background: var(--lemon);
+      color: #fff;
+      border-color: rgba(0, 0, 0, 0.08);
+    }
+
+
+
+    .bar {
+      position: relative;
+      height: 14px;
+      border-radius: 999px;
+      border: 2px solid rgba(0, 0, 0, 0.12);
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .fill {
+      position: absolute;
+      inset: 0;
+      width: 0%;
+      background: linear-gradient(90deg, var(--pink), var(--blue), var(--red));
+    }
+
+    .bar input[type="range"] {
+      position: absolute;
+      inset: 0;
       width: 100%;
-      height: calc(100% - 48px);
-      background: var(--paper);
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .controls {
       display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
     }
 
-    /* Two-page spread */
-    .spread {
+    .ctl {
+      font-family: Inter, sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 12px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 2px solid rgba(0, 0, 0, 0.12);
+      background: #fff;
+      cursor: pointer;
+      transition: transform 140ms ease, opacity 140ms ease;
+    }
+
+    .ctl:hover {
+      transform: translateY(-1px);
+    }
+
+    .ctl.primary {
+      background: var(--teal);
+      color: #fff;
+      border-color: rgba(0, 0, 0, 0.06);
+    }
+
+    .ctl:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .volume {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px;
-      width: min(1100px, 94%);
-      height: 98%;
-      align-items: stretch;
-      justify-items: stretch;
-      background: var(--paper);
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: center;
+      margin-left: auto;
+      min-width: min(260px, 100%);
     }
 
-    .page {
+    .vol-label {
+      font-family: Inter, sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.10em;
+      font-size: 11px;
+      color: rgba(0, 0, 0, 0.60);
+      white-space: nowrap;
+    }
+
+    .vol {
+      height: 14px;
+      border-radius: 999px;
+      border: 2px solid rgba(0, 0, 0, 0.12);
+      background: #fff;
       position: relative;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
-    canvas {
-      display: block;
-      max-width: 100%;
-      max-height: 100%;
-    }
-
-    .blank {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font: 600 .9rem/1 "Inter", sans-serif;
-    }
-
-    /* Piece-to-piece big arrows (inside dialog, outside content) */
-    .piece-arrow {
+    .vol-fill {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 46px;
-      height: 46px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--darkred);
+      inset: 0;
+      width: 60%;
+      background: linear-gradient(90deg, var(--blue), var(--pink));
+    }
+
+    .vol input[type="range"] {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
       cursor: pointer;
-      user-select: none;
-      font: 900 22px/1 "Inter", sans-serif;
-      font-size: 2rem;
-      transition: transform .12s, background .12s, opacity .12s;
-      z-index: 5;
-      background: var(--paper);
-      border: 1px solid transparent;
     }
 
-    .piece-arrow:hover {
-      transform: translateY(-50%) scale(1.04);
+    .notes {
+      margin-top: 14px;
+      border-top: 2px dashed rgba(0, 0, 0, 0.14);
+      padding-top: 12px;
+      display: grid;
+      gap: 8px;
     }
 
-    .piece-arrow.left {
-      left: -50px;
+    .note-line {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-family: Inter, sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: rgba(0, 0, 0, 0.60);
+      text-transform: none;
     }
 
-    .piece-arrow.right {
-      right: -50px;
+    .screen-time {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-family: Inter, sans-serif;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      font-size: 10px;
+      color: rgba(0, 0, 0, 0.65);
+      padding: 2px 2px 0;
     }
 
-    /* add this to your CSS (or into the existing .page block) */
-    .page {
-      background: var(--paper);
+    .screen-time .slash {
+      opacity: 0.5;
     }
 
 
-    @media (max-width:820px) {
-      .spread {
+    .spark {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+      background: var(--pink);
+      border: 2px solid rgba(0, 0, 0, 0.10);
+      flex: 0 0 auto;
+      margin-top: 2px;
+    }
+
+    .note-line:nth-child(2) .spark {
+      background: var(--blue);
+    }
+
+    .note-line:nth-child(3) .spark {
+      background: var(--red);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 980px) {
+      .wrap {
         grid-template-columns: 1fr;
-        height: 92%;
+      }
+
+      .wheel-ring {
+        width: 180px;
+        height: 180px;
       }
     }
 
-    @media (max-width:700px) {
-      .nav {
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        top: 0;
-        right: 0;
-        padding: 1rem;
-        margin-top: 0;
-        margin-bottom: 22rem;
+    @media (max-width: 700px) {
+
+
+      main {
+        padding: 7.25rem 1rem 2rem;
       }
 
       .btn {
         font-size: 1rem;
       }
 
-      .hero {
-        padding: 4rem 1rem 1rem;
-        text-align: center;
-      }
-
-      .title {
-        margin-top: 10rem;
-      }
-
-      .container {
-        padding: 0 1rem 2.5rem;
-      }
-
-      .piece-arrow {
-        display: none;
-      }
-
-      /* hide big arrows on very small screens */
-    }
-
-    /* =====================  SMALLER SCREENS ONLY  ===================== */
-    /* Keep your default desktop look intact. No changes to .nav or .btn. */
-
-    /* 1) Small desktops/laptops: protect content from the right-side nav */
-    @media (max-width: 1280px) and (min-width: 701px) {
-      :root {
-        --nav-safe: 140px;
-      }
-
-      /* space for the vertical button stack */
-      .hero,
-      .container {
-        padding-right: var(--nav-safe);
-      }
-
-      dialog#viewer {
-        margin-right: var(--nav-safe);
-      }
-    }
-
-    /* 2) Tablets and below: single-page view in a scrollable lightbox */
-    @media (max-width: 820px) {
-
-      /* Make the dialog fill the screen and avoid any overlap */
-      dialog#viewer {
-        width: 100vw;
-        height: 100dvh;
-        margin: 0;
-        border-radius: 0;
-      }
-
-      /* Keep the control bar visible while scrolling pages */
-      .viewer-bar {
-        position: sticky;
-        top: 0;
-        z-index: 2;
-      }
-
-      /* Scroll to navigate long pages instead of relying on arrows */
-      .viewer-body {
-        height: calc(100dvh - 48px);
-        display: block;
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior: contain;
-        padding: 0 .5rem 1rem;
-        background: var(--paper);
-      }
-
-      /* Switch to single-page rendering vertically */
-      .spread {
-        grid-template-columns: 1fr;
-        gap: 10px;
+      .volume {
+        margin-left: 0;
         width: 100%;
-        height: auto;
-        margin: 0 auto;
-      }
-
-      .page {
-        align-items: flex-start;
-      }
-
-      /* Ensure pages scale to screen width and keep aspect ratio */
-      canvas {
-        max-width: 100%;
-        height: auto !important;
       }
     }
 
-    /* 3) Phones: hide big piece-to-piece arrows, keep simple controls */
-    @media (max-width: 700px) {
+    @media (prefers-reduced-motion: reduce) {
 
-      /* Do not change .nav on mobile; just keep content clear of it via layout above */
-      .piece-arrow {
-        display: none !important;
-      }
-
-      /* remove large arrows inside dialog */
-
-      /* Make tap targets a bit larger for prev/next spread buttons */
-      .viewer-actions .act {
-        font-size: 1.2rem;
-        padding: .6rem .8rem;
-      }
-
-      /* One-column grid of score cards */
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      /* Keep thumbnails tidy on small screens */
-      .thumb {
-        aspect-ratio: 3/4;
-      }
-    }
-
-    /* ==================== SMALLER SCREENS ONLY ==================== */
-    @media (max-width: 1024px) {
-
-      /* Full-bleed lightbox — removes margins, white bars, and scale shrink */
-      dialog#viewer {
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        padding: 0;
-        border: none;
-        border-radius: 0;
-        background: var(--paper);
-        box-shadow: none;
-        transform: none;
-        opacity: 1;
-      }
-
-      dialog::backdrop {
-        background: rgba(0, 0, 0, 0.42);
-      }
-
-      /* Keep the top bar fixed and clean */
-      .viewer-bar {
-        position: sticky;
-        top: 0;
-        height: 52px;
-        padding: 0 0.75rem;
-        background: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-        z-index: 2;
-      }
-
-      /* Title aligned left, not under nav */
-      .viewer-title {
-        font: 600 1.6rem/1 "Inter", sans-serif;
-        color: var(--darkred);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 70vw;
-        margin: 0;
-      }
-
-      /* The main area fills the viewport — no extra white space */
-      .viewer-body {
-        height: calc(100vh - 52px);
-        width: 100vw;
-        background: var(--paper);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
-        padding: 0.5rem 0 2rem;
-      }
-
-      /* One-page vertical layout for scores */
-      .spread {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 10px;
-        width: min(900px, 96vw);
-        margin: 0 auto;
-      }
-
-      .page {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--paper);
-      }
-
-      canvas {
-        width: 100%;
-        height: auto !important;
-        max-width: 100%;
-      }
-
-      /* Hide big side arrows on smaller screens */
-      .piece-arrow {
-        display: none !important;
-      }
-
-      /* Compact nav arrows in the top bar (next/prev spread) */
-      .viewer-actions .act {
-        font-size: 1.2rem;
-        padding: 0.4rem 0.6rem;
-      }
-    }
-
-    /* ================== FINAL — LIGHTBOX FULLSCREEN FIX ================== */
-    @media (max-width: 1024px) {
-
-      dialog#viewer {
-        position: fixed;
-        inset: 0;
-        width: 100vw;
-        height: 100vh;
-        margin: 0;
-        padding: 0;
-        border: none;
-        border-radius: 0;
-        background: var(--paper);
-        box-shadow: none;
-        transform: none;
-        opacity: 1;
-        z-index: 2000;
-      }
-
-      dialog::backdrop {
-        background: rgba(0, 0, 0, .42);
-      }
-
-      /* Fixed title bar */
-      .viewer-bar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 52px;
-        background: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 .75rem;
-        border-bottom: 1px solid rgba(0, 0, 0, .06);
-        z-index: 2;
-      }
-
-      .viewer-title {
-        font: 600 1.6rem/1 "Inter", sans-serif;
-        color: var(--darkred);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 70vw;
-        margin: 0;
-      }
-
-      /* The body now starts immediately below the bar */
-      .viewer-body {
-        position: absolute;
-        top: 52px;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: var(--paper);
-        overflow-y: auto;
-        overflow-x: hidden;
-        -webkit-overflow-scrolling: touch;
-        display: block;
-        /* remove centering grid */
-        padding: 0;
-        /* eliminate top white margin */
-      }
-
-      /* One-page-per-row vertical layout */
-      .spread {
-        display: block;
-        width: 100%;
-        margin: 0 auto;
-      }
-
-      .page {
-        background: var(--paper);
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        /* top-align so first page touches top */
-        min-height: calc(100vh - 52px);
-        overflow: hidden;
-      }
-
-      canvas {
-        display: block;
-        width: 100%;
-        height: auto !important;
-        max-width: 100%;
-        max-height: none;
-      }
-
-      /* Hide big arrows */
-      .piece-arrow {
-        display: none !important;
-      }
-
-      .viewer-actions .act {
-        font-size: 1.2rem;
-        padding: .4rem .6rem;
-      }
-    }
-
-    /* Phone refinement */
-    @media (max-width: 700px) {
-      .viewer-bar {
-        height: 50px;
-        padding: 0 .5rem;
-      }
-
-      .viewer-body {
-        top: 50px;
-      }
-
-      .page {
-        min-height: calc(100vh - 50px);
+      .btn,
+      .track,
+      .ctl,
+      .wbtn {
+        transition: none;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- Right-side nav -->
+  <!-- Hamburger Button (Mobile) -->
+  <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 
-    <nav class="nav" aria-label="Primary">
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" aria-label="Primary">
     <a class="btn teal" href="aboutme.html">About</a>
-    <a class="btn lemon" href="music.html">Scores</a>
-    <a class="btn pink" href="visual.html">Visual</a>
-    <a class="btn red" href="contact.html">Contact</a>
-  </nav>
-  <main>
-    <section class="hero" aria-labelledby="page-title">
-      <h1 id="page-title" class="title">Scores</h1>
-    </section>
+    <a class="btn lemon" href="contact.html">Contact</a>
 
-    <section class="container">
-      <div id="grid" class="grid" aria-live="polite"></div>
+    <div class="dropdown">
+      <a class="btn pink dropdownTrigger" href="#" onclick="return false;">
+        Portfolio
+      </a>
+
+      <div class="dropdownMenu" aria-label="Portfolio">
+        <a class="btn red" href="music.html">Music</a>
+        <a class="btn blue" href="visual.html">Visual</a>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+  </div>
+
+  <main>
+    <section class="wrap">
+
+      <!-- Left: iPod playlist -->
+      <aside class="panel ipod" aria-label="Playlist">
+        <div class="ipod-inner">
+          <div class="ipod-screen">
+            <div class="screen-top">
+              <div>MENU</div>
+              <div class="screen-pill" id="screenCount">0 TRACKS</div>
+            </div>
+            <ul class="tracklist" id="tracklist" aria-live="polite"></ul>
+            <div class="screen-time" aria-live="polite">
+              <span id="tCur">0:00</span>
+              <span class="slash">/</span>
+              <span id="tDur">0:00</span>
+            </div>
+
+          </div>
+
+          <div class="wheel" aria-hidden="true">
+            <div class="wheel-ring">
+              <div class="wheel-label menu">MENU</div>
+              <div class="wheel-label prev">⟨⟨</div>
+              <div class="wheel-label next">⟩⟩</div>
+              <div class="wheel-label play">▶︎ ∥</div>
+              <div class="wheel-center"></div>
+            </div>
+
+            <div class="wheel-actions" aria-label="Quick controls">
+              <button class="wbtn" id="wPrev" type="button">Prev</button>
+              <button class="wbtn" id="wPlay" type="button">Play</button>
+              <button class="wbtn" id="wNext" type="button">Next</button>
+            </div>
+          </div>
+        </div>
+        <audio id="audio" preload="metadata"></audio>
+
+
+      </aside>
+
     </section>
   </main>
-
-  <!-- Book-style two-page viewer -->
-  <dialog id="viewer" aria-labelledby="viewerHeading">
-    <!-- piece-to-piece arrows (prev/next score) -->
-    <button class="piece-arrow left" id="piecePrev" aria-label="Previous piece">←</button>
-    <button class="piece-arrow right" id="pieceNext" aria-label="Next piece">→</button>
-
-    <div class="viewer-bar">
-      <div class="viewer-title" id="viewerHeading">Loading…</div>
-      <div class="viewer-actions">
-        <button class="act" id="prevBtn" title="Previous spread (←)">←</button>
-        <button class="act" id="nextBtn" title="Next spread (→)">→</button>
-        <button class="act" id="closeBtn" title="Close">X</button>
-      </div>
-    </div>
-    <div class="edge-nav left" id="edgePrev" aria-label="Previous spread"></div>
-    <div class="edge-nav right" id="edgeNext" aria-label="Next spread"></div>
-
-
-    <div class="viewer-body">
-      <div class="spread">
-        <div class="page">
-          <canvas id="canvasLeft"></canvas>
-          <div id="blankLeft" class="blank" hidden></div>
-        </div>
-        <div class="page">
-          <canvas id="canvasRight"></canvas>
-          <div id="blankRight" class="blank" hidden></div>
-        </div>
-      </div>
-    </div>
-  </dialog>
-
-  <!-- PDF.js -->
-  <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
   <script>
-    pdfjsLib.GlobalWorkerOptions.workerSrc =
-      "https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.nav');
+    const overlay = document.querySelector('.mobile-menu-overlay');
 
-    // Elements
-    const gridEl = document.getElementById('grid');
+    function toggleMenu() {
+      const isOpen = hamburger.classList.toggle('active');
+      nav.classList.toggle('active');
+      overlay.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
 
-    const viewer = document.getElementById('viewer');
-    const viewerHeading = document.getElementById('viewerHeading');
+    hamburger.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
 
-    const closeBtn = document.getElementById('closeBtn');
-    const prevBtn = document.getElementById('prevBtn');   // spread prev
-    const nextBtn = document.getElementById('nextBtn');   // spread next
-    const edgePrev = document.getElementById('edgePrev');
-    const edgeNext = document.getElementById('edgeNext');
-
-    edgePrev.addEventListener('click', (e) => {
-      if (e.shiftKey) loadPiece(currentIndex - 1);
-      else prevSpread();
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (nav.classList.contains('active')) {
+          toggleMenu();
+        }
+      });
     });
-    edgeNext.addEventListener('click', (e) => {
-      if (e.shiftKey) loadPiece(currentIndex + 1);
-      else nextSpread();
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('active')) {
+        toggleMenu();
+      }
     });
 
+    const TRACKS = [
+      { title: "Atmosphere of The Mind", file: "Atmosphere.mp3" },
+      { title: "Dynamism", file: "Dynamism.mp3" },
+      { title: "Evolve", file: "Evolve.mp3" },
+      { title: "Interconnection", file: "Interconnection.mp3" },
+      { title: "Crossroads", file: "Crossroads.mp3" },
+      { title: "El Canto Del Mar", file: "Mar.mp3" },
+    ];
+
+    const $ = (id) => document.getElementById(id);
+
+    const tracklist = $("tracklist");
+    const screenCount = $("screenCount");
+
+    const audio = $("audio");
+    const wPrev = $("wPrev");
+    const wPlay = $("wPlay");
+    const wNext = $("wNext");
+    const tCur = $("tCur");
+    const tDur = $("tDur");
 
 
-    const piecePrevBtn = document.getElementById('piecePrev'); // piece prev
-    const pieceNextBtn = document.getElementById('pieceNext'); // piece next
+    let current = -1;
 
-    const canvasLeft = document.getElementById('canvasLeft');
-    const canvasRight = document.getElementById('canvasRight');
-    const blankLeft = document.getElementById('blankLeft');
-    const blankRight = document.getElementById('blankRight');
-
-    // State
-    let items = [];           // [{file, title, url}]
-    let currentIndex = 0;     // which score
-    let pdfDoc = null;        // current PDFDocumentProxy
-    let leftPage = 1;         // left page number for current spread
-    let scale = 1.0;          // zoom scale (relative to "fit")
-
-    // Helpers
-    function friendlyTitle(name) {
-      let base = name.replace(/\.[^/.]+$/, '');
-      base = base.replace(/[_]+/g, ' ').replace(/\s{2,}/g, ' ').trim();
-      base = base.replace(/\s*\(full\s*score\)\s*/i, ' (Full Score)');
-      base = base.replace(/\bfull\s*score\b/ig, 'Full Score');
-      return base;
+    function safeText(s) {
+      return String(s || "").trim();
     }
 
-    function buildCard(item, index) {
-      const card = document.createElement('div');
-      card.className = 'card';
-
-      const thumb = document.createElement('div');
-      thumb.className = 'thumb';
-
-      const emb = document.createElement('embed');
-      emb.src = `${item.url}#page=1&view=FitH`;
-      emb.type = 'application/pdf';
-      thumb.appendChild(emb);
-
-      const overlay = document.createElement('div');
-      overlay.className = 'overlay';
-      overlay.addEventListener('click', () => openViewer(index));
-      thumb.appendChild(overlay);
-
-      const caption = document.createElement('div');
-      caption.className = 'title-caption';
-      caption.textContent = item.title;
-
-      card.appendChild(thumb);
-      card.appendChild(caption);
-      return card;
+    function setPlayButton(isPlaying) {
+      wPlay.textContent = isPlaying ? "Pause" : "Play";
     }
 
-    function renderGrid() {
-      gridEl.innerHTML = '';
-      items.forEach((it, i) => gridEl.appendChild(buildCard(it, i)));
+    function setCurrentIndex(idx, autoplay) {
+      if (!TRACKS.length) return;
+
+      current = (idx + TRACKS.length) % TRACKS.length;
+
+      [...tracklist.querySelectorAll(".track")].forEach((li, i) => {
+        li.setAttribute("aria-current", i === current ? "true" : "false");
+      });
+
+      const tr = TRACKS[current];
+      const src = `mp3/${encodeURI(tr.file)}`;
+
+      tCur.textContent = "0:00";
+      tDur.textContent = "0:00";
+
+
+      audio.src = src;
+      audio.load();
+
+      if (autoplay) {
+        audio.play().catch(() => { });
+      } else {
+        setPlayButton(false);
+      }
     }
 
-    // Book layout helpers
-    function setSpreadStart(pageNum) {
-      if (pageNum <= 1) { leftPage = 0; }           // cover: only right page = 1
-      else if (pageNum % 2 === 0) { leftPage = pageNum; } // even left
-      else { leftPage = pageNum - 1; }                      // odd -> pair with previous even
-    }
-
-    function computeFitScale(viewport, targetCanvas) {
-      const maxW = targetCanvas.parentElement.clientWidth;
-      const maxH = targetCanvas.parentElement.clientHeight;
-      const sW = maxW / viewport.width;
-      const sH = maxH / viewport.height;
-      return Math.min(sW, sH);
-    }
-
-    async function renderPageToCanvas(pdf, pageNumber, canvas, blankDiv) {
-      if (pageNumber <= 0 || pageNumber > pdf.numPages) {
-        const ctx = canvas.getContext('2d');
-        if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
-        canvas.hidden = true;
-        blankDiv.hidden = false;
-        blankDiv.textContent = ''; // keep white
+    function togglePlay() {
+      if (current === -1) {
+        setCurrentIndex(0, true);
         return;
       }
-      const page = await pdf.getPage(pageNumber);
-
-      const viewport1x = page.getViewport({ scale: 1 });
-      const fit = computeFitScale(viewport1x, canvas);
-      const dpr = Math.max(1, Math.min(window.devicePixelRatio || 1, 2));
-      const finalScale = fit * scale * dpr;
-
-      const vp = page.getViewport({ scale: finalScale });
-      const ctx = canvas.getContext('2d', { alpha: false, desynchronized: true });
-      canvas.width = Math.floor(vp.width);
-      canvas.height = Math.floor(vp.height);
-
-      const cssScale = 1 / dpr;
-      canvas.style.width = Math.floor(vp.width * cssScale) + 'px';
-      canvas.style.height = Math.floor(vp.height * cssScale) + 'px';
-
-      ctx.imageSmoothingEnabled = false;
-
-      await page.render({ canvasContext: ctx, viewport: vp, intent: 'display' }).promise;
-      canvas.hidden = false;
-      blankDiv.hidden = true;
+      if (audio.paused) audio.play().catch(() => { });
+      else audio.pause();
     }
 
-
-
-
-    async function openViewer(index) {
-      if (!viewer.open) viewer.showModal();
-      await loadPiece(index);
+    function nextTrack(autoplay = true) {
+      if (!TRACKS.length) return;
+      if (current === -1) setCurrentIndex(0, autoplay);
+      else setCurrentIndex(current + 1, autoplay);
     }
 
-    function closeViewer() {
-      if (viewer.open) viewer.close();
-      [canvasLeft, canvasRight].forEach(c => {
-        const ctx = c.getContext('2d'); ctx && ctx.clearRect(0, 0, c.width, c.height);
+    function prevTrack(autoplay = true) {
+      if (!TRACKS.length) return;
+      if (current === -1) setCurrentIndex(0, autoplay);
+      else setCurrentIndex(current - 1, autoplay);
+    }
+
+    function buildList() {
+      tracklist.innerHTML = "";
+
+      TRACKS.forEach((tr, i) => {
+        const li = document.createElement("li");
+        li.className = "track";
+        li.setAttribute("role", "button");
+        li.setAttribute("tabindex", "0");
+        li.setAttribute("aria-current", "false");
+
+        const dot = document.createElement("div");
+        dot.className = "dot";
+
+        const body = document.createElement("div");
+
+        const title = document.createElement("div");
+        title.className = "t-title";
+        title.textContent = safeText(tr.title) || "Untitled";
+
+
+
+        body.appendChild(title);
+
+
+        li.appendChild(dot);
+        li.appendChild(body);
+
+        li.addEventListener("click", () => setCurrentIndex(i, true));
+        li.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setCurrentIndex(i, true);
+          }
+        });
+
+        tracklist.appendChild(li);
       });
-      pdfDoc = null;
+
+      screenCount.textContent = `${TRACKS.length} TRACKS`;
     }
-    // --- Add this helper ---
-    function isSinglePageMode() {
-      return window.matchMedia('(max-width:1024px)').matches;
+    function fmtTime(sec) {
+      if (!isFinite(sec) || sec < 0) return "0:00";
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m}:${String(s).padStart(2, "0")}`;
     }
 
-    // --- Replace your loadPiece with this ---
-    async function loadPiece(index) {
-      currentIndex = (index + items.length) % items.length;
-      scale = 1.0;
 
-      const it = items[currentIndex];
-      viewerHeading.textContent = it.title;
+    // events
+    wPlay.addEventListener("click", togglePlay);
+    wPrev.addEventListener("click", () => prevTrack(true));
+    wNext.addEventListener("click", () => nextTrack(true));
 
-      pdfDoc = await pdfjsLib.getDocument(it.url).promise;
+    audio.addEventListener("play", () => setPlayButton(true));
+    audio.addEventListener("pause", () => setPlayButton(false));
+    audio.addEventListener("ended", () => nextTrack(true));
 
-      if (isSinglePageMode()) {
-        // mobile/tablet: start at page 1, no blank cover
-        leftPage = 1;
-      } else {
-        // desktop: keep the traditional cover (blank left, page 1 right)
-        leftPage = 0;
+    window.addEventListener("keydown", (e) => {
+      const tag = (document.activeElement && document.activeElement.tagName || "").toLowerCase();
+      const inForm = tag === "input" || tag === "button" || tag === "a" || tag === "li";
+      if (inForm && e.key === " ") return;
+
+      if (e.key === " " || e.code === "Space") {
+        e.preventDefault();
+        togglePlay();
       }
-      await renderSpread();
-    }
-
-    // --- Replace your renderSpread with this ---
-    async function renderSpread() {
-      if (!pdfDoc) return;
-
-      const leftPageWrap = canvasLeft.parentElement;   // the .page wrapper
-      const rightPageWrap = canvasRight.parentElement;
-
-      if (isSinglePageMode()) {
-        // hide the left page entirely so no blank block is created
-        leftPageWrap.style.display = 'none';
-
-        // render just the "current" page into the right canvas
-        const current = (leftPage === 0) ? 1 : leftPage; // safety
-        await renderPageToCanvas(pdfDoc, current, canvasRight, blankRight);
-
-      } else {
-        // show two-page spread
-        leftPageWrap.style.display = '';
-        rightPageWrap.style.display = '';
-
-        const leftNum = (leftPage === 0) ? 0 : leftPage;
-        const rightNum = (leftPage === 0) ? 1 : leftPage + 1;
-
-        await Promise.all([
-          renderPageToCanvas(pdfDoc, leftNum, canvasLeft, blankLeft),
-          renderPageToCanvas(pdfDoc, rightNum, canvasRight, blankRight),
-        ]);
-      }
-    }
-
-    // --- Replace your next/prevSpread with this ---
-    function nextSpread() {
-      if (!pdfDoc) return;
-
-      if (isSinglePageMode()) {
-        // advance one page at a time
-        if (leftPage === 0) leftPage = 1;
-        else leftPage = Math.min(pdfDoc.numPages, leftPage + 1);
-      } else {
-        // advance two pages (book spread)
-        if (leftPage === 0) leftPage = 2;
-        else leftPage = Math.min(pdfDoc.numPages - (pdfDoc.numPages % 2 === 0 ? 1 : 0), leftPage + 2);
-      }
-      renderSpread();
-    }
-
-    function prevSpread() {
-      if (!pdfDoc) return;
-
-      if (isSinglePageMode()) {
-        if (leftPage <= 1) leftPage = 1;
-        else leftPage = Math.max(1, leftPage - 1);
-      } else {
-        if (leftPage === 0) return;
-        if (leftPage === 2) leftPage = 0;
-        else leftPage = Math.max(2, leftPage - 2);
-      }
-      renderSpread();
-    }
-
-    // --- Keep this so layout switches live when resizing ---
-    window.addEventListener('resize', () => { if (viewer.open) renderSpread(); });
-
-
-
-
-    // Events
-    closeBtn.addEventListener('click', closeViewer);
-    nextBtn.addEventListener('click', nextSpread);
-    prevBtn.addEventListener('click', prevSpread);
-
-    pieceNextBtn.addEventListener('click', () => loadPiece(currentIndex + 1));
-    piecePrevBtn.addEventListener('click', () => loadPiece(currentIndex - 1));
-
-    viewer.addEventListener('click', (e) => { if (e.target === viewer) closeViewer(); });
-
-    window.addEventListener('keydown', (e) => {
-      if (!viewer.open) return;
-      if (e.key === 'Escape') closeViewer();
-
-      // Spread nav
-      if (e.key === 'ArrowRight' && !e.shiftKey) nextSpread();
-      if (e.key === 'ArrowLeft' && !e.shiftKey) prevSpread();
-
-      // Piece nav with Shift + Arrow
-      if (e.key === 'ArrowRight' && e.shiftKey) loadPiece(currentIndex + 1);
-      if (e.key === 'ArrowLeft' && e.shiftKey) loadPiece(currentIndex - 1);
-
-      // Zoom
-      if (e.key === '+') { scale = Math.min(3, scale + 0.1); renderSpread(); }
-      if (e.key === '-') { scale = Math.max(0.3, scale - 0.1); renderSpread(); }
+      if (e.key === "ArrowRight") nextTrack(true);
+      if (e.key === "ArrowLeft") prevTrack(true);
     });
 
-    window.addEventListener('resize', () => { if (viewer.open) renderSpread(); });
+    audio.addEventListener("loadedmetadata", () => {
+      tDur.textContent = fmtTime(audio.duration);
+    });
 
-    // Load list of scores
-    async function init() {
-      try {
-        const res = await fetch('scores.json');
-        const data = await res.json();
-        items = (data.scores || []).map(file => ({
-          file,
-          title: friendlyTitle(file),
-          url: `scores/${encodeURI(file)}`
-        }));
-        renderGrid();
-      } catch (err) {
-        gridEl.innerHTML = '<p style="color:#300;padding:1rem;background:rgba(255,255,255,.25);border-radius:8px;">Could not load scores.json.</p>';
-        console.error(err);
-      }
-    }
-    init();
+    audio.addEventListener("timeupdate", () => {
+      tCur.textContent = fmtTime(audio.currentTime);
+      if (isFinite(audio.duration)) tDur.textContent = fmtTime(audio.duration);
+    });
+
+
+    // init
+    buildList();
+    if (TRACKS.length) setCurrentIndex(0, false);
   </script>
+
+
+
 </body>
 
 </html>

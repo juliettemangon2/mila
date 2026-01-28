@@ -10,28 +10,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Gilda+Display&display=swap"
     rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@700;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css">
-
+  <link rel="stylesheet" href="style.css">
 
   <style>
     :root {
       --bg: rgb(252, 254, 255);
       --darkred: #000000;
       --bigtext: #000000;
-      --teal: #420014;
-      --lemon: #766102;
-      --pink: #b8bfd9;
-      --red: #d86e2d;
-      --blue: #fdd9cb;
       --nav-safe: 160px;
-
-    }
-
-    .hero,
-    .jump,
-    .carousel-viewport,
-    .gallery {
-      padding-right: var(--nav-safe);
     }
 
     *,
@@ -59,70 +45,6 @@
       overflow-x: hidden;
     }
 
-    /* Right-side vertical nav — same as index.html */
-    .nav {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 1.85rem;
-      padding: 0;
-      /* remove extra padding so it hugs the corner */
-      z-index: 10;
-    }
-
-
-    .btn {
-      --size: 110px;
-      /* desktop circle size */
-      width: var(--size);
-      height: var(--size);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      text-decoration: none;
-      font-family: "Figtree", sans-serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-      color: #000;
-      background: #ddd;
-      transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
-      border: none;
-    }
-
-    .btn:hover,
-    .btn:focus-visible {
-      transform: rotate(-6deg) scale(1.06);
-
-    }
-
-    /* Individual colors */
-    .btn.teal {
-      background: var(--teal);
-      color: #fff;
-    }
-
-    .btn.lemon {
-      background: var(--lemon);
-      color: #fff;
-    }
-
-    .btn.pink {
-      background: var(--pink);
-    }
-
-    .btn.red {
-      background: var(--red);
-    }
-
-    .btn.blue {
-      background: var(--blue);
-      
-    }
-
     .thumb {
       display: inline-block;
       border: none;
@@ -133,7 +55,6 @@
 
     .thumb img {
       height: 300px;
-      /* strip height */
       width: auto;
       display: block;
       object-fit: contain;
@@ -151,17 +72,15 @@
       opacity: .95;
     }
 
-    /* Header sits close to the carousel */
     .hero {
       width: 100%;
       padding: .5rem 2rem 0;
+      padding-right: var(--nav-safe);
     }
 
-    /* tighter */
     .title {
       font-family: "Inter", serif;
       margin-top: 15.25rem;
-      /* much less space */
       font-size: clamp(3rem, 9vw, 9rem);
       font-weight: 900;
       text-transform: uppercase;
@@ -170,13 +89,12 @@
       color: var(--bigtext);
     }
 
-    .jump{
-  width: calc(100% - var(--nav-safe));
-  margin-left: auto;     /* keeps it flush to the right edge of the safe area */
-  text-align: right;
-}
-
-
+    .jump {
+      width: calc(100% - var(--nav-safe));
+      margin-left: auto;
+      text-align: right;
+      padding-right: var(--nav-safe);
+    }
 
     .jump a {
       text-align: right;
@@ -197,42 +115,29 @@
       transform: translateY(-1px);
     }
 
-    /* Gallery section (masonry columns) */
     .gallery {
       max-width: 1300px;
       padding: 0 2rem 3rem;
+      padding-right: var(--nav-safe);
       position: relative;
       z-index: 1;
     }
 
     #gallery-section {
       scroll-margin-top: 16px;
-      /* adjust if you want more space on arrival */
     }
 
-    /* Carousel strip under nav (top of page) */
     .carousel-section {
       width: 100%;
       padding: 2rem 0 .25rem;
-      /* tighter top + bottom */
       position: relative;
       z-index: 1;
       margin-bottom: 20rem;
     }
 
     .carousel-viewport {
-      width: 100%;
-      overflow: hidden;
-      padding-right: 14rem;
-      /* keep clear of right nav */
-    }
-
-    .carousel-viewport {
       width: calc(100% - var(--nav-safe));
-      /* remove any padding-right you added earlier on this element */
-      padding-right: 0 !important;
       overflow: hidden;
-      /* keep it as the clipping box */
     }
 
     .carousel-track {
@@ -247,15 +152,15 @@
       column-gap: 16px;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1100px) {
       .grid {
-        column-count: 2;
+        column-count: 3;
       }
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 900px) {
       .grid {
-        column-count: 1;
+        column-count: 2;
       }
     }
 
@@ -287,7 +192,6 @@
       transform: scale(1.01);
     }
 
-    /* Lightbox */
     dialog#lightbox {
       border: none;
       padding: 0;
@@ -344,58 +248,54 @@
       outline-offset: 4px;
     }
 
-    /* Mobile */
+    /* Mobile styles */
     @media (max-width: 700px) {
-      .nav {
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        top: 0;
-        right: 0;
-        padding: 1rem;
-        margin-top: 0;
+      :root {
+        --nav-safe: 0px;
       }
 
-      .btn {
-        font-size: 1rem;
-      }
-
+      /* Hide carousel on mobile */
       .carousel-section {
-        padding-top: 5rem;
-        margin-bottom: 5rem;
+        display: none;
       }
 
-      .carousel-viewport {
-        padding-right: 0;
-      }
-
-      .thumb img {
-        height: 110px;
+      /* Hide "Gallery view" link since we're only showing gallery */
+      .jump {
+        display: none;
       }
 
       .hero {
-        padding: 1rem 1rem 0;
-        text-align: center;
+        padding: 5rem 1.5rem 1rem;
+        text-align: left;
       }
 
       .title {
-        margin-top: 1rem;
-      }
-
-      .jump {
-        padding: .5rem 1rem 1rem;
-        text-align: center;
+        margin-top: 0;
+        font-size: clamp(2.5rem, 12vw, 4rem);
       }
 
       .gallery {
-        padding: 0 1rem 2.5rem;
+        padding: 1rem 1rem 2.5rem;
+        max-width: 100%;
+      }
+
+      .grid {
+        column-count: 2;
+        column-gap: 10px;
+      }
+
+      .gthumb {
+        margin-bottom: 10px;
       }
     }
 
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion: reduce) {
+    @media (max-width: 400px) {
+      .grid {
+        column-count: 1;
+      }
+    }
 
+    @media (prefers-reduced-motion: reduce) {
       .thumb img,
       .gthumb img {
         transition: none;
@@ -405,21 +305,42 @@
 </head>
 
 <body>
+  <!-- Hamburger Button (Mobile) -->
+  <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay"></div>
+
+  <!-- Navigation -->
   <nav class="nav" aria-label="Primary">
     <a class="btn teal" href="aboutme.html">About</a>
-    <a class="btn lemon" href="music.html">Scores</a>
-    <a class="btn pink" href="visual.html">Visual</a>
-    <a class="btn red" href="contact.html">Contact</a>
+    <a class="btn lemon" href="contact.html">Contact</a>
+
+    <div class="dropdown">
+      <a class="btn pink dropdownTrigger" href="#" onclick="return false;">
+        Portfolio
+      </a>
+
+      <div class="dropdownMenu" aria-label="Portfolio">
+        <a class="btn red" href="music.html">Music</a>
+        <a class="btn blue" href="visual.html">Visual</a>
+      </div>
+    </div>
   </nav>
 
   <section class="hero" aria-labelledby="page-title">
     <h1 id="page-title" class="title">Visual</h1>
   </section>
+
   <div class="jump">
     <a href="#gallery-section" aria-label="Jump to gallery view">Gallery view ↓</a>
   </div>
 
-  <!-- Horizontal, slowly auto-scrolling carousel strip -->
+  <!-- Horizontal carousel (desktop only) -->
   <section class="carousel-section" aria-label="Visual carousel">
     <div class="carousel-viewport" id="carouselViewport">
       <div class="carousel-track" id="carouselTrack" aria-live="off"></div>
@@ -427,10 +348,6 @@
   </section>
 
   <main>
-
-
-    <!-- Minimal button that scrolls down to the full gallery -->
-
     <!-- Full gallery (masonry) -->
     <section id="gallery-section" class="gallery" aria-label="Gallery view">
       <div id="galleryGrid" class="grid"></div>
@@ -443,11 +360,39 @@
     <div class="lb-wrap">
       <img id="lbImg" class="lb-img" alt="">
     </div>
-    <h2 id="lbHeading" style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">Image
-      viewer</h2>
+    <h2 id="lbHeading" style="position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;">Image viewer</h2>
   </dialog>
 
   <script>
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.nav');
+    const overlay = document.querySelector('.mobile-menu-overlay');
+
+    function toggleMenu() {
+      const isOpen = hamburger.classList.toggle('active');
+      nav.classList.toggle('active');
+      overlay.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+
+    nav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (nav.classList.contains('active')) {
+          toggleMenu();
+        }
+      });
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('active')) {
+        toggleMenu();
+      }
+    });
+
     const track = document.getElementById('carouselTrack');
     const viewport = document.getElementById('carouselViewport');
     const gridEl = document.getElementById('galleryGrid');
@@ -456,14 +401,13 @@
     const lbImg = document.getElementById('lbImg');
     const closeBtn = document.getElementById('closeBtn');
 
-    let items = [];          // [{file, title, url}]
+    let items = [];
     let currentIndex = 0;
 
     // Auto-scroll state
-    let pos = 0;             // translateX position
-    let speed = 40;          // px/s (slow)
+    let pos = 0;
+    let speed = 40;
     let lastTs = null;
-    let stripWidth = 0;      // width of one content loop
     let paused = false;
 
     function friendlyTitle(name) {
@@ -512,46 +456,34 @@
 
     function buildCarousel() {
       track.innerHTML = '';
-      // Build exactly one copy of the full list
       items.forEach((it, i) => track.appendChild(buildCarouselThumb(it, i)));
-
-      // Wait a frame so widths are measurable (images might be lazy-loading)
       requestAnimationFrame(() => {
-        // Nudge pos so we start cleanly
         pos = 0;
       });
     }
 
-    // Reusable helper: physical width (including our 12px gap)
     function childOuterWidth(el) {
       const rect = el.getBoundingClientRect();
-      // We know our gap is 12px between items; add it to simulate spacing
       return rect.width + 12;
     }
 
-    // Very slow, seamless auto-scroll that cycles the full list
     function tick(ts) {
       if (lastTs == null) lastTs = ts;
       const dt = (ts - lastTs) / 1000;
       lastTs = ts;
 
       const motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isMobile = window.matchMedia('(max-width: 700px)').matches;
 
-      if (motionOK && !paused && track.children.length) {
+      if (motionOK && !paused && !isMobile && track.children.length) {
         pos -= speed * dt;
 
-        // While the first child is fully off-screen to the left, recycle it
-        // Compare against its width so we move exactly one child at a time
         let first = track.firstElementChild;
         while (first) {
           const firstWidth = childOuterWidth(first);
-          // If the left translate (negative pos) passed this child's width
           if (-pos >= firstWidth) {
-            // Move the child to the end
             track.appendChild(first);
-            // Compensate the translate so there's no visual jump
             pos += firstWidth;
-            // Check again in case very high FPS/low speed mismatches
             first = track.firstElementChild;
           } else {
             break;
@@ -563,7 +495,6 @@
 
       requestAnimationFrame(tick);
     }
-
 
     function openLightbox(index) {
       currentIndex = ((index % items.length) + items.length) % items.length;
@@ -589,12 +520,10 @@
       if (e.key === 'Escape') closeLightbox();
     });
 
-    // Pause auto-scroll on hover/focus
     viewport.addEventListener('mouseenter', () => paused = true);
     viewport.addEventListener('mouseleave', () => paused = false);
     viewport.addEventListener('focusin', () => paused = true);
     viewport.addEventListener('focusout', () => paused = false);
-
 
     async function init() {
       try {

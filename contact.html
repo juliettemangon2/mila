@@ -43,44 +43,7 @@
       flex-direction: column;
     }
 
-    /* Right-side vertical nav — same as index.html */
-    .nav {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 1.85rem;
-      padding: 0;
-      /* remove extra padding so it hugs the corner */
-      z-index: 10;
-    }
-
-    .btn {
-      --size: 110px;
-      /* desktop circle size */
-      width: var(--size);
-      height: var(--size);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      text-decoration: none;
-      font-family: "Figtree", sans-serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-      color: #000;
-      background: #ddd;
-      transition: transform 200ms ease, box-shadow 200ms ease, opacity 200ms ease;
-      border: none;
-    }
-
-    .btn:hover,
-    .btn:focus-visible {
-      transform: rotate(-6deg) scale(1.06);
-
-    }
+    
 
     /* Individual colors */
     .btn.teal {
@@ -153,22 +116,7 @@
       gap: .75rem 1rem;
       align-items: baseline;
     }
-    .flower3 {
-      position: fixed;
-      top: 50%;
-      left: 0;
-      transform: translateY(-25%);
-      /* centers vertically + rotates */
-      width: 600px;
-      /* adjust size as needed */
-      height: auto;
-      z-index: -1;
-      /* keeps it behind your text/nav */
-      opacity: 0.9;
-      /* optional: makes it blend with background */
-      margin-left: 1rem;
-
-    }
+   
 
     .label {
 
@@ -192,17 +140,7 @@
 
     /* Mobile */
     @media (max-width: 700px) {
-      .nav {
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        top: 0;
-        right: 0;
-        padding: 1rem;
-        margin-top: 0;
-      }
-
+      
       .btn {
         font-size: 1rem;
       }
@@ -226,23 +164,39 @@
         min-width: auto;
       }
 
-      .flower, .flower2 {
-        display: none;
-      }
+   
     }
   </style>
 </head>
 
 <body>
+  <!-- Hamburger Button (Mobile) -->
+  <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay"></div>
 
-
+  <!-- Navigation -->
   <nav class="nav" aria-label="Primary">
     <a class="btn teal" href="aboutme.html">About</a>
-    <a class="btn lemon" href="music.html">Scores</a>
-    <a class="btn pink" href="visual.html">Visual</a>
-    <a class="btn red" href="contact.html">Contact</a>
+    <a class="btn lemon" href="contact.html">Contact</a>
+
+    <div class="dropdown">
+      <a class="btn pink dropdownTrigger" href="#" onclick="return false;">
+        Portfolio
+      </a>
+
+      <div class="dropdownMenu" aria-label="Portfolio">
+        <a class="btn red" href="music.html">Music</a>
+        <a class="btn blue" href="visual.html">Visual</a>
+      </div>
+    </div>
   </nav>
+
 
   <main>
 
@@ -261,5 +215,35 @@
     </section>
   </main>
 </body>
+<script>
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.querySelector('.nav');
+  const overlay = document.querySelector('.mobile-menu-overlay');
+
+  function toggleMenu() {
+    const isOpen = hamburger.classList.toggle('active');
+    nav.classList.toggle('active');
+    overlay.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
+
+  hamburger.addEventListener('click', toggleMenu);
+  overlay.addEventListener('click', toggleMenu);
+
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (nav.classList.contains('active')) {
+        toggleMenu();
+      }
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('active')) {
+      toggleMenu();
+    }
+  });
+</script>
 
 </html>
