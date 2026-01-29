@@ -4,6 +4,7 @@
   --pink: #b8bfd9;
   --red: #d86e2d;
   --blue: #fdd9cb;
+  --navy: #0a215a;
 
   --nav-size: 110px;
   --nav-gap: 1.85rem;
@@ -61,6 +62,11 @@
 }
 .btn.blue {
   background: var(--blue);
+}
+.btn.navy {
+  background: var(--navy);
+    color: #fff;
+
 }
 
 /* ===== DROPDOWN (Desktop) ===== */

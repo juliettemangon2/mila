@@ -9,11 +9,11 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Gilda+Display&display=swap"
     rel="stylesheet" />
-      <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@700;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
   <style>
     :root {
-     --bg: rgb(252, 254, 255);
+      --bg: rgb(252, 254, 255);
       --darkred: #000000;
       --bigtext: #000000;
       --teal: #420014;
@@ -36,14 +36,14 @@
       background: var(--bg);
       color: var(--darkred);
       font-family: "Figtree", sans-serif;
-  text-transform: uppercase;
+      text-transform: uppercase;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       display: flex;
       flex-direction: column;
     }
 
-    
+
 
     /* Individual colors */
     .btn.teal {
@@ -66,7 +66,7 @@
 
     .btn.blue {
       background: var(--blue);
-      
+
     }
 
     /* Header */
@@ -91,7 +91,6 @@
     .content {
       text-transform: none;
       color: var(--bigtext);
-      font-family: "Gilda Display", serif;
       max-width: 960px;
       padding: 2rem;
       padding-top: 15rem;
@@ -116,7 +115,7 @@
       gap: .75rem 1rem;
       align-items: baseline;
     }
-   
+
 
     .label {
 
@@ -140,7 +139,7 @@
 
     /* Mobile */
     @media (max-width: 700px) {
-      
+
       .btn {
         font-size: 1rem;
       }
@@ -156,7 +155,7 @@
 
       .content {
         padding: 1rem 1rem 2.5rem;
-        font-size: 1.15rem;
+        font-size: 2rem;
         margin-top: 25rem;
       }
 
@@ -164,7 +163,20 @@
         min-width: auto;
       }
 
-   
+    }
+
+    @media (max-width: 540px) {
+      .content {
+        padding: 1rem 1rem 2.5rem;
+        font-size: 1.5rem;
+        margin-top: 25rem;
+      }
+    }
+
+    @media (max-width: 410px) {
+      .content {
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
@@ -192,6 +204,8 @@
 
       <div class="dropdownMenu" aria-label="Portfolio">
         <a class="btn red" href="music.html">Music</a>
+        <a class="btn navy" href="scores.html">Scores</a>
+
         <a class="btn blue" href="visual.html">Visual</a>
       </div>
     </div>

@@ -191,10 +191,19 @@
         text-align: left;
       }
     }
-     @media (max-width: 1400px) {
+     @media (max-width: 1200px) {
       .content-grid {
-        padding-right: 160px;
-        max-width: calc(100% - 140px);
+        padding-right: 30px;
+      }
+
+      .text-col {
+        flex: 1;
+        min-width: 0;
+      }
+    }
+    @media (max-width: 1400px) {
+      .content-grid {
+        padding-right: 130px;
       }
 
       .text-col {
@@ -228,6 +237,7 @@
 
       <div class="dropdownMenu" aria-label="Portfolio">
         <a class="btn red" href="music.html">Music</a>
+        <a class="btn navy" href="scores.html">Scores</a>
         <a class="btn blue" href="visual.html">Visual</a>
       </div>
     </div>
