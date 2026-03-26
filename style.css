@@ -58,7 +58,9 @@
   background: var(--pink);
 }
 .btn.red {
-  background: var(--red);
+  background: var(--navy);
+      color: #fff;
+
 }
 .btn.blue {
   background: var(--blue);
